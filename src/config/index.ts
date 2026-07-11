@@ -11,6 +11,7 @@ export type {
 	CoverImageConfig,
 	ExpressiveCodeConfig,
 	FooterConfig,
+	VisitorStatsConfig,
 	GalleryAlbum,
 	GalleryConfig,
 	LicenseConfig,

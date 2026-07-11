@@ -65,7 +65,7 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 		// 支持远程视频URL，本地视频请放在 public/assets/videos/ 目录下
 		// playerUrl: "/assets/videos/firefly.mp4",
 		playerUrl: [
-			"https://www.bilibili.com/video/BV1kNFxevE71?t=5.1",
+			"/assets/videos/mc2026.mp4",
 		],
 	},
 	// 横幅壁纸和全屏壁纸共享配置

@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/comment.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/api/comment.js" }
+  ],
+  "env": {
+    "GITHUB_REPO": "learnm3/blog-comments"
+  }
+}
