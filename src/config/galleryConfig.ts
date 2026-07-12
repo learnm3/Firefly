@@ -24,11 +24,11 @@ export const galleryConfig: GalleryConfig = {
 			tags: ["崩坏星穹铁道", "流萤"],
 		},
 		{
-			id: "encrypted-test",
+			id: "encrypted",
 			name: "加密相册示例",
 			description:
-				"这是一个加密相册的示例，设置了访问密码，只有输入正确的密码才能查看相册内容。",
-			location: "崩坏：星穹铁道",
+				"这是一个加密相册，设置了访问密码，只有输入正确的密码才能查看相册内容。",
+			location: "加密",
 			date: "2026-07-10",
 			tags: ["加密相册"],
 			password: "314159",
