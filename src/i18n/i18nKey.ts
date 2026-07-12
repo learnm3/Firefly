@@ -237,11 +237,6 @@ enum I18nKey {
 	pageViewsLoading = "pageViewsLoading",
 	pageViewsError = "pageViewsError",
 
-	// 站点访问统计（页脚）
-	visitorToday = "visitorToday",
-	visitorThisMonth = "visitorThisMonth",
-	visitorTotal = "visitorTotal",
-
 	// 置顶
 	pinned = "pinned",
 

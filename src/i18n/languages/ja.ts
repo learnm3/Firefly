@@ -245,9 +245,6 @@ export const ja: Translation = {
 	[Key.pageViews]: "閲覧数",
 	[Key.pageViewsLoading]: "読み込み中...",
 	[Key.pageViewsError]: "統計利用不可",
-	[Key.visitorToday]: "今日",
-	[Key.visitorThisMonth]: "今月",
-	[Key.visitorTotal]: "累計",
 
 	// ピン留め
 	[Key.pinned]: "ピン留め",
