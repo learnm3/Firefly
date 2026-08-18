@@ -34,6 +34,18 @@ export const profileConfig: ProfileConfig = {
 			showName: false,
 		},
 		{
+			name: "B站",
+			icon: "simple-icons:bilibili",
+			url: "https://space.bilibili.com/673671501",
+			showName: false,
+		},
+		{
+			name: "牛客",
+			icon: "fa7-solid:graduation-cap",
+			url: "https://www.nowcoder.com/users/722219187",
+			showName: false,
+		},
+		{
 			name: "Email",
 			icon: "fa7-solid:envelope",
 			url: "1106015380@qq.com",
