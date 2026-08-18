@@ -72,9 +72,7 @@ function phaseCompletedTasks(phase: RoadmapPhase): number {
 
 function phasePercent(phase: RoadmapPhase): number {
 	if (phase.tasks.length === 0) return 0;
-	return Math.round(
-		(phaseCompletedTasks(phase) / phase.tasks.length) * 100,
-	);
+	return Math.round((phaseCompletedTasks(phase) / phase.tasks.length) * 100);
 }
 
 function phaseStatusText(phase: RoadmapPhase): string {

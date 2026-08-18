@@ -215,7 +215,10 @@ function promptForKey(): boolean {
 async function checkInToday() {
 	// 写入云端需要密钥验证（防访客误点污染公开数据）
 	if (!promptForKey()) return;
-	if (typeof window !== "undefined" && !window.confirm("确认今天完成 1 道题？")) {
+	if (
+		typeof window !== "undefined" &&
+		!window.confirm("确认今天完成 1 道题？")
+	) {
 		return;
 	}
 	const now = new Date();
@@ -258,7 +261,7 @@ const monthLabels = $derived(
 			const mid = week[3] ?? week[0];
 			const m = mid.date.slice(0, 7);
 			if (m !== last) {
-				labels.push({ label: mid.date.slice(5, 7) + "月", col: wi });
+				labels.push({ label: `${mid.date.slice(5, 7)}月`, col: wi });
 				last = m;
 			}
 		});

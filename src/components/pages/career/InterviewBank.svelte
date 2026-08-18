@@ -119,14 +119,18 @@ const filteredCategories = $derived(
 				if (activeMastery !== "all" && m !== activeMastery) return false;
 				if (searchQuery.trim()) {
 					const kw = searchQuery.trim().toLowerCase();
-					const haystack = `${q.question} ${q.hint} ${(q.tags ?? []).join(" ")}`.toLowerCase();
+					const haystack =
+						`${q.question} ${q.hint} ${(q.tags ?? []).join(" ")}`.toLowerCase();
 					if (!haystack.includes(kw)) return false;
 				}
 				return true;
 			});
 			return { ...cat, questions };
 		})
-		.filter((cat): cat is QuestionCategory => cat !== null && cat.questions.length > 0),
+		.filter(
+			(cat): cat is QuestionCategory =>
+				cat !== null && cat.questions.length > 0,
+		),
 );
 
 const masteryLabel: Record<MasteryState, string> = {

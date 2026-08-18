@@ -131,7 +131,8 @@ export const interviewConfig: InterviewConfig = {
 				},
 				{
 					id: "cpp-09",
-					question: "构造函数和析构函数可以是虚函数吗？基类析构函数为什么必须声明为 virtual？",
+					question:
+						"构造函数和析构函数可以是虚函数吗？基类析构函数为什么必须声明为 virtual？",
 					hint: "多态与对象生命周期的高频考点",
 					answer: [
 						"构造函数不能是虚函数：对象构造时 vptr 尚未建立，无法做动态绑定",
@@ -310,7 +311,8 @@ export const interviewConfig: InterviewConfig = {
 				},
 				{
 					id: "gr-10",
-					question: "Shadow Map 阴影映射原理？阴影失真（shadow acne）如何解决？",
+					question:
+						"Shadow Map 阴影映射原理？阴影失真（shadow acne）如何解决？",
 					hint: "实时阴影的核心技术",
 					answer: [
 						"原理：先从光源视角渲染深度图（Shadow Map），渲染时比较片元深度与阴影图深度",
@@ -464,7 +466,8 @@ export const interviewConfig: InterviewConfig = {
 				},
 				{
 					id: "ue-09",
-					question: "GameMode / GameState / PlayerController / Pawn / PlayerState 的分工？",
+					question:
+						"GameMode / GameState / PlayerController / Pawn / PlayerState 的分工？",
 					hint: "UE Gameplay 框架核心，必考",
 					answer: [
 						"GameMode：仅服务器，定义游戏规则（胜利条件、生成规则），每局一个",
@@ -783,7 +786,8 @@ export const interviewConfig: InterviewConfig = {
 				},
 				{
 					id: "os-08",
-					question: "互斥锁 vs 自旋锁 vs 原子操作 vs 条件变量，什么场景用哪个？",
+					question:
+						"互斥锁 vs 自旋锁 vs 原子操作 vs 条件变量，什么场景用哪个？",
 					hint: "多线程同步方案选择",
 					answer: [
 						"互斥锁（mutex）：临界区较长时用，阻塞让出 CPU；有系统调用开销",
@@ -916,7 +920,8 @@ export const interviewConfig: InterviewConfig = {
 				},
 				{
 					id: "gd-07",
-					question: "了解《鸣潮》/《战双帕弥什》吗？如果是你，会怎么优化其中某个系统？",
+					question:
+						"了解《鸣潮》/《战双帕弥什》吗？如果是你，会怎么优化其中某个系统？",
 					hint: "考察对公司的了解与思考深度",
 					answer: [
 						"展示对游戏的实际了解：战斗手感、开放世界、渲染风格",

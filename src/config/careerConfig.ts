@@ -30,14 +30,16 @@ export const careerConfig: CareerConfig = {
 				{
 					id: "t1-1",
 					title: "C++ 语法速通：类/继承/多态/模板/STL",
-					detail: "以《C++ Primer》或高质量网课为主线，每天 2 小时，把面向对象三大特性写进代码里。",
+					detail:
+						"以《C++ Primer》或高质量网课为主线，每天 2 小时，把面向对象三大特性写进代码里。",
 					estimate: "10h",
 					tags: ["C++"],
 				},
 				{
 					id: "t1-2",
 					title: "C++ 内存管理：指针/引用/智能指针/RAII",
-					detail: "new/delete、栈与堆、unique_ptr/shared_ptr/weak_ptr、内存泄漏检测。面试必考。配套计算机基础（多线程/缓存/对象池）专题笔记已产出。",
+					detail:
+						"new/delete、栈与堆、unique_ptr/shared_ptr/weak_ptr、内存泄漏检测。面试必考。配套计算机基础（多线程/缓存/对象池）专题笔记已产出。",
 					postSlug: "cs-os-multithreading",
 					estimate: "8h",
 					tags: ["C++", "内存"],
@@ -45,7 +47,8 @@ export const careerConfig: CareerConfig = {
 				{
 					id: "t1-3",
 					title: "C++ 高频面试专题：const/static/虚函数/移动语义",
-					detail: "虚函数表 vtable、const 与 mutable、static 的多种含义、右值引用与移动语义、拷贝与移动构造。三篇专题笔记（内存/多态/关键字与移动语义）已全部产出。",
+					detail:
+						"虚函数表 vtable、const 与 mutable、static 的多种含义、右值引用与移动语义、拷贝与移动构造。三篇专题笔记（内存/多态/关键字与移动语义）已全部产出。",
 					postSlug: "cpp-keywords-move-semantics",
 					estimate: "10h",
 					tags: ["C++", "面试"],
@@ -53,7 +56,8 @@ export const careerConfig: CareerConfig = {
 				{
 					id: "t1-4",
 					title: "LeetCode 高频 30 题（数组/哈希/双指针/链表）",
-					detail: "延续博客已有题解系列，每天 2 题并更新题解。打卡热力图记录每日进度，题解采用游戏客户端情境视角。",
+					detail:
+						"延续博客已有题解系列，每天 2 题并更新题解。打卡热力图记录每日进度，题解采用游戏客户端情境视角。",
 					postSlug: "leetcode-longest-substring",
 					estimate: "15h",
 					tags: ["算法", "LeetCode"],
@@ -61,7 +65,8 @@ export const careerConfig: CareerConfig = {
 				{
 					id: "t1-5",
 					title: "UE5 环境搭建 + 第三人称模板跑通",
-					detail: "安装 UE5，新建 C++ 第三人称项目，跑通编辑器与编译流程，为阶段 2 的落地 Demo 做准备。",
+					detail:
+						"安装 UE5，新建 C++ 第三人称项目，跑通编辑器与编译流程，为阶段 2 的落地 Demo 做准备。",
 					estimate: "5h",
 					tags: ["UE5"],
 				},
@@ -87,7 +92,8 @@ export const careerConfig: CareerConfig = {
 				{
 					id: "t2-1",
 					title: "角色移动/相机/动画三件套完整落地",
-					detail: "基于阶段 1 的文章整理，完成 Character + SpringArm + Enhanced Input + 动画蓝图的状态机。配套 Gameplay 框架笔记已产出。",
+					detail:
+						"基于阶段 1 的文章整理，完成 Character + SpringArm + Enhanced Input + 动画蓝图的状态机。配套 Gameplay 框架笔记已产出。",
 					postSlug: "ue5-gameplay-framework",
 					estimate: "12h",
 					tags: ["UE5", "3C"],
@@ -103,7 +109,8 @@ export const careerConfig: CareerConfig = {
 				{
 					id: "t2-3",
 					title: "图形学核心：渲染管线/坐标系/光照/变换",
-					detail: "补强渲染管线全流程（顶点→光栅化→片元），矩阵变换、相机空间、光照模型。图形学是客户端面试区分度最高的考点。渲染管线专题笔记已产出。",
+					detail:
+						"补强渲染管线全流程（顶点→光栅化→片元），矩阵变换、相机空间、光照模型。图形学是客户端面试区分度最高的考点。渲染管线专题笔记已产出。",
 					postSlug: "graphics-rendering-pipeline",
 					estimate: "12h",
 					tags: ["图形学"],
@@ -111,7 +118,8 @@ export const careerConfig: CareerConfig = {
 				{
 					id: "t2-4",
 					title: "OpenGL 实践：三角形→纹理→光照",
-					detail: "延续博客 OpenGL 系列，亲手写一个带光照的旋转立方体，理解管线调用。",
+					detail:
+						"延续博客 OpenGL 系列，亲手写一个带光照的旋转立方体，理解管线调用。",
 					postSlug: "learn-opengl-01",
 					estimate: "12h",
 					tags: ["OpenGL", "图形学"],
@@ -144,7 +152,8 @@ export const careerConfig: CareerConfig = {
 				{
 					id: "t3-1",
 					title: "GAS 技能系统学习 + 实现一个完整技能",
-					detail: "学习 GameplayAbilitySystem 四件套（ASC/GA/GE/AttributeSet），实现连招/闪避/受击扣血。GAS 专题笔记已产出。",
+					detail:
+						"学习 GameplayAbilitySystem 四件套（ASC/GA/GE/AttributeSet），实现连招/闪避/受击扣血。GAS 专题笔记已产出。",
 					postSlug: "ue5-gas-ability-system",
 					estimate: "16h",
 					tags: ["UE5", "GAS"],
@@ -152,7 +161,8 @@ export const careerConfig: CareerConfig = {
 				{
 					id: "t3-2",
 					title: "战斗反馈：伤害数字/受击闪白/屏幕震动",
-					detail: "小细节体现工程能力，也是面试中「你如何做战斗反馈」的好素材。开放世界加载（关卡流送/软引用）专题笔记已产出，可作性能优化方向延伸。",
+					detail:
+						"小细节体现工程能力，也是面试中「你如何做战斗反馈」的好素材。开放世界加载（关卡流送/软引用）专题笔记已产出，可作性能优化方向延伸。",
 					postSlug: "ue5-asset-loading",
 					estimate: "8h",
 					tags: ["UE5", "战斗"],
@@ -160,28 +170,32 @@ export const careerConfig: CareerConfig = {
 				{
 					id: "t3-3",
 					title: "项目文档 + README + 演示录屏",
-					detail: "写清架构设计、关键代码、遇到的问题与解决过程——面试官最想听「踩坑与解决」。",
+					detail:
+						"写清架构设计、关键代码、遇到的问题与解决过程——面试官最想听「踩坑与解决」。",
 					estimate: "6h",
 					tags: ["项目"],
 				},
 				{
 					id: "t3-4",
 					title: "简历撰写（STAR 法则）+ 作品集整理",
-					detail: "按「项目背景-我的职责-技术难点-结果」组织项目经历，附上博客与 GitHub 链接。",
+					detail:
+						"按「项目背景-我的职责-技术难点-结果」组织项目经历，附上博客与 GitHub 链接。",
 					estimate: "6h",
 					tags: ["简历"],
 				},
 				{
 					id: "t3-5",
 					title: "整理面试题库第一版 + 自测",
-					detail: "把 C++/图形学/引擎/算法四类高频题整理成自己的复习清单，逐题自测。",
+					detail:
+						"把 C++/图形学/引擎/算法四类高频题整理成自己的复习清单，逐题自测。",
 					estimate: "8h",
 					tags: ["面试"],
 				},
 				{
 					id: "t3-6",
 					title: "输出：战斗 Demo 项目复盘文章",
-					detail: "项目复盘是求职日记系列的核心，也是面试时展示技术深度的材料。",
+					detail:
+						"项目复盘是求职日记系列的核心，也是面试时展示技术深度的材料。",
 					estimate: "4h",
 					tags: ["博客", "项目"],
 				},
@@ -199,14 +213,16 @@ export const careerConfig: CareerConfig = {
 				{
 					id: "t4-1",
 					title: "每周投递 10+ 岗位（官网/牛客/内推）",
-					detail: "库洛官网校招页 + 牛客网 + 内推渠道。秋招讲究广撒网，游戏公司里库洛、米哈游、腾讯、网易等一并投递。",
+					detail:
+						"库洛官网校招页 + 牛客网 + 内推渠道。秋招讲究广撒网，游戏公司里库洛、米哈游、腾讯、网易等一并投递。",
 					estimate: "每周 3h",
 					tags: ["投递"],
 				},
 				{
 					id: "t4-2",
 					title: "笔试专项：C++/算法/图形学模拟卷",
-					detail: "每周 1-2 套模拟笔试，严格计时。牛客上有大量游戏公司笔试真题。网络同步/框架/技能系统专题笔记已产出，可直接作为面试深挖弹药。",
+					detail:
+						"每周 1-2 套模拟笔试，严格计时。牛客上有大量游戏公司笔试真题。网络同步/框架/技能系统专题笔记已产出，可直接作为面试深挖弹药。",
 					postSlug: "ue5-network-replication",
 					estimate: "每周 6h",
 					tags: ["笔试"],
@@ -214,7 +230,8 @@ export const careerConfig: CareerConfig = {
 				{
 					id: "t4-3",
 					title: "模拟面试 + 自我介绍打磨",
-					detail: "准备 1 分钟/3 分钟两个版本的自我介绍，录音练习。面试官第一印象来自这里。",
+					detail:
+						"准备 1 分钟/3 分钟两个版本的自我介绍，录音练习。面试官第一印象来自这里。",
 					estimate: "每周 2h",
 					tags: ["面试"],
 				},
@@ -235,7 +252,8 @@ export const careerConfig: CareerConfig = {
 				{
 					id: "t4-6",
 					title: "输出：求职日记系列（每周一篇）",
-					detail: "记录投递进度、笔试面试经历、心态变化。既是复盘也是博客运营的核心内容。#0 开篇已发布。",
+					detail:
+						"记录投递进度、笔试面试经历、心态变化。既是复盘也是博客运营的核心内容。#0 开篇已发布。",
 					postSlug: "job-hunting-diary-00",
 					estimate: "每周 2h",
 					tags: ["博客", "求职日记"],

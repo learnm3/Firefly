@@ -94,7 +94,7 @@ function getCurrent() {
 const currentQuestion = $derived(
 	sessionQuestions.length === 0
 		? null
-		: allQuestions[sessionQuestions[currentIndex]] ?? null,
+		: (allQuestions[sessionQuestions[currentIndex]] ?? null),
 );
 
 function reveal() {
@@ -138,8 +138,10 @@ function difficultyLabel(d: string) {
 }
 
 function difficultyColor(d: string) {
-	if (d === "easy") return "bg-[oklch(0.88_0.12_145)] text-[oklch(0.3_0.12_145)]";
-	if (d === "medium") return "bg-[oklch(0.88_0.12_80)] text-[oklch(0.35_0.12_80)]";
+	if (d === "easy")
+		return "bg-[oklch(0.88_0.12_145)] text-[oklch(0.3_0.12_145)]";
+	if (d === "medium")
+		return "bg-[oklch(0.88_0.12_80)] text-[oklch(0.35_0.12_80)]";
 	return "bg-[oklch(0.88_0.12_20)] text-[oklch(0.4_0.12_20)]";
 }
 

@@ -93,9 +93,7 @@ export const projectsConfig: ProjectsConfig = {
 			status: "in-progress",
 			statusText: "进行中",
 			startDate: "2026-08",
-			highlights: [
-				"求职过程透明化，展示长期主义与复盘习惯",
-			],
+			highlights: ["求职过程透明化，展示长期主义与复盘习惯"],
 			category: "求职日记",
 			postSlug: "job-hunting-diary-00",
 		},

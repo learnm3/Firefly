@@ -64,9 +64,7 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 		// 支持单个视频路径（字符串）或多个视频循环（数组）
 		// 支持远程视频URL，本地视频请放在 public/assets/videos/ 目录下
 		// playerUrl: "/assets/videos/firefly.mp4",
-		playerUrl: [
-			"/assets/videos/mc2026.mp4",
-		],
+		playerUrl: ["/assets/videos/mc2026.mp4"],
 	},
 	// 横幅壁纸和全屏壁纸共享配置
 	common: {

@@ -58,7 +58,7 @@ export const sponsorConfig: SponsorConfig = {
 	],
 
 	// 打赏者列表（可选）
-	
+
 	sponsors: [
 		// 示例：已实名打赏者
 		/*{
