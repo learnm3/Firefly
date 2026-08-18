@@ -165,7 +165,13 @@ const items: Array<Omit<Hot100Item, "done">> = [
 	},
 	{ num: 42, title: "接雨水", en: "Trapping Rain Water", scene: "地形积水" },
 	{ num: 45, title: "跳跃游戏 II", en: "Jump Game II", scene: "关卡最少跳跃" },
-	{ num: 46, title: "全排列", en: "Permutations", scene: "技能顺序排列" },
+	{
+		num: 46,
+		title: "全排列",
+		en: "Permutations",
+		scene: "技能顺序排列",
+		blogSlug: "leetcode-permutations",
+	},
 	{ num: 48, title: "旋转图像", en: "Rotate Image", scene: "地图旋转" },
 	{
 		num: 49,
@@ -183,12 +189,19 @@ const items: Array<Omit<Hot100Item, "done">> = [
 		blogSlug: "leetcode-maximum-subarray",
 	},
 	{ num: 54, title: "螺旋矩阵", en: "Spiral Matrix", scene: "迷宫探索路径" },
-	{ num: 55, title: "跳跃游戏", en: "Jump Game", scene: "关卡可达性" },
+	{
+		num: 55,
+		title: "跳跃游戏",
+		en: "Jump Game",
+		scene: "关卡可达性",
+		blogSlug: "leetcode-jump-game",
+	},
 	{
 		num: 56,
 		title: "合并区间",
 		en: "Merge Intervals",
 		scene: "Buff 时间段合并",
+		blogSlug: "leetcode-merge-intervals",
 	},
 	{ num: 62, title: "不同路径", en: "Unique Paths", scene: "棋盘走法数" },
 	{
