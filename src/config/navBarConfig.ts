@@ -79,6 +79,9 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 
 			// 项目作品集
 			LinkPresets.Projects,
+
+			// 我的简历
+			LinkPresets.Resume,
 		],
 	});
 
@@ -224,6 +227,11 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		name: "热题 100",
 		url: "/hot100/",
 		icon: "material-symbols:workspace-premium",
+	},
+	Resume: {
+		name: "我的简历",
+		url: "/resume/",
+		icon: "material-symbols:description",
 	},
 	Projects: {
 		name: "项目作品集",

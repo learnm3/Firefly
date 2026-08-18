@@ -1,0 +1,116 @@
+---
+import { Icon } from "astro-icon/components";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+---
+
+<MainGridLayout title="我的简历" description="游戏客户端开发实习生求职简历">
+    <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-9 py-6 relative w-full">
+            <!-- 页面标题 -->
+            <div class="relative w-full mb-6">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="h-8 w-8 rounded-lg bg-(--primary) flex items-center justify-center text-white dark:text-black/70">
+                        <Icon is:inline name="material-symbols:description" class="text-[1.5rem]"></Icon>
+                    </div>
+                    <div class="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
+                        我的简历
+                    </div>
+                </div>
+                <p class="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                    目标岗位：游戏客户端开发实习生（Unreal / C++）· 求职中
+                </p>
+            </div>
+
+            <!-- 简历卡片 -->
+            <div class="card-base px-6 py-6 mb-4">
+                <div class="text-sm font-bold text-90 mb-4">📄 简历正文（持续更新）</div>
+
+                <!-- 基本信息 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div class="rounded-lg bg-(--btn-plain-bg) px-4 py-3">
+                        <div class="text-xs text-50 mb-1">姓名</div>
+                        <div class="text-sm font-bold text-90">习百技</div>
+                    </div>
+                    <div class="rounded-lg bg-(--btn-plain-bg) px-4 py-3">
+                        <div class="text-xs text-50 mb-1">学校 / 专业</div>
+                        <div class="text-sm font-bold text-90">华南农业大学 · 软件工程（24 级）</div>
+                    </div>
+                    <div class="rounded-lg bg-(--btn-plain-bg) px-4 py-3">
+                        <div class="text-xs text-50 mb-1">求职方向</div>
+                        <div class="text-sm font-bold text-90">游戏客户端开发实习（UE5 / C++）</div>
+                    </div>
+                    <div class="rounded-lg bg-(--btn-plain-bg) px-4 py-3">
+                        <div class="text-xs text-50 mb-1">联系方式</div>
+                        <div class="text-sm font-bold text-90">1106015380@qq.com</div>
+                    </div>
+                </div>
+
+                <!-- 技能 -->
+                <div class="text-sm font-bold text-90 mb-3">🛠️ 技能</div>
+                <div class="space-y-2 mb-6">
+                    <div>
+                        <div class="text-sm text-75 mb-1"><b>C++</b>：内存管理、多态、STL、移动语义（面试专题笔记见博客）</div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <a href="/posts/cpp-memory-management/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">内存管理笔记</a>
+                            <a href="/posts/cpp-polymorphism-vtable/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">多态笔记</a>
+                            <a href="/posts/cpp-keywords-move-semantics/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">关键字笔记</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-75 mb-1"><b>Unreal Engine 5</b>：3C 角色控制、动画、Gameplay 框架、GAS、网络同步</div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <a href="/posts/ue5-character-class/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">Character 笔记</a>
+                            <a href="/posts/ue5-gas-ability-system/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">GAS 笔记</a>
+                            <a href="/posts/ue5-network-replication/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">网络同步笔记</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-75 mb-1"><b>图形学</b>：渲染管线、光照模型、阴影与抗锯齿</div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <a href="/posts/graphics-rendering-pipeline/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">渲染管线笔记</a>
+                            <a href="/posts/graphics-lighting-models/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">光照笔记</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-75 mb-1"><b>算法</b>：LeetCode 热题 100 打卡中（64 题已刷）</div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <a href="/hot100/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">热题100进度</a>
+                            <a href="/leetcode/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">打卡热力图</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 项目 -->
+                <div class="text-sm font-bold text-90 mb-3">🚀 项目经历</div>
+                <div class="space-y-3 mb-6">
+                    <div class="rounded-lg border border-(--line-divider) px-4 py-3">
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm font-bold text-90">UE5 第三人称 3C Demo</div>
+                            <span class="text-[0.65rem] px-2 py-0.5 rounded bg-[oklch(0.88_0.12_80)] text-[oklch(0.35_0.12_80)]">进行中</span>
+                        </div>
+                        <p class="text-xs text-50 mt-1">
+                            角色移动/相机/动画全链路 · 计划扩展 GAS 战斗系统（见<a href="/projects/" class="text-(--primary) hover:underline">作品集</a>）
+                        </p>
+                    </div>
+                    <div class="rounded-lg border border-(--line-divider) px-4 py-3">
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm font-bold text-90">LeetCode 游戏情境题解（10 篇）</div>
+                            <span class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/15 text-(--primary)">进行中</span>
+                        </div>
+                        <p class="text-xs text-50 mt-1">
+                            用游戏客户端视角（背包合成、技能CD、DPS峰值）拆解算法题，形成差异化题解库
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 下载占位 -->
+                <div class="rounded-lg bg-(--btn-plain-bg) px-4 py-3 text-center">
+                    <p class="text-xs text-50">
+                        📌 简历 PDF 版待生成 —— 内容随项目/Demo 更新后提供下载
+                        （当前位置：<a href="/about/" class="text-(--primary) hover:underline">关于我</a> · <a href="/projects/" class="text-(--primary) hover:underline">项目作品集</a>）
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</MainGridLayout>

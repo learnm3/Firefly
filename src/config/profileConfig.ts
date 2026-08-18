@@ -12,7 +12,7 @@ export const profileConfig: ProfileConfig = {
 	name: "习百技",
 
 	// 个人签名
-	bio: "你好，欢迎来到我的博客！",
+	bio: "软件工程大二 · 目标游戏客户端（UE5/C++）· 求职库洛实习中 🎮",
 
 	// 链接配置
 	// 已经预装的图标集：fa7-brands，fa7-regular，fa7-solid，material-symbols，simple-icons
@@ -37,6 +37,12 @@ export const profileConfig: ProfileConfig = {
 			name: "Email",
 			icon: "fa7-solid:envelope",
 			url: "1106015380@qq.com",
+			showName: false,
+		},
+		{
+			name: "简历",
+			icon: "fa7-solid:file-lines",
+			url: "/resume/",
 			showName: false,
 		},
 		{
