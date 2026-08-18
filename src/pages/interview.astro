@@ -1,0 +1,30 @@
+---
+import { Icon } from "astro-icon/components";
+import InterviewBank from "@/components/pages/career/InterviewBank.svelte";
+import { interviewConfig } from "@/config/interviewConfig";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+---
+
+<MainGridLayout title="面试题库" description="游戏客户端面试高频题整理">
+    <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-9 py-6 relative w-full">
+            <!-- 页面标题 -->
+            <div class="relative w-full mb-6">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="h-8 w-8 rounded-lg bg-(--primary) flex items-center justify-center text-white dark:text-black/70">
+                        <Icon is:inline name="material-symbols:quiz" class="text-[1.5rem]"></Icon>
+                    </div>
+                    <div class="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
+                        面试题库
+                    </div>
+                </div>
+                <p class="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                    点击题目展开答案要点，点击状态按钮（◻/◐/●）标记「未开始 / 学习中 / 已掌握」。
+                    复习进度自动保存在浏览器中。
+                </p>
+            </div>
+
+            <InterviewBank client:load config={interviewConfig} />
+        </div>
+    </div>
+</MainGridLayout>

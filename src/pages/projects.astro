@@ -1,0 +1,124 @@
+---
+import { Icon } from "astro-icon/components";
+import { projectsConfig } from "@/config/projectsConfig";
+import { getPostUrlBySlug } from "@/utils/url-utils";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+
+const statusStyles: Record<string, string> = {
+	"in-progress": "bg-[oklch(0.88_0.12_80)] text-[oklch(0.35_0.12_80)]",
+	completed: "bg-(--primary)/15 text-(--primary)",
+	planning: "bg-(--btn-plain-bg) text-50",
+	paused: "bg-(--btn-plain-bg) text-50",
+};
+---
+
+<MainGridLayout title={projectsConfig.title} description={projectsConfig.description}>
+    <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-9 py-6 relative w-full">
+            <!-- 页面标题 -->
+            <div class="relative w-full mb-6">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="h-8 w-8 rounded-lg bg-(--primary) flex items-center justify-center text-white dark:text-black/70">
+                        <Icon is:inline name="material-symbols:folder-special" class="text-[1.5rem]"></Icon>
+                    </div>
+                    <div class="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
+                        {projectsConfig.title}
+                    </div>
+                </div>
+                <p class="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                    {projectsConfig.description}
+                </p>
+            </div>
+
+            <!-- 项目卡片网格 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                {
+                    projectsConfig.projects.map((project, index) => (
+                        <div
+                            class="card-base p-6 flex flex-col gap-4 onload-animation"
+                            style={`animation-delay: calc(var(--content-delay) + ${index * 80}ms);`}
+                        >
+                            <div class="flex items-start justify-between gap-3">
+                                <div class="min-w-0">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="text-xs px-2 py-0.5 rounded-full bg-(--primary)/10 text-(--primary) shrink-0">
+                                            {project.category}
+                                        </span>
+                                        <span class={`text-xs px-2 py-0.5 rounded-full shrink-0 ${statusStyles[project.status] ?? ""}`}>
+                                            {project.statusText}
+                                        </span>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-90 truncate">{project.name}</h3>
+                                </div>
+                                <span class="shrink-0 text-xs text-30 pt-1">
+                                    {project.startDate}{project.endDate ? ` ~ ${project.endDate}` : ""}
+                                </span>
+                            </div>
+
+                            <p class="text-sm text-60 leading-relaxed">{project.description}</p>
+
+                            <ul class="space-y-1.5">
+                                {project.details.map((detail) => (
+                                    <li class="text-sm text-70 leading-relaxed flex gap-2">
+                                        <span class="text-(--primary) shrink-0">▸</span>
+                                        <span>{detail}</span>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            {project.highlights.length > 0 && (
+                                <div class="flex flex-wrap gap-1.5">
+                                    {project.highlights.map((hl) => (
+                                        <span class="text-[0.65rem] px-2 py-1 rounded bg-(--btn-plain-bg) text-50">{hl}</span>
+                                    ))}
+                                </div>
+                            )}
+
+                            <div class="flex flex-wrap gap-1.5 mt-auto">
+                                {project.techStack.map((tech) => (
+                                    <span class="text-xs px-2 py-1 rounded bg-(--primary)/8 text-(--primary)">{tech}</span>
+                                ))}
+                            </div>
+
+                            {(project.postSlug || project.github || project.demo) && (
+                                <div class="flex flex-wrap gap-3 pt-2 border-t border-(--line-divider)">
+                                    {project.postSlug && (
+                                        <a
+                                            href={getPostUrlBySlug(project.postSlug)}
+                                            class="inline-flex items-center gap-1.5 text-sm text-(--primary) hover:underline"
+                                        >
+                                            <Icon is:inline name="material-symbols:article" class="text-[1.1em]" />
+                                            相关笔记
+                                        </a>
+                                    )}
+                                    {project.github && (
+                                        <a
+                                            href={project.github}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="inline-flex items-center gap-1.5 text-sm text-60 hover:text-(--primary) transition-colors"
+                                        >
+                                            <Icon is:inline name="fa7-brands:github" class="text-[1.1em]" />
+                                            GitHub
+                                        </a>
+                                    )}
+                                    {project.demo && (
+                                        <a
+                                            href={project.demo}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="inline-flex items-center gap-1.5 text-sm text-60 hover:text-(--primary) transition-colors"
+                                        >
+                                            <Icon is:inline name="material-symbols:play-circle" class="text-[1.1em]" />
+                                            在线演示
+                                        </a>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</MainGridLayout>

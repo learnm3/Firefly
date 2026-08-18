@@ -56,6 +56,26 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		],
 	});
 
+	// 求职及其子菜单
+	links.push({
+		name: "求职",
+		url: "#",
+		icon: "material-symbols:rocket-launch",
+		children: [
+			// 模拟面试
+			LinkPresets.MockInterview,
+
+			// 求职路线图
+			LinkPresets.Roadmap,
+
+			// 面试题库
+			LinkPresets.Interview,
+
+			// 项目作品集
+			LinkPresets.Projects,
+		],
+	});
+
 	// 关于及其子菜单
 	links.push({
 		name: "关于",
@@ -173,6 +193,26 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		url: "/anime/",
 		icon: "material-symbols:live-tv",
 		pageKey: "anime",
+	},
+	Roadmap: {
+		name: "求职路线图",
+		url: "/roadmap/",
+		icon: "material-symbols:route",
+	},
+	MockInterview: {
+		name: "模拟面试",
+		url: "/mock-interview/",
+		icon: "material-symbols:mic",
+	},
+	Interview: {
+		name: "面试题库",
+		url: "/interview/",
+		icon: "material-symbols:quiz",
+	},
+	Projects: {
+		name: "项目作品集",
+		url: "/projects/",
+		icon: "material-symbols:folder-special",
 	},
 };
 

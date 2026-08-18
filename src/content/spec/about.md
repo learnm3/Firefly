@@ -1,6 +1,23 @@
 # 关于我 / About Me
 
-你好！我是习百技 ，一位24级华南农业大学软件工程在读生。想要就任游戏客户端岗位，创建该博客旨在记录学习路线和分享一些拙见。
+你好！我是**习百技**，华南农业大学软件工程专业 24 级在读，目标岗位是**游戏客户端开发**。这个博客是我的**学习记录 + 求职作品集**：用公开输出倒逼自己执行，用持续沉淀证明学习能力。
+
+## 🎯 求职目标
+
+- **目标岗位**：游戏客户端开发实习生（Unreal / C++）
+- **目标公司**：库洛游戏（Kuro Games，《鸣潮》《战双帕弥什》）
+- **投递窗口**：2026 年秋招日常/寒假实习（9-11 月）
+
+[求职路线图](/roadmap/) · [面试题库](/interview/) · [项目作品集](/projects/)
+
+## 📚 学习方向
+
+| 方向 | 状态 | 内容 |
+|---|---|---|
+| C++ | 🔴 冲刺中 | 语法→内存→STL，面试高频专题 |
+| Unreal Engine | 🟡 落地中 | Character / 动画 / GAS / 战斗系统 |
+| 图形学 | 🟢 进行中 | 渲染管线 / OpenGL / 光照 |
+| 算法 | 🟢 持续刷 | LeetCode 高频题 + 题解沉淀 |
 
 ## 🛠️ 关于本站
 
@@ -10,7 +27,7 @@
 
 **📝Firefly使用文档： [https://docs-firefly.cuteleaf.cn](https://docs-firefly.cuteleaf.cn/)**
 
-**⭐Firefly开源地址：[https://github.com/CuteLeaf/Firefly](https://github.com/CuteLeaf/Firefly)** 
+**⭐Firefly开源地址：[https://github.com/CuteLeaf/Firefly](https://github.com/CuteLeaf/Firefly)**
 
 **⭐Fuwari开源地址：[https://github.com/saicaca/fuwari](https://github.com/saicaca/fuwari)**
 
@@ -21,4 +38,3 @@
 ---
 
 *感谢你的来访！希望在这里能找到对你有用的内容！*
-
