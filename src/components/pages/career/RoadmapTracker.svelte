@@ -3,32 +3,31 @@ import { onMount } from "svelte";
 
 import type { CareerConfig, RoadmapPhase } from "@/types/career";
 
-export let config: CareerConfig;
+let { config }: { config: CareerConfig } = $props();
 
 // 本地存储 key
 const STORAGE_KEY = "firefly-career-progress";
 
 // 已勾选任务集合
-let completedTasks: Set<string> = new Set();
+let completedTasks = $state<Set<string>>(new Set());
 // 阶段折叠状态
-let collapsedPhases: Set<string> = new Set();
+let collapsedPhases = $state<Set<string>>(new Set());
 
-// 统计数据
-let totalTasks = 0;
-let completedCount = 0;
-let progressPercent = 0;
-// 剩余天数
-let daysLeft = 0;
-
-function computeStats() {
-	totalTasks = config.phases.reduce((sum, p) => sum + p.tasks.length, 0);
-	completedCount = config.phases.reduce(
+// 统计数据（$derived：completedTasks 变化时自动重算）
+const totalTasks = $derived(
+	config.phases.reduce((sum, p) => sum + p.tasks.length, 0),
+);
+const completedCount = $derived(
+	config.phases.reduce(
 		(sum, p) => sum + p.tasks.filter((t) => completedTasks.has(t.id)).length,
 		0,
-	);
-	progressPercent =
-		totalTasks === 0 ? 0 : Math.round((completedCount / totalTasks) * 100);
-}
+	),
+);
+const progressPercent = $derived(
+	totalTasks === 0 ? 0 : Math.round((completedCount / totalTasks) * 100),
+);
+// 剩余天数
+let daysLeft = 0;
 
 function loadProgress() {
 	if (typeof localStorage === "undefined") return;
@@ -55,7 +54,6 @@ function toggleTask(taskId: string) {
 	}
 	// 触发响应式更新
 	completedTasks = new Set(completedTasks);
-	computeStats();
 	saveProgress();
 }
 
@@ -86,9 +84,35 @@ function phaseStatusText(phase: RoadmapPhase): string {
 	return phase.status === "in-progress" ? "待开始" : "未开始";
 }
 
+// 每阶段的派生数据（$derived：completedTasks 变化时自动重算整张表）
+const phaseStats = $derived(
+	new Map(
+		config.phases.map((p) => {
+			const done = p.tasks.filter((t) => completedTasks.has(t.id)).length;
+			const total = p.tasks.length;
+			const percent = total === 0 ? 0 : Math.round((done / total) * 100);
+			return [
+				p.id,
+				{
+					done,
+					total,
+					percent,
+					statusText:
+						percent === 100
+							? "已完成"
+							: percent > 0
+								? "进行中"
+								: p.status === "in-progress"
+									? "待开始"
+									: "未开始",
+				},
+			];
+		}),
+	),
+);
+
 onMount(() => {
 	loadProgress();
-	computeStats();
 	// 计算距离投递截止的剩余天数
 	const now = new Date();
 	const deadline = new Date(config.deadline);
@@ -150,7 +174,7 @@ onMount(() => {
 					<div class="flex flex-wrap items-center gap-x-3 gap-y-1">
 						<h3 class="text-lg font-bold text-90">{phase.title}</h3>
 						<span class="text-xs px-2 py-0.5 rounded-full bg-(--primary)/10 text-(--primary)">
-							{phaseStatusText(phase)}
+							{phaseStats.get(phase.id)?.statusText}
 						</span>
 						<span class="text-xs text-50">{phase.period}</span>
 					</div>
@@ -159,10 +183,10 @@ onMount(() => {
 						<div class="flex-1 h-1.5 rounded-full bg-(--btn-plain-bg) overflow-hidden">
 							<div
 								class="h-full rounded-full transition-all duration-500"
-								style="width: {phasePercent(phase)}%; background: {phase.accent}"
+								style="width: {phaseStats.get(phase.id)?.percent}%; background: {phase.accent}"
 							></div>
 						</div>
-						<span class="text-xs text-50 shrink-0">{phaseCompletedTasks(phase)}/{phase.tasks.length}</span>
+						<span class="text-xs text-50 shrink-0">{phaseStats.get(phase.id)?.done}/{phaseStats.get(phase.id)?.total}</span>
 					</div>
 				</div>
 				<div
@@ -190,13 +214,13 @@ onMount(() => {
 								/>
 								<div class="min-w-0 flex-1">
 									<div
-										class="text-sm font-medium text-80 transition-colors"
+										class="text-sm font-medium text-90 transition-colors"
 										class:line-through={completedTasks.has(task.id)}
 										class:text-30={completedTasks.has(task.id)}
 									>
 										{task.title}
 										{#if task.estimate}
-											<span class="ml-2 text-xs font-normal text-40">({task.estimate})</span>
+											<span class="ml-2 text-xs font-normal text-30">({task.estimate})</span>
 										{/if}
 									</div>
 									{#if task.detail}
@@ -240,7 +264,7 @@ onMount(() => {
 						{/if}
 					</span>
 					<div class="flex flex-wrap items-center gap-2">
-						<span class="text-sm font-bold text-80">{milestone.title}</span>
+						<span class="text-sm font-bold text-90">{milestone.title}</span>
 						<span class="text-xs text-50">{milestone.date}</span>
 						<span
 							class={`text-[0.65rem] px-1.5 py-0.5 rounded-full ${

@@ -1,8 +1,21 @@
 {
+	// ============================================================================
+	// Firefly 博客 Cloudflare Workers 配置
+	// 部署步骤见 docs/deploy-cloudflare-kv.md
+	// ============================================================================
 	"name": "firefly",
 	"compatibility_date": "2025-01-01",
-	"compatibility_flags": ["nodejs_compat"],
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"main": "./worker/index.js",
 	"assets": {
 		"directory": "./dist"
-	}
+	},
+	"kv_namespaces": [
+		{
+			"binding": "LEETCODE_KV",
+			"id": "e12086ea518a44b88349e05851bca46c"
+		}
+	]
 }

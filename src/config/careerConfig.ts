@@ -53,7 +53,8 @@ export const careerConfig: CareerConfig = {
 				{
 					id: "t1-4",
 					title: "LeetCode 高频 30 题（数组/哈希/双指针/链表）",
-					detail: "延续博客已有题解系列，每天 2 题并更新题解。笔试题型以此为主。",
+					detail: "延续博客已有题解系列，每天 2 题并更新题解。打卡热力图记录每日进度，题解采用游戏客户端情境视角。",
+					postSlug: "leetcode-longest-substring",
 					estimate: "15h",
 					tags: ["算法", "LeetCode"],
 				},

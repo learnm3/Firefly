@@ -8,27 +8,31 @@ import type {
 	QuestionDifficulty,
 } from "@/types/interview";
 
-export let config: InterviewConfig;
+let { config }: { config: InterviewConfig } = $props();
 
 // 本地存储 key
 const STORAGE_KEY = "firefly-interview-mastery";
 
 // 掌握状态记录: questionId -> mastery
-let masteryMap: Record<string, MasteryState> = {};
+let masteryMap = $state<Record<string, MasteryState>>({});
 // 展开的题目
-let expandedQuestions: Set<string> = new Set();
+let expandedQuestions = $state<Set<string>>(new Set());
 // 当前筛选分类
-let activeCategoryId = "all";
+let activeCategoryId = $state("all");
 // 当前难度筛选
-let activeDifficulty: QuestionDifficulty | "all" = "all";
+let activeDifficulty = $state<QuestionDifficulty | "all">("all");
 // 当前掌握状态筛选
-let activeMastery: MasteryState | "all" = "all";
+let activeMastery = $state<MasteryState | "all">("all");
 // 搜索关键字
-let searchQuery = "";
+let searchQuery = $state("");
 
 // 统计数据
-let totalQuestions = 0;
-let masteredCount = 0;
+let masteredCount = $derived(
+	Object.values(masteryMap).filter((s) => s === "mastered").length,
+);
+const totalQuestions = $derived(
+	config.categories.reduce((sum, c) => sum + c.questions.length, 0),
+);
 
 const difficultyLabel: Record<QuestionDifficulty, string> = {
 	easy: "简单",
@@ -59,7 +63,6 @@ function saveMastery() {
 
 function setMastery(questionId: string, state: MasteryState) {
 	masteryMap = { ...masteryMap, [questionId]: state };
-	computeStats();
 	saveMastery();
 }
 
@@ -79,41 +82,32 @@ function toggleQuestion(questionId: string) {
 	expandedQuestions = new Set(expandedQuestions);
 }
 
-function computeStats() {
-	totalQuestions = config.categories.reduce(
-		(sum, c) => sum + c.questions.length,
-		0,
-	);
-	masteredCount = Object.values(masteryMap).filter(
-		(s) => s === "mastered",
-	).length;
-}
-
 function getMastery(id: string): MasteryState {
 	return masteryMap[id] ?? "unseen";
 }
 
-const masteryLabel: Record<MasteryState, string> = {
+// 状态按钮：文字 + 明显的背景/文字颜色组合（深色模式同样清晰）
+const masteryButtonClass: Record<MasteryState, string> = {
+	unseen: "bg-(--btn-plain-bg) text-50",
+	learning: "bg-[oklch(0.82_0.13_75)] text-[oklch(0.25_0.08_75)]",
+	mastered: "bg-(--primary) text-white",
+};
+
+const masteryBadgeClass: Record<MasteryState, string> = {
+	unseen: "bg-(--btn-plain-bg) text-50",
+	learning: "bg-[oklch(0.85_0.1_75)] text-[oklch(0.3_0.09_75)]",
+	mastered: "bg-(--primary)/15 text-(--primary)",
+};
+
+const masteryBadgeLabel: Record<MasteryState, string> = {
 	unseen: "未开始",
 	learning: "学习中",
 	mastered: "已掌握",
 };
 
-const masteryColor: Record<MasteryState, string> = {
-	unseen: "bg-(--btn-plain-bg) text-50",
-	learning: "bg-[oklch(0.88_0.12_80)] text-[oklch(0.35_0.12_80)]",
-	mastered: "bg-(--primary)/15 text-(--primary)",
-};
-
-const masteryIcon: Record<MasteryState, string> = {
-	unseen: "◻",
-	learning: "◐",
-	mastered: "●",
-};
-
-// 过滤后的分类
-function getFilteredCategories(): QuestionCategory[] {
-	return config.categories
+// 过滤后的分类（$derived：任何筛选状态变化时自动重算）
+const filteredCategories = $derived(
+	config.categories
 		.map((cat) => {
 			if (activeCategoryId !== "all" && cat.id !== activeCategoryId) {
 				return null;
@@ -121,8 +115,8 @@ function getFilteredCategories(): QuestionCategory[] {
 			const questions = cat.questions.filter((q) => {
 				if (activeDifficulty !== "all" && q.difficulty !== activeDifficulty)
 					return false;
-				if (activeMastery !== "all" && getMastery(q.id) !== activeMastery)
-					return false;
+				const m = masteryMap[q.id] ?? "unseen";
+				if (activeMastery !== "all" && m !== activeMastery) return false;
 				if (searchQuery.trim()) {
 					const kw = searchQuery.trim().toLowerCase();
 					const haystack = `${q.question} ${q.hint} ${(q.tags ?? []).join(" ")}`.toLowerCase();
@@ -132,12 +126,17 @@ function getFilteredCategories(): QuestionCategory[] {
 			});
 			return { ...cat, questions };
 		})
-		.filter((cat): cat is QuestionCategory => cat !== null && cat.questions.length > 0);
-}
+		.filter((cat): cat is QuestionCategory => cat !== null && cat.questions.length > 0),
+);
+
+const masteryLabel: Record<MasteryState, string> = {
+	unseen: "未开始",
+	learning: "学习中",
+	mastered: "已掌握",
+};
 
 onMount(() => {
 	loadMastery();
-	computeStats();
 });
 </script>
 
@@ -169,7 +168,7 @@ onMount(() => {
 				class={`text-sm px-3 py-1.5 rounded-lg transition-colors ${
 					activeCategoryId === "all"
 						? "bg-(--primary) text-white"
-						: "bg-(--btn-plain-bg) text-60"
+						: "bg-(--btn-plain-bg) text-50"
 				}`}
 				on:click={() => (activeCategoryId = "all")}
 			>
@@ -180,7 +179,7 @@ onMount(() => {
 					class={`text-sm px-3 py-1.5 rounded-lg transition-colors ${
 						activeCategoryId === cat.id
 							? "bg-(--primary) text-white"
-							: "bg-(--btn-plain-bg) text-60"
+							: "bg-(--btn-plain-bg) text-50"
 					}`}
 					on:click={() => (activeCategoryId = cat.id)}
 				>
@@ -190,7 +189,7 @@ onMount(() => {
 		</div>
 		<div class="flex flex-wrap items-center gap-2">
 			<select
-				class="text-sm px-3 py-1.5 rounded-lg bg-(--btn-plain-bg) text-60 border-none outline-none"
+				class="text-sm px-3 py-1.5 rounded-lg bg-(--btn-plain-bg) text-50 border-none outline-none"
 				bind:value={activeDifficulty}
 			>
 				<option value="all">全部难度</option>
@@ -199,7 +198,7 @@ onMount(() => {
 				<option value="hard">困难</option>
 			</select>
 			<select
-				class="text-sm px-3 py-1.5 rounded-lg bg-(--btn-plain-bg) text-60 border-none outline-none"
+				class="text-sm px-3 py-1.5 rounded-lg bg-(--btn-plain-bg) text-50 border-none outline-none"
 				bind:value={activeMastery}
 			>
 				<option value="all">全部状态</option>
@@ -210,14 +209,14 @@ onMount(() => {
 			<input
 				type="text"
 				placeholder="搜索题目…"
-				class="flex-1 min-w-40 text-sm px-3 py-1.5 rounded-lg bg-(--btn-plain-bg) text-80 placeholder:text-30 border-none outline-none focus:ring-2 focus:ring-(--primary)/30"
+				class="flex-1 min-w-40 text-sm px-3 py-1.5 rounded-lg bg-(--btn-plain-bg) text-90 placeholder:text-30 border-none outline-none focus:ring-2 focus:ring-(--primary)/30"
 				bind:value={searchQuery}
 			/>
 		</div>
 	</div>
 
 	<!-- 题目列表 -->
-	{#each getFilteredCategories() as cat}
+	{#each filteredCategories as cat}
 		<div class="card-base px-6 py-5 mb-4">
 			<div class="flex items-center gap-2 mb-1">
 				<h3 class="text-lg font-bold text-90">{cat.name}</h3>
@@ -236,14 +235,17 @@ onMount(() => {
 					>
 						<div class="flex items-start gap-3 px-4 py-3 cursor-pointer" on:click={() => toggleQuestion(q.id)}>
 							<button
-								class={`shrink-0 mt-0.5 h-7 w-7 rounded-lg text-sm flex items-center justify-center transition-all ${masteryColor[getMastery(q.id)]}`}
-								title="点击切换掌握状态"
-								on:click|stopPropagation={() => cycleMastery(q.id)}
+								class={`shrink-0 mt-0.5 h-7 px-2 rounded-lg text-xs font-bold flex items-center justify-center transition-all border-none cursor-pointer ${masteryButtonClass[masteryMap[q.id] ?? "unseen"]}`}
+								title="点击切换掌握状态：未开始 → 学习中 → 已掌握"
+								on:click={(e) => {
+									e.stopPropagation();
+									cycleMastery(q.id);
+								}}
 							>
-								{masteryIcon[getMastery(q.id)]}
+								{masteryLabel[masteryMap[q.id] ?? "unseen"]}
 							</button>
 							<div class="flex-1 min-w-0">
-								<div class="text-sm font-medium text-80 leading-snug">{q.question}</div>
+								<div class="text-sm font-medium text-90 leading-snug">{q.question}</div>
 								<div class="mt-1 flex flex-wrap items-center gap-2">
 									<span class={`text-[0.65rem] px-1.5 py-0.5 rounded ${difficultyColor[q.difficulty]}`}>
 										{difficultyLabel[q.difficulty]}
@@ -264,10 +266,25 @@ onMount(() => {
 
 						{#if expandedQuestions.has(q.id)}
 							<div class="px-4 pb-4 pt-1 border-t border-(--line-divider) mt-0">
+								<div class="flex flex-wrap items-center gap-2 mb-2">
+									<span class="text-xs text-50">当前状态：</span>
+									<span class={`text-xs px-2 py-0.5 rounded-full font-bold ${masteryBadgeClass[masteryMap[q.id] ?? "unseen"]}`}>
+										{masteryBadgeLabel[masteryMap[q.id] ?? "unseen"]}
+									</span>
+									<button
+										class="text-xs text-(--primary) hover:underline cursor-pointer"
+										on:click={(e) => {
+											e.stopPropagation();
+											cycleMastery(q.id);
+										}}
+									>
+										点击切换
+									</button>
+								</div>
 								<div class="text-xs text-50 mb-2">💡 {q.hint}</div>
 								<div class="space-y-1.5">
 									{#each q.answer as point}
-										<div class="text-sm text-80 leading-relaxed flex gap-2">
+										<div class="text-sm text-90 leading-relaxed flex gap-2">
 											<span class="text-(--primary) shrink-0">▸</span>
 											<span>{point}</span>
 										</div>
@@ -281,7 +298,7 @@ onMount(() => {
 		</div>
 	{/each}
 
-	{#if getFilteredCategories().length === 0}
+	{#if filteredCategories.length === 0}
 		<div class="card-base px-8 py-12 text-center">
 			<p class="text-30">没有符合条件的题目，试试调整筛选条件</p>
 		</div>

@@ -3,24 +3,24 @@ import { onMount } from "svelte";
 
 import type { InterviewConfig, MasteryState } from "@/types/interview";
 
-export let config: InterviewConfig;
+let { config }: { config: InterviewConfig } = $props();
 
 // 本地存储 key
 const STORAGE_KEY = "firefly-interview-mastery";
 
 // 会话状态
 let allQuestions = flattenQuestions();
-let sessionQuestions: number[] = []; // 本次抽题在 allQuestions 中的索引
-let currentIndex = 0;
-let phase: "config" | "answering" | "revealed" | "done" = "config";
-let showAnswer = false;
-let remaining = 0;
+let sessionQuestions = $state<number[]>([]); // 本次抽题在 allQuestions 中的索引
+let currentIndex = $state(0);
+let phase = $state<"config" | "answering" | "revealed" | "done">("config");
+let showAnswer = $state(false);
+let remaining = $state(0);
 let timer: ReturnType<typeof setInterval> | null = null;
-let selectedCount = 5;
-let sessionStats = { answered: 0, mastered: 0, learning: 0, unseen: 0 };
+let selectedCount = $state(5);
+let sessionStats = $state({ answered: 0, mastered: 0, learning: 0, unseen: 0 });
 
 // 自评记录
-let masteryMap: Record<string, MasteryState> = {};
+let masteryMap = $state<Record<string, MasteryState>>({});
 
 function flattenQuestions() {
 	const result: (typeof config.categories)[number]["questions"][number][] = [];
@@ -90,6 +90,13 @@ function getCurrent() {
 	return allQuestions[sessionQuestions[currentIndex]];
 }
 
+// 当前题目（$derived：currentIndex/sessionQuestions 变化时自动重算）
+const currentQuestion = $derived(
+	sessionQuestions.length === 0
+		? null
+		: allQuestions[sessionQuestions[currentIndex]] ?? null,
+);
+
 function reveal() {
 	stopTimer();
 	phase = "revealed";
@@ -152,9 +159,9 @@ onMount(() => {
 				然后翻看参考答案并自评掌握度。模拟真实面试节奏。
 			</p>
 			<div class="flex items-center justify-center gap-3 mb-8">
-				<span class="text-sm text-60">题目数量</span>
+				<span class="text-sm text-50">题目数量</span>
 				<select
-					class="text-sm px-3 py-1.5 rounded-lg bg-(--btn-plain-bg) text-80 border-none outline-none"
+					class="text-sm px-3 py-1.5 rounded-lg bg-(--btn-plain-bg) text-90 border-none outline-none"
 					bind:value={selectedCount}
 				>
 					<option value={3}>3 题（快速热场）</option>
@@ -173,7 +180,7 @@ onMount(() => {
 
 	<!-- 答题阶段 -->
 	{#if phase === "answering" || phase === "revealed"}
-		{#if getCurrent()}
+		{#if currentQuestion}
 			<div class="card-base px-6 py-5 mb-4">
 				<!-- 顶部信息 -->
 				<div class="flex flex-wrap items-center justify-between gap-3 mb-4">
@@ -181,8 +188,8 @@ onMount(() => {
 						<span class="text-sm font-bold text-(--primary)">
 							第 {currentIndex + 1} / {sessionQuestions.length} 题
 						</span>
-						<span class={`text-xs px-2 py-0.5 rounded ${difficultyColor(getCurrent()!.difficulty)}`}>
-							{difficultyLabel(getCurrent()!.difficulty)}
+						<span class={`text-xs px-2 py-0.5 rounded ${difficultyColor(currentQuestion.difficulty)}`}>
+							{difficultyLabel(currentQuestion.difficulty)}
 						</span>
 					</div>
 					<div class="flex items-center gap-4">
@@ -208,21 +215,21 @@ onMount(() => {
 
 				<!-- 题目 -->
 				<h3 class="text-xl font-bold text-90 leading-relaxed mb-3">
-					{getCurrent()!.question}
+					{currentQuestion.question}
 				</h3>
 
 				<!-- 提示（答题时默认隐藏，翻看后显示） -->
 				{#if phase === "revealed"}
 					<div class="rounded-lg bg-(--btn-plain-bg) px-4 py-3 mb-4">
 						<div class="text-xs text-50 mb-2">💡 考察点</div>
-						<div class="text-sm text-80">{getCurrent()!.hint}</div>
+						<div class="text-sm text-90">{currentQuestion.hint}</div>
 					</div>
 
 					<div class="rounded-lg border border-(--primary)/30 px-4 py-3 mb-5">
 						<div class="text-xs text-(--primary) mb-2 font-bold">📋 参考答案要点</div>
 						<ul class="space-y-1.5">
-							{#each getCurrent()!.answer as point}
-								<li class="text-sm text-80 leading-relaxed flex gap-2">
+							{#each currentQuestion.answer as point}
+								<li class="text-sm text-90 leading-relaxed flex gap-2">
 									<span class="text-(--primary) shrink-0">▸</span>
 									<span>{point}</span>
 								</li>
@@ -234,7 +241,7 @@ onMount(() => {
 				<!-- 操作区 -->
 				{#if phase === "answering"}
 					<div class="flex flex-wrap items-center justify-between gap-3">
-						<p class="text-xs text-40">口述你的答案，时间到自动翻看参考答案</p>
+						<p class="text-xs text-30">口述你的答案，时间到自动翻看参考答案</p>
 						<button
 							class="px-5 py-2 rounded-lg bg-(--primary)/15 text-(--primary) text-sm font-bold transition-colors hover:bg-(--primary)/25"
 							on:click={reveal}
@@ -244,24 +251,24 @@ onMount(() => {
 					</div>
 				{:else}
 					<div class="flex flex-wrap items-center justify-center gap-3">
-						<span class="text-sm text-60 mr-2">自评掌握度：</span>
+						<span class="text-sm text-50 mr-2">自评掌握度：</span>
 						<button
-							class="px-4 py-2 rounded-lg text-sm font-bold transition-colors bg-(--btn-plain-bg) text-60 hover:bg-[oklch(0.88_0.12_20)] hover:text-[oklch(0.4_0.12_20)]"
+							class="px-4 py-2 rounded-lg text-sm font-bold transition-colors bg-(--btn-plain-bg) text-50 hover:bg-[oklch(0.82_0.13_75)] hover:text-[oklch(0.25_0.08_75)]"
 							on:click={() => selfRate("unseen")}
 						>
-							◻ 不会
+							不会
 						</button>
 						<button
-							class="px-4 py-2 rounded-lg text-sm font-bold transition-colors bg-(--btn-plain-bg) text-60 hover:bg-[oklch(0.88_0.12_80)] hover:text-[oklch(0.35_0.12_80)]"
+							class="px-4 py-2 rounded-lg text-sm font-bold transition-colors bg-(--btn-plain-bg) text-50 hover:bg-[oklch(0.82_0.13_75)] hover:text-[oklch(0.25_0.08_75)]"
 							on:click={() => selfRate("learning")}
 						>
-							◐ 部分会
+							部分会
 						</button>
 						<button
-							class="px-4 py-2 rounded-lg text-sm font-bold transition-colors bg-(--btn-plain-bg) text-60 hover:bg-(--primary) hover:text-white"
+							class="px-4 py-2 rounded-lg text-sm font-bold transition-colors bg-(--btn-plain-bg) text-50 hover:bg-(--primary) hover:text-white"
 							on:click={() => selfRate("mastered")}
 						>
-							● 已掌握
+							已掌握
 						</button>
 					</div>
 				{/if}
@@ -285,11 +292,11 @@ onMount(() => {
 					<div class="text-xs text-50 mt-1">部分会</div>
 				</div>
 				<div class="rounded-xl bg-(--btn-plain-bg) py-4">
-					<div class="text-3xl font-bold text-60">{sessionStats.unseen}</div>
+					<div class="text-3xl font-bold text-50">{sessionStats.unseen}</div>
 					<div class="text-xs text-50 mt-1">不会</div>
 				</div>
 			</div>
-			<p class="text-xs text-40 mb-6">
+			<p class="text-xs text-30 mb-6">
 				自评结果已同步到<a href="/interview/" class="text-(--primary) hover:underline">面试题库</a>的掌握状态。
 				针对「不会」的题，建议去对应的深度笔记复习后再来一轮。
 			</p>
@@ -302,7 +309,7 @@ onMount(() => {
 				</button>
 				<a
 					href="/interview/"
-					class="px-6 py-3 rounded-xl bg-(--btn-plain-bg) text-70 font-bold text-sm transition-colors hover:bg-(--btn-plain-bg-hover)"
+					class="px-6 py-3 rounded-xl bg-(--btn-plain-bg) text-75 font-bold text-sm transition-colors hover:bg-(--btn-plain-bg-hover)"
 				>
 					返回题库复习
 				</a>

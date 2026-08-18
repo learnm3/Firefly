@@ -55,11 +55,11 @@ const statusStyles: Record<string, string> = {
                                 </span>
                             </div>
 
-                            <p class="text-sm text-60 leading-relaxed">{project.description}</p>
+                            <p class="text-sm text-50 leading-relaxed">{project.description}</p>
 
                             <ul class="space-y-1.5">
                                 {project.details.map((detail) => (
-                                    <li class="text-sm text-70 leading-relaxed flex gap-2">
+                                    <li class="text-sm text-75 leading-relaxed flex gap-2">
                                         <span class="text-(--primary) shrink-0">▸</span>
                                         <span>{detail}</span>
                                     </li>
@@ -96,7 +96,7 @@ const statusStyles: Record<string, string> = {
                                             href={project.github}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            class="inline-flex items-center gap-1.5 text-sm text-60 hover:text-(--primary) transition-colors"
+                                            class="inline-flex items-center gap-1.5 text-sm text-50 hover:text-(--primary) transition-colors"
                                         >
                                             <Icon is:inline name="fa7-brands:github" class="text-[1.1em]" />
                                             GitHub
@@ -107,7 +107,7 @@ const statusStyles: Record<string, string> = {
                                             href={project.demo}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            class="inline-flex items-center gap-1.5 text-sm text-60 hover:text-(--primary) transition-colors"
+                                            class="inline-flex items-center gap-1.5 text-sm text-50 hover:text-(--primary) transition-colors"
                                         >
                                             <Icon is:inline name="material-symbols:play-circle" class="text-[1.1em]" />
                                             在线演示

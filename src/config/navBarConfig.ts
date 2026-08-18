@@ -71,6 +71,12 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 			// 面试题库
 			LinkPresets.Interview,
 
+			// LeetCode 打卡
+			LinkPresets.LeetCode,
+
+			// 热题 100
+			LinkPresets.Hot100,
+
 			// 项目作品集
 			LinkPresets.Projects,
 		],
@@ -208,6 +214,16 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		name: "面试题库",
 		url: "/interview/",
 		icon: "material-symbols:quiz",
+	},
+	LeetCode: {
+		name: "LeetCode 打卡",
+		url: "/leetcode/",
+		icon: "material-symbols:code",
+	},
+	Hot100: {
+		name: "热题 100",
+		url: "/hot100/",
+		icon: "material-symbols:workspace-premium",
 	},
 	Projects: {
 		name: "项目作品集",

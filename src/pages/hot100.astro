@@ -1,0 +1,122 @@
+---
+import { Icon } from "astro-icon/components";
+import { hot100List, hot100Stats } from "@/config/hot100Config";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+import { getPostUrlBySlug } from "@/utils/url-utils";
+---
+
+<MainGridLayout title="LeetCode 热题 100" description="热题100刷题进度与游戏情境题解">
+    <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-9 py-6 relative w-full">
+            <!-- 页面标题 -->
+            <div class="relative w-full mb-6">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="h-8 w-8 rounded-lg bg-(--primary) flex items-center justify-center text-white dark:text-black/70">
+                        <Icon is:inline name="material-symbols:workspace-premium" class="text-[1.5rem]"></Icon>
+                    </div>
+                    <div class="text-3xl font-bold text-neutral-900 dark:text-neutral-100">
+                        LeetCode 热题 100
+                    </div>
+                </div>
+                <p class="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                    目标：刷完官方「热题 100」题单。每道题都用<b>游戏客户端视角</b>设计场景——
+                    已完成标记来自本机题解库真实记录，点击题目名可跳转题解。
+                </p>
+            </div>
+
+            <!-- 统计 -->
+            <div class="grid grid-cols-3 gap-3 mb-6">
+                <div class="card-base px-4 py-3 text-center">
+                    <div class="text-2xl font-bold text-(--primary)">{hot100Stats.done}</div>
+                    <div class="text-xs text-50 mt-0.5">已刷</div>
+                </div>
+                <div class="card-base px-4 py-3 text-center">
+                    <div class="text-2xl font-bold text-90">{hot100Stats.total}</div>
+                    <div class="text-xs text-50 mt-0.5">总题数</div>
+                </div>
+                <div class="card-base px-4 py-3 text-center">
+                    <div class="text-2xl font-bold text-90">{hot100Stats.published}</div>
+                    <div class="text-xs text-50 mt-0.5">已发题解</div>
+                </div>
+            </div>
+
+            <!-- 进度条 -->
+            <div class="card-base px-5 py-4 mb-6">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-bold text-90">热题 100 完成度</span>
+                    <span class="text-xs text-50">
+                        {hot100Stats.done} / {hot100Stats.total}
+                        （{Math.round((hot100Stats.done / hot100Stats.total) * 100)}%）
+                    </span>
+                </div>
+                <div class="h-2.5 rounded-full bg-(--btn-plain-bg) overflow-hidden">
+                    <div
+                        class="h-full rounded-full bg-(--primary) transition-all duration-500"
+                        style="width: {(hot100Stats.done / hot100Stats.total) * 100}%"
+                    ></div>
+                </div>
+                <p class="text-xs text-30 mt-2">
+                    注意：热题 100 包含部分超出本机题解库范围的题（如 62/70/72 等），「已刷」以本机
+                    E:\LeetCode-Solutions 记录为准，未完成的题继续补。
+                </p>
+            </div>
+
+            <!-- 题单表格 -->
+            <div class="card-base px-6 py-5">
+                <div class="text-sm font-bold text-90 mb-4">📋 完整题单（{hot100List.length} 题）</div>
+                <div class="space-y-1.5">
+                    {hot100List.map((item) => (
+                        <div
+                            class={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
+                                item.done ? "bg-(--primary)/5" : "hover:bg-(--btn-plain-bg)"
+                            }`}
+                        >
+                            <span
+                                class={`shrink-0 w-9 h-6 rounded flex items-center justify-center text-xs font-bold ${
+                                    item.done
+                                        ? "bg-(--primary) text-white"
+                                        : "bg-(--btn-plain-bg) text-50"
+                                }`}
+                            >
+                                {item.done ? "✓" : item.num}
+                            </span>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-2">
+                                    {item.blogSlug ? (
+                                        <a
+                                            href={getPostUrlBySlug(item.blogSlug)}
+                                            class="text-sm font-bold text-90 hover:text-(--primary) transition-colors truncate"
+                                        >
+                                            {item.num}. {item.title}
+                                        </a>
+                                    ) : (
+                                        <span class="text-sm font-bold text-90 truncate">
+                                            {item.num}. {item.title}
+                                        </span>
+                                    )}
+                                    <span class="text-[0.65rem] text-30 shrink-0 hidden sm:inline">
+                                        {item.en}
+                                    </span>
+                                </div>
+                                {item.scene && (
+                                    <div class="text-xs text-50 mt-0.5 truncate">
+                                        🎮 {item.scene}
+                                    </div>
+                                )}
+                            </div>
+                            <span
+                                class={`shrink-0 text-[0.65rem] px-2 py-0.5 rounded-full ${
+                                    item.done
+                                        ? "bg-(--primary)/15 text-(--primary)"
+                                        : "bg-(--btn-plain-bg) text-30"
+                                }`}
+                            >
+                                {item.done ? "已刷" : "待刷"}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </div>
+</MainGridLayout>

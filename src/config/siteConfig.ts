@@ -9,14 +9,14 @@ export const siteConfig: SiteConfig = {
 	title: "NoFinalLevel",
 
 	// 站点副标题
-	subtitle: "Demo site",
+	subtitle: "游戏客户端开发 · 求职之路",
 
 	// 站点 URL
 	site_url: "https://nofinallevel.space",
 
 	// 站点描述
 	description:
-		"这是我第一个网站，基于https://github.com/CuteLeaf/Firefly项目，主要用于展示我的个人博客和项目，以及记录学习心得。",
+		"软件工程大二学生的游戏客户端求职之路：目标库洛（Kuro Games）UE5 客户端实习。记录 C++、Unreal、图形学学习笔记，LeetCode 热题 100 打卡，以及 UE5 Demo 作品集。",
 
 	// 站点关键词
 	keywords: [
