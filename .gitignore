@@ -37,3 +37,7 @@ Firefly-docs/
 cache/
 package/
 .obsidian/waline-server/
+
+# 有道云笔记导出临时工具（勿提交）
+.youdao-scrape/
+

@@ -1,262 +1,184 @@
 // ============================================================================
-// 求职路线图配置 - 目标：库洛游戏客户端开发实习
+// 求职路线图配置 - 目标：库洛游戏客户端开发实习（Unity 方向）
 // Career Roadmap Configuration
-// 修改此文件即可更新博客上的求职路线图页面
+// 基于用户 2026-09-03 ~ 2027-03-09 的 188 天 Unity 学习计划
 // ============================================================================
 import type { CareerConfig } from "../types/career";
 
 export const careerConfig: CareerConfig = {
-	target: "入职库洛游戏客户端开发实习岗",
-	targetRole: "游戏客户端开发实习生（Unreal / C++）",
+	target: "入职库洛游戏客户端开发实习岗（Unity）",
+	targetRole: "游戏客户端开发实习生（Unity / C# / Lua）",
 	// 当前日期锚点：用于计算距离投递截止的剩余天数
-	anchorDate: "2026-08-15",
-	// 秋招日常/寒假实习投递截止
-	deadline: "2026-11-30",
+	anchorDate: "2026-09-03",
+	// 春招实习投递截止（含寒假实习窗口）
+	deadline: "2027-03-09",
 	dailyHours: "4-6 小时/天",
 
 	// ============================================================================
-	// 学习阶段（暑假 → 投递窗口）
+	// 学习阶段（基于 188 天 Unity 计划）
 	// ============================================================================
 	phases: [
 		{
 			id: "phase-1",
-			title: "地基补强：C++ 从薄弱到能写工程代码",
-			period: "08-15 ~ 08-31（2 周）",
-			goal: "C++ 是游戏客户端面试的第一道门槛，也是当前最大短板。两周内完成语法→内存→STL 的闭环，同时把 UE5 环境跑通。",
+			title: "Unity 极速入门：C# 基础与 Unity 核心",
+			period: "09-03 ~ 10-02（30 天）",
+			goal: "零基础进入 Unity：先用 15 天学透 C# 基础（语法/数据结构/逻辑），再用 15 天掌握 Unity 核心（组件化、物理、UI、动画、资源管理），完成课后作业打牢地基。",
 			status: "in-progress",
-			accent: "#e4572e",
+			accent: "#3b82f6",
 			icon: "material-symbols:code-blocks",
 			tasks: [
 				{
 					id: "t1-1",
-					title: "C++ 语法速通：类/继承/多态/模板/STL",
+					title: "C# 基础语法 / 数据结构 / 编程逻辑（第 1-5 章）",
 					detail:
-						"以《C++ Primer》或高质量网课为主线，每天 2 小时，把面向对象三大特性写进代码里。",
-					estimate: "10h",
-					tags: ["C++"],
+						"《Unity 极速入门与实战 3.0》第 1-5 章：C# 语法、数据结构、常用技巧，完成课后作业。Unity 岗第一语言是 C#。",
+					estimate: "15 天",
+					tags: ["C#", "Unity"],
 				},
 				{
 					id: "t1-2",
-					title: "C++ 内存管理：指针/引用/智能指针/RAII",
+					title:
+						"Unity 核心：组件化 / 物理 / UI / 动画 / 资源管理（第 6-17 章）",
 					detail:
-						"new/delete、栈与堆、unique_ptr/shared_ptr/weak_ptr、内存泄漏检测。面试必考。配套计算机基础（多线程/缓存/对象池）专题笔记已产出。",
-					postSlug: "cs-os-multithreading",
-					estimate: "8h",
-					tags: ["C++", "内存"],
-				},
-				{
-					id: "t1-3",
-					title: "C++ 高频面试专题：const/static/虚函数/移动语义",
-					detail:
-						"虚函数表 vtable、const 与 mutable、static 的多种含义、右值引用与移动语义、拷贝与移动构造。三篇专题笔记（内存/多态/关键字与移动语义）已全部产出。",
-					postSlug: "cpp-keywords-move-semantics",
-					estimate: "10h",
-					tags: ["C++", "面试"],
-				},
-				{
-					id: "t1-4",
-					title: "LeetCode 高频 30 题（数组/哈希/双指针/链表）",
-					detail:
-						"延续博客已有题解系列，每天 2 题并更新题解。打卡热力图记录每日进度，题解采用游戏客户端情境视角。",
-					postSlug: "leetcode-longest-substring",
-					estimate: "15h",
-					tags: ["算法", "LeetCode"],
-				},
-				{
-					id: "t1-5",
-					title: "UE5 环境搭建 + 第三人称模板跑通",
-					detail:
-						"安装 UE5，新建 C++ 第三人称项目，跑通编辑器与编译流程，为阶段 2 的落地 Demo 做准备。",
-					estimate: "5h",
-					tags: ["UE5"],
-				},
-				{
-					id: "t1-6",
-					title: "输出：写一篇 C++ 学习笔记（内存管理专题）",
-					detail: "把学到的内存管理知识整理成博客文章，沉淀成面试复习材料。",
-					postSlug: "cpp-memory-management",
-					estimate: "4h",
-					tags: ["博客"],
+						"第 6-17 章：Unity 核心功能全掌握，培养游戏开发基础。理解 GameObject/Component 架构。",
+					estimate: "15 天",
+					tags: ["Unity"],
 				},
 			],
 		},
 		{
 			id: "phase-2",
-			title: "引擎落地：UE5 3C Demo 从 0 到可玩",
-			period: "09-01 ~ 09-14（2 周）",
-			goal: "把已有的 UE5 知识（Character/Montage/IK）落地成一个可运行的第三人称 Demo。客户端面试非常看重能跑的项目。",
+			title: "实战小项目：疯狂小岛大战",
+			period: "10-03 ~ 10-07（5 天）",
+			goal: "一周做出第一个完整小游戏，把入门知识串起来，产出第一个可展示的作品。",
 			status: "not-started",
-			accent: "#2e86e4",
+			accent: "#10b981",
 			icon: "material-symbols:videogame-asset",
 			tasks: [
 				{
 					id: "t2-1",
-					title: "角色移动/相机/动画三件套完整落地",
+					title: "完成《疯狂小岛大战》全部章节（重点前 5 节）",
 					detail:
-						"基于阶段 1 的文章整理，完成 Character + SpringArm + Enhanced Input + 动画蓝图的状态机。配套 Gameplay 框架笔记已产出。",
-					postSlug: "ue5-gameplay-framework",
-					estimate: "12h",
-					tags: ["UE5", "3C"],
-				},
-				{
-					id: "t2-2",
-					title: "动画系统落地：Montage + 技能动画 + IK",
-					detail: "实现攻击/受击动画蒙太奇，武器握持 IK。复用博客已有笔记。",
-					postSlug: "ue5-montage-metasound",
-					estimate: "10h",
-					tags: ["UE5", "动画"],
-				},
-				{
-					id: "t2-3",
-					title: "图形学核心：渲染管线/坐标系/光照/变换",
-					detail:
-						"补强渲染管线全流程（顶点→光栅化→片元），矩阵变换、相机空间、光照模型。图形学是客户端面试区分度最高的考点。渲染管线专题笔记已产出。",
-					postSlug: "graphics-rendering-pipeline",
-					estimate: "12h",
-					tags: ["图形学"],
-				},
-				{
-					id: "t2-4",
-					title: "OpenGL 实践：三角形→纹理→光照",
-					detail:
-						"延续博客 OpenGL 系列，亲手写一个带光照的旋转立方体，理解管线调用。",
-					postSlug: "learn-opengl-01",
-					estimate: "12h",
-					tags: ["OpenGL", "图形学"],
-				},
-				{
-					id: "t2-5",
-					title: "LeetCode 中等题 20 题（栈/队列/树/排序）",
-					detail: "进入中等难度，重点：二叉树遍历、DFS/BFS、排序与快排手写。",
-					estimate: "15h",
-					tags: ["算法"],
-				},
-				{
-					id: "t2-6",
-					title: "输出：Demo 项目页上线 + 图形学笔记",
-					detail: "把 3C Demo 写入项目展示页，写一篇渲染管线学习笔记。",
-					estimate: "4h",
-					tags: ["博客", "项目"],
+						"游戏开发必学实战项目。完成后录屏存档，作为第一个作品放进项目页。",
+					estimate: "5 天",
+					tags: ["Unity", "实战"],
 				},
 			],
 		},
 		{
 			id: "phase-3",
-			title: "作品打磨：完整战斗 Demo + 简历作品集",
-			period: "09-15 ~ 09-30（2 周）",
-			goal: "把 3C Demo 升级成一个带战斗/技能系统的完整小作品，这是简历上最有说服力的一块。同步完成简历与作品集。",
+			title: "MMORPG 架构与核心系统（商业级全栈 P2）",
+			period: "10-08 ~ 11-26（50 天）",
+			goal: "进入商业级 MMORPG 全栈开发：先掌握网络架构（Protobuf/登录/同步/传送），再完成 UI 框架与背包/商店等六大系统。这是简历的核心项目。",
 			status: "not-started",
 			accent: "#8b5cf6",
 			icon: "material-symbols:swords",
 			tasks: [
 				{
 					id: "t3-1",
-					title: "GAS 技能系统学习 + 实现一个完整技能",
+					title:
+						"MMO 架构：Protobuf / SQLService / 登录注册 / 角色创建（第 2-5 章）",
 					detail:
-						"学习 GameplayAbilitySystem 四件套（ASC/GA/GE/AttributeSet），实现连招/闪避/受击扣血。GAS 专题笔记已产出。",
-					postSlug: "ue5-gas-ability-system",
-					estimate: "16h",
-					tags: ["UE5", "GAS"],
+						"网络通信基础：Protobuf 序列化、SQLService 数据层、登录/注册/创建角色、移动同步、地图传送。量力而行循序渐进。",
+					estimate: "25 天",
+					tags: ["MMO", "网络"],
 				},
 				{
 					id: "t3-2",
-					title: "战斗反馈：伤害数字/受击闪白/屏幕震动",
+					title: "UI 框架与背包/商店等系统（第 6 章）",
 					detail:
-						"小细节体现工程能力，也是面试中「你如何做战斗反馈」的好素材。开放世界加载（关卡流送/软引用）专题笔记已产出，可作性能优化方向延伸。",
-					postSlug: "ue5-asset-loading",
-					estimate: "8h",
-					tags: ["UE5", "战斗"],
-				},
-				{
-					id: "t3-3",
-					title: "项目文档 + README + 演示录屏",
-					detail:
-						"写清架构设计、关键代码、遇到的问题与解决过程——面试官最想听「踩坑与解决」。",
-					estimate: "6h",
-					tags: ["项目"],
-				},
-				{
-					id: "t3-4",
-					title: "简历撰写（STAR 法则）+ 作品集整理",
-					detail:
-						"按「项目背景-我的职责-技术难点-结果」组织项目经历，附上博客与 GitHub 链接。",
-					estimate: "6h",
-					tags: ["简历"],
-				},
-				{
-					id: "t3-5",
-					title: "整理面试题库第一版 + 自测",
-					detail:
-						"把 C++/图形学/引擎/算法四类高频题整理成自己的复习清单，逐题自测。",
-					estimate: "8h",
-					tags: ["面试"],
-				},
-				{
-					id: "t3-6",
-					title: "输出：战斗 Demo 项目复盘文章",
-					detail:
-						"项目复盘是求职日记系列的核心，也是面试时展示技术深度的材料。",
-					estimate: "4h",
-					tags: ["博客", "项目"],
+						"UI 框架搭建、背包/商店等六大系统、系统集成、性能优化、模块化架构、调试技巧。",
+					estimate: "25 天",
+					tags: ["MMO", "UI"],
 				},
 			],
 		},
 		{
 			id: "phase-4",
-			title: "冲刺投递：笔试面试全流程",
-			period: "10-01 ~ 11-30（8 周）",
-			goal: "进入投递与面试节奏：每周投递、持续刷题、面经复盘、滚动优化。拿到 offer 是唯一目标。",
+			title: "MMORPG 进阶：实时交互与智能系统",
+			period: "11-27 ~ 01-05（40 天）",
+			goal: "深化 MMO 开发：实时数据同步与复杂 UI 交互、社交机制；音效混音、NavMesh 动态烘焙与任务系统。",
+			status: "not-started",
+			accent: "#f59e0b",
+			icon: "material-symbols:group",
+			tasks: [
+				{
+					id: "t4-1",
+					title: "实时交互：数据同步 / 复杂 UI / 社交机制（第 7 章）",
+					detail:
+						"实时交互（数据同步、复杂 UI 交互）、MMO 社交机制，提升 Unity 熟练度与调试能力。",
+					estimate: "20 天",
+					tags: ["MMO", "实时"],
+				},
+				{
+					id: "t4-2",
+					title: "音效混音 / NavMesh 烘焙 / 任务系统（第 8 章）",
+					detail:
+						"音效混音配置、NavMesh 动态烘焙、路径搜索优化、任务系统智能衔接。",
+					estimate: "20 天",
+					tags: ["MMO", "寻路"],
+				},
+			],
+		},
+		{
+			id: "phase-5",
+			title: "Lua 与 XLua 热更新（客户端核心技能）",
+			period: "01-06 ~ 02-22（48 天）",
+			goal: "热更新是国内游戏公司（含库洛）客户端岗的核心考点：学 Lua 语法 → 搭 XLua 热更框架 → 完成商业级热更 Demo。",
+			status: "not-started",
+			accent: "#ef4444",
+			icon: "material-symbols:bolt",
+			tasks: [
+				{
+					id: "t5-1",
+					title: "Lua 语法基础（语法 / 技巧 / OOP）",
+					detail:
+						"Lua 基本语法、编程技巧、面向对象实现方式。热更新脚本语言基础。",
+					estimate: "3 天",
+					tags: ["Lua"],
+				},
+				{
+					id: "t5-2",
+					title: "P2 从 0 搭建 XLua 热更新框架",
+					detail:
+						"AssetBundle 打包、资源管理、热更新流程、UI 层级管理、Lua 与 C# 交互、对象池、真机调试。",
+					estimate: "30 天",
+					tags: ["XLua", "热更新"],
+				},
+				{
+					id: "t5-3",
+					title: "商业级热更框架入门到精通（XLua 第 1-3 章）",
+					detail:
+						"熟练使用 XLua 热更新，完成单机和网络游戏 Demo——这是投递时的核心作品。",
+					estimate: "15 天",
+					tags: ["XLua", "热更新"],
+				},
+			],
+		},
+		{
+			id: "phase-6",
+			title: "就业冲刺：简历 / 面试 / 投递",
+			period: "02-23 ~ 03-09（15 天）",
+			goal: "求职全流程准备：简历撰写、复习资料整理、模拟面试，正式投递寒假/春招实习。",
 			status: "not-started",
 			accent: "#16a34a",
 			icon: "material-symbols:rocket-launch",
 			tasks: [
 				{
-					id: "t4-1",
-					title: "每周投递 10+ 岗位（官网/牛客/内推）",
+					id: "t6-1",
+					title: "简历撰写（STAR 法则）+ 复习资料整理",
 					detail:
-						"库洛官网校招页 + 牛客网 + 内推渠道。秋招讲究广撒网，游戏公司里库洛、米哈游、腾讯、网易等一并投递。",
-					estimate: "每周 3h",
-					tags: ["投递"],
+						"把 MMO 项目 / 热更 Demo 写成简历亮点，整理 Unity/C#/网络/热更复习材料。",
+					estimate: "5 天",
+					tags: ["简历"],
 				},
 				{
-					id: "t4-2",
-					title: "笔试专项：C++/算法/图形学模拟卷",
+					id: "t6-2",
+					title: "模拟面试 + 正式投递实习",
 					detail:
-						"每周 1-2 套模拟笔试，严格计时。牛客上有大量游戏公司笔试真题。网络同步/框架/技能系统专题笔记已产出，可直接作为面试深挖弹药。",
-					postSlug: "ue5-network-replication",
-					estimate: "每周 6h",
-					tags: ["笔试"],
-				},
-				{
-					id: "t4-3",
-					title: "模拟面试 + 自我介绍打磨",
-					detail:
-						"准备 1 分钟/3 分钟两个版本的自我介绍，录音练习。面试官第一印象来自这里。",
-					estimate: "每周 2h",
-					tags: ["面试"],
-				},
-				{
-					id: "t4-4",
-					title: "面经复盘：每场面试后 24h 内复盘",
-					detail: "记录被问到的问题、答不上的点，立即补强，写进求职日记。",
-					estimate: "持续",
-					tags: ["面试", "博客"],
-				},
-				{
-					id: "t4-5",
-					title: "持续刷题保持手感（每天 1-2 题）",
-					detail: "面试周期内保持算法手感，滚动更新题解。",
-					estimate: "每天 1h",
-					tags: ["算法"],
-				},
-				{
-					id: "t4-6",
-					title: "输出：求职日记系列（每周一篇）",
-					detail:
-						"记录投递进度、笔试面试经历、心态变化。既是复盘也是博客运营的核心内容。#0 开篇已发布。",
-					postSlug: "job-hunting-diary-00",
-					estimate: "每周 2h",
-					tags: ["博客", "求职日记"],
+						"用博客模拟面试功能演练，投递库洛 Unity 岗及米哈游/鹰角/叠纸等，每场面试 24h 内复盘写进求职日记。",
+					estimate: "10 天",
+					tags: ["面试", "投递"],
 				},
 			],
 		},
@@ -268,56 +190,56 @@ export const careerConfig: CareerConfig = {
 	milestones: [
 		{
 			id: "m1",
-			title: "C++ 基础框架完成",
-			date: "2026-08-31",
-			detail: "内存管理、STL、虚函数等高频考点形成体系",
+			title: "C# 基础 + Unity 核心掌握",
+			date: "2026-10-02",
+			detail: "完成《Unity 极速入门》1-17 章",
 			done: false,
 			type: "prepare",
 		},
 		{
 			id: "m2",
-			title: "UE5 3C Demo 可运行",
-			date: "2026-09-14",
-			detail: "第三人称角色移动/相机/动画全链路跑通",
+			title: "第一个小游戏《疯狂小岛大战》完成",
+			date: "2026-10-07",
+			detail: "实战小项目可运行，录屏存档",
 			done: false,
 			type: "prepare",
 		},
 		{
 			id: "m3",
-			title: "战斗 Demo 完成 + 简历作品集就绪",
-			date: "2026-09-30",
-			detail: "带技能系统的完整小作品，简历 STAR 化",
+			title: "MMO 核心系统完成（网络 + UI + 背包等）",
+			date: "2026-11-26",
+			detail: "商业级 MMORPG P2 第 2-6 章",
 			done: false,
 			type: "prepare",
 		},
 		{
 			id: "m4",
-			title: "开始投递秋招日常/寒假实习",
-			date: "2026-10-01",
-			detail: "库洛官网 + 牛客 + 内推，每周 10+ 岗位",
+			title: "MMO 进阶完成（实时交互 + NavMesh + 任务）",
+			date: "2027-01-05",
+			detail: "P2 第 7-8 章，简历核心项目成型",
 			done: false,
-			type: "apply",
+			type: "prepare",
 		},
 		{
 			id: "m5",
-			title: "首场笔试/面试",
-			date: "2026-10-15",
-			detail: "进入实战，24h 内完成复盘",
+			title: "XLua 热更 Demo 完成（单机 + 网络）",
+			date: "2027-02-22",
+			detail: "热更新框架搭建 + 商业级热更 Demo",
 			done: false,
-			type: "interview",
+			type: "prepare",
 		},
 		{
 			id: "m6",
-			title: "投递窗口关闭",
-			date: "2026-11-30",
-			detail: "秋招日常/寒假实习投递截止",
+			title: "开始投递寒假/春招实习",
+			date: "2027-02-23",
+			detail: "库洛 Unity 岗 + 米哈游/鹰角/叠纸等",
 			done: false,
 			type: "apply",
 		},
 		{
 			id: "m7",
 			title: "目标：拿到库洛客户端实习 Offer",
-			date: "2026-12-31",
+			date: "2027-03-31",
 			detail: "求职主线目标达成，进入实习准备阶段",
 			done: false,
 			type: "offer",

@@ -5,7 +5,7 @@ description: 以《虚幻5 C++ 游戏开发从入门到秃头》第23集为蓝�
 image: ""
 tags: [UE5, C++, Montage, MetaSound, 动画, 音频, 游戏开发, 面试]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 23 集整理，UP 主**黑子的游戏空间**。本集覆盖动画蒙太奇 C++ 播放、MetaSound 程序化音频、脚步声与武器音效等，是让你的角色"动起来并且有声音"的关键一课。

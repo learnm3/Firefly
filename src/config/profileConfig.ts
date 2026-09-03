@@ -12,7 +12,7 @@ export const profileConfig: ProfileConfig = {
 	name: "习百技",
 
 	// 个人签名
-	bio: "软件工程大二 · 目标游戏客户端（UE5/C++）· 求职库洛实习中 🎮",
+	bio: "软件工程大二 · 目标游戏客户端（Unity/C#）· 求职库洛实习中 🎮",
 
 	// 链接配置
 	// 已经预装的图标集：fa7-brands，fa7-regular，fa7-solid，material-symbols，simple-icons

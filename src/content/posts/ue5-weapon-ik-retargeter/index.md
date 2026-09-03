@@ -5,7 +5,7 @@ description: 以《虚幻5 C++ 游戏开发从入门到秃头》第11集为蓝�
 image: ""
 tags: [UE5, C++, 武器系统, IK, 动画重定向, 游戏开发, 面试]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 11 集「Weapon and IK Retargeter」整理，UP 主**黑子的游戏空间**。在原视频基础上补充了面试深度的 IK 原理、武器系统架构设计和实战坑点。

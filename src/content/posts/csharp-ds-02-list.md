@@ -1,6 +1,6 @@
 ---
-title: C# 数据结构学习笔记(二):List<T>
-published: 2026-09-03
+title: Unity C# 学习笔记(十):List<T>
+published: 2026-09-03T14:30:00+08:00
 description: C# List<T> 学习笔记:自动扩容的动态数组,梳理增删改查、遍历、排序反转与类型转换,记录 foreach 中增删元素、Remove 语义等常见坑。
 tags:
   - C#

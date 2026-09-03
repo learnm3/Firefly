@@ -17,7 +17,7 @@ import MainGridLayout from "@/layouts/MainGridLayout.astro";
                     </div>
                 </div>
                 <p class="text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                    目标岗位：游戏客户端开发实习生（Unreal / C++）· 求职中
+                    目标岗位：游戏客户端开发实习生（Unity / C#）· 求职中
                 </p>
             </div>
 
@@ -37,7 +37,7 @@ import MainGridLayout from "@/layouts/MainGridLayout.astro";
                     </div>
                     <div class="rounded-lg bg-(--btn-plain-bg) px-4 py-3">
                         <div class="text-xs text-50 mb-1">求职方向</div>
-                        <div class="text-sm font-bold text-90">游戏客户端开发实习（UE5 / C++）</div>
+                        <div class="text-sm font-bold text-90">游戏客户端开发实习（Unity / C#）</div>
                     </div>
                     <div class="rounded-lg bg-(--btn-plain-bg) px-4 py-3">
                         <div class="text-xs text-50 mb-1">联系方式</div>
@@ -49,7 +49,17 @@ import MainGridLayout from "@/layouts/MainGridLayout.astro";
                 <div class="text-sm font-bold text-90 mb-3">🛠️ 技能</div>
                 <div class="space-y-2 mb-6">
                     <div>
-                        <div class="text-sm text-75 mb-1"><b>C++</b>：内存管理、多态、STL、移动语义（面试专题笔记见博客）</div>
+                        <div class="text-sm text-75 mb-1"><b>Unity / C#</b>（主线）：生命周期、组件化、物理、UI、协程、资源管理、热更新</div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <a href="/interview/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">Unity 面试题库</a>
+                            <a href="/roadmap/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">188 天路线图</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-75 mb-1"><b>C# 基础</b>：值/引用类型、委托事件、GC、协程与异步（学习中）</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-75 mb-1"><b>C++ / 基础理论</b>（辅助理解 C# 与引擎底层）：内存、多态、STL</div>
                         <div class="flex flex-wrap gap-1.5">
                             <a href="/posts/cpp-memory-management/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">内存管理笔记</a>
                             <a href="/posts/cpp-polymorphism-vtable/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">多态笔记</a>
@@ -57,15 +67,7 @@ import MainGridLayout from "@/layouts/MainGridLayout.astro";
                         </div>
                     </div>
                     <div>
-                        <div class="text-sm text-75 mb-1"><b>Unreal Engine 5</b>：3C 角色控制、动画、Gameplay 框架、GAS、网络同步</div>
-                        <div class="flex flex-wrap gap-1.5">
-                            <a href="/posts/ue5-character-class/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">Character 笔记</a>
-                            <a href="/posts/ue5-gas-ability-system/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">GAS 笔记</a>
-                            <a href="/posts/ue5-network-replication/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">网络同步笔记</a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="text-sm text-75 mb-1"><b>图形学</b>：渲染管线、光照模型、阴影与抗锯齿</div>
+                        <div class="text-sm text-75 mb-1"><b>图形学</b>：渲染管线、光照模型、阴影与抗锯齿（Unity 渲染相通）</div>
                         <div class="flex flex-wrap gap-1.5">
                             <a href="/posts/graphics-rendering-pipeline/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">渲染管线笔记</a>
                             <a href="/posts/graphics-lighting-models/" class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/10 text-(--primary) hover:underline">光照笔记</a>
@@ -85,16 +87,25 @@ import MainGridLayout from "@/layouts/MainGridLayout.astro";
                 <div class="space-y-3 mb-6">
                     <div class="rounded-lg border border-(--line-divider) px-4 py-3">
                         <div class="flex items-center justify-between">
-                            <div class="text-sm font-bold text-90">UE5 第三人称 3C Demo</div>
+                            <div class="text-sm font-bold text-90">商业级 MMORPG 全栈项目（Unity）</div>
                             <span class="text-[0.65rem] px-2 py-0.5 rounded bg-[oklch(0.88_0.12_80)] text-[oklch(0.35_0.12_80)]">进行中</span>
                         </div>
                         <p class="text-xs text-50 mt-1">
-                            角色移动/相机/动画全链路 · 计划扩展 GAS 战斗系统（见<a href="/projects/" class="text-(--primary) hover:underline">作品集</a>）
+                            网络层（Protobuf/登录/同步/传送）· UI 框架与背包等系统 · 计划 2027.01 完成（见<a href="/projects/" class="text-(--primary) hover:underline">作品集</a>）
                         </p>
                     </div>
                     <div class="rounded-lg border border-(--line-divider) px-4 py-3">
                         <div class="flex items-center justify-between">
-                            <div class="text-sm font-bold text-90">LeetCode 游戏情境题解（10 篇）</div>
+                            <div class="text-sm font-bold text-90">XLua 热更新 Demo（计划中）</div>
+                            <span class="text-[0.65rem] px-2 py-0.5 rounded bg-(--btn-plain-bg) text-50">计划中</span>
+                        </div>
+                        <p class="text-xs text-50 mt-1">
+                            AssetBundle + XLua 热更框架，国内客户端岗核心技能，计划 2027.02 完成
+                        </p>
+                    </div>
+                    <div class="rounded-lg border border-(--line-divider) px-4 py-3">
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm font-bold text-90">LeetCode 游戏情境题解（13 篇）</div>
                             <span class="text-[0.65rem] px-2 py-0.5 rounded bg-(--primary)/15 text-(--primary)">进行中</span>
                         </div>
                         <p class="text-xs text-50 mt-1">
