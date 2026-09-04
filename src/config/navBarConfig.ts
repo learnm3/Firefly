@@ -39,6 +39,9 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 	// 留言板
 	links.push(LinkPresets.Guestbook);
 
+	// 知识库
+	links.push(LinkPresets.KnowledgeBase);
+
 	// 我的及其子菜单
 	links.push({
 		name: "我的",
@@ -232,6 +235,11 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		name: "我的简历",
 		url: "/resume/",
 		icon: "material-symbols:description",
+	},
+	KnowledgeBase: {
+		name: "知识库",
+		url: "/kb/",
+		icon: "material-symbols:account-tree",
 	},
 	Projects: {
 		name: "项目作品集",
