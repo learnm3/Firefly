@@ -336,7 +336,7 @@ onMount(() => {
 });
 </script>
 
-<div class="kb-root">
+<div class="kb-root text-90">
 	<!-- 工具栏 -->
 	<div class="kb-toolbar">
 		<div class="kb-view-switch">
@@ -474,7 +474,7 @@ onMount(() => {
 									r={radiusOf("root")}
 									fill="var(--primary)"
 								/>
-								<text x={p.x} y={p.y - 8} class="kb-root-label" text-anchor="middle">Unity</text>
+								<text x={p.x} y={p.y - 8} class="kb-root-label" text-anchor="middle">个人</text>
 								<text x={p.x} y={p.y + 10} class="kb-root-label" text-anchor="middle">知识库</text>
 							{:else}
 								<circle
@@ -538,6 +538,7 @@ onMount(() => {
 <style>
 	.kb-root {
 		width: 100%;
+		/* 颜色由组件根的 text-90 语义类控制（明暗模式自适应），此处不覆盖 */
 	}
 
 	.kb-toolbar {
@@ -658,7 +659,7 @@ onMount(() => {
 	}
 
 	.kb-edge {
-		stroke: currentColor;
+		stroke: var(--kb-line, currentColor);
 		stroke-width: 1.3;
 		opacity: 0.35;
 		pointer-events: none;
@@ -666,13 +667,24 @@ onMount(() => {
 
 	.kb-label {
 		font-size: 0.78rem;
-		fill: currentColor;
+		/* 明暗自适应文字色：跟随按钮文字色（两种模式下均清晰） */
+		fill: var(--kb-fg, var(--btn-content));
 		opacity: 0.92;
 		pointer-events: none;
 	}
 	.kb-label-strong {
 		font-weight: 600;
 		opacity: 0.98;
+	}
+
+	/* 在根上定义 kb 前景/线条色（随主题 dark 切换，供 SVG 使用） */
+	.kb-root {
+		--kb-fg: oklch(0.28 0.02 var(--hue));
+		--kb-line: oklch(0.5 0.03 var(--hue));
+	}
+	:global(:root.dark) .kb-root {
+		--kb-fg: oklch(0.92 0.01 var(--hue));
+		--kb-line: oklch(0.7 0.02 var(--hue));
 	}
 
 	.kb-root-label {
