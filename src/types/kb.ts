@@ -3,7 +3,13 @@ export const kbEntryTypes = ["note", "pitfall", "practice", "journey"] as const;
 export type KbEntryType = (typeof kbEntryTypes)[number];
 
 /** 知识库条目所属领域（"按领域"视图的第一圈分支） */
-export const kbBranches = ["csharp", "unity", "project", "growth"] as const;
+export const kbBranches = [
+	"csharp",
+	"unity",
+	"ue",
+	"project",
+	"growth",
+] as const;
 export type KbBranch = (typeof kbBranches)[number];
 
 /** 领域元数据 */

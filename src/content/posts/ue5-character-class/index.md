@@ -5,7 +5,7 @@ description: 以《虚幻5 C++ 游戏开发从入门到秃头》第8集为蓝本
 image: ""
 tags: [UE5, C++, Character, 游戏开发, 面试, 3C, 渲染]
 category: 游戏开发
-draft: true
+draft: false
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 8 集「Character」整理，UP 主**黑子的游戏空间**。在原视频内容基础上补充了面试常考的深度知识点，适合正在准备游戏客户端面试的同学。

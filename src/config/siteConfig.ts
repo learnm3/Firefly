@@ -16,7 +16,7 @@ export const siteConfig: SiteConfig = {
 
 	// 站点描述
 	description:
-		"软件工程大二学生的游戏客户端求职之路：目标库洛（Kuro Games）Unity 客户端实习。记录 Unity/C#、图形学学习笔记，LeetCode 热题 100 打卡，以及 MMO/热更新项目作品集。",
+		"软件工程大二学生的游戏客户端求职之路：目标库洛（Kuro Games）UE5 客户端实习。记录 UE5/C++、图形学学习笔记，LeetCode 热题 100 打卡，以及 UE 动作游戏项目作品集。",
 
 	// 站点关键词
 	keywords: [

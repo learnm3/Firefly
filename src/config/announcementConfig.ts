@@ -6,7 +6,7 @@ export const announcementConfig: AnnouncementConfig = {
 
 	// 公告内容
 	content:
-		"🎯 目标：库洛游戏客户端开发实习（Unity / C#）· 188 天冲刺中，学习进度实时更新。",
+		"🎯 目标：库洛游戏客户端开发实习（UE5 / C++）· 200 集 UE5 C++ 教程学习中，进度实时更新。",
 
 	// 是否允许用户关闭公告
 	closable: true,

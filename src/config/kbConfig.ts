@@ -14,14 +14,21 @@ export const kbBranchMetaList: KbBranchMeta[] = [
 		id: "csharp",
 		name: "C# 基础",
 		description:
-			"语言语法、数据结构与面向对象等 C# 知识（在 Unity 中学习与验证）",
+			"语言语法、数据结构与面向对象等 C# 知识（引擎探索阶段在 Unity 中学习与验证）",
 		color: "#6366f1",
 	},
 	{
 		id: "unity",
 		name: "Unity 引擎",
-		description: "引擎核心：生命周期、组件、物理、UI、协程、资源与热更新等",
+		description: "引擎探索阶段的 Unity 学习：生命周期、组件、物理、UI、协程等",
 		color: "#a855f7",
+	},
+	{
+		id: "ue",
+		name: "UE5 引擎",
+		description:
+			"主线方向：UE5 C++ 开发（Character/动画/战斗系统等，持续补充）",
+		color: "#e4572e",
 	},
 	{
 		id: "project",
@@ -69,7 +76,7 @@ export const kbTypeMetaList: KbTypeMeta[] = [
 	{
 		id: "journey",
 		name: "成长历程",
-		description: "方向决策、里程碑与阶段复盘，记录 Unity 学习成长轨迹",
+		description: "方向决策、里程碑与阶段复盘，记录学习成长轨迹",
 		color: "#22c55e",
 	},
 ];
