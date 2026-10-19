@@ -67,7 +67,11 @@ function togglePhase(phaseId: string) {
 }
 
 function resetAllProgress() {
-	if (typeof window !== "undefined" && !window.confirm("确认重置所有任务进度？此操作不可恢复。")) return;
+	if (
+		typeof window !== "undefined" &&
+		!window.confirm("确认重置所有任务进度？此操作不可恢复。")
+	)
+		return;
 	completedTasks = new Set();
 	saveProgress();
 }
