@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 SetActorLocation：把 Actor 放到指定位置（蓝图与 C++）
 published: 2026-09-06
 description: 基于《虚幻5 C++ 游戏开发从入门到秃头》第 47 集整理：蓝图 SetActorLocation 节点、C++ 里 SetActorLocation(FVector) 的用法、Sweep/Teleport 参数的含义，以及"先设位置再画调试形状"的时机技巧。
 image: ""
 tags: [UE5, C++, Actor, SetActorLocation, 游戏开发, 学习笔记]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 47 集「SetActorLocation」整理，UP 主：**黑子的游戏空间**。代码风格沿用课程自建项目（`Item` 类与调试宏）。

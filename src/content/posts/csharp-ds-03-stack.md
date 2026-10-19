@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(十一):栈
 published: 2026-09-03T13:30:00+08:00
 description: C# Stack 学习笔记:用"叠盘子"理解后进先出,掌握 Push/Pop/Peek/Count,以及"先全部压栈、再依次弹出实现逆序"的经典玩法。
@@ -8,7 +8,7 @@ tags:
   - 数据结构
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/ynoteshare/index.html?id=8b0d4f5ac232e5257a6720fad5f24aa5&type=notebook#/WEB0a9cc688b9f04021b7aa134460edff21
 ---
 

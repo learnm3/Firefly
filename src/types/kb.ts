@@ -7,6 +7,7 @@ export const kbBranches = [
 	"csharp",
 	"unity",
 	"ue",
+	"ta",
 	"project",
 	"growth",
 ] as const;

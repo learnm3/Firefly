@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(十二):队列
 published: 2026-09-03T12:30:00+08:00
 description: C# Queue 学习笔记:从食堂排队理解先进先出,掌握 Enqueue/Dequeue/Peek/Count 与 Clear,记录判空、Dequeue 返回值等易错点。
@@ -8,7 +8,7 @@ tags:
   - 数据结构
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/ynoteshare/index.html?id=8b0d4f5ac232e5257a6720fad5f24aa5&type=notebook#/WEB8681a44ca7a24b16aa31e7947784500a
 ---
 

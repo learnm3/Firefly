@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(十八):接口
 published: 2026-09-03T06:30:00+08:00
 description: C# 接口学习笔记:接口=能力契约,掌握 interface 定义与实现、一个类实现多接口、接口与抽象类差异,以及 ISkill 多技能、IShape 统一算面积的场景。
@@ -7,7 +7,7 @@ tags:
   - Unity
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/s/PHuYhaz8
 ---
 

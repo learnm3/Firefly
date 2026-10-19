@@ -1,14 +1,14 @@
 // ============================================================================
-// 面试题库配置 - 游戏客户端开发（C++ / 图形学 / UE / 算法 / 计算机基础）
+// 面试题库配置 - 游戏技术美术 TA（程序向：Shader / 图形学 / UE / 性能 / 算法 / 计算机基础）
 // Interview Question Bank Configuration
 // 修改此文件即可更新博客上的面试题库页面
 // ============================================================================
 import type { InterviewConfig } from "../types/interview";
 
 export const interviewConfig: InterviewConfig = {
-	title: "游戏客户端面试题库",
+	title: "游戏技术美术（程序向）面试题库",
 	description:
-		"围绕游戏客户端实习面试高频考点整理的题库，涵盖 C++、图形学、Unreal 引擎、算法与计算机基础。点击题目展开参考答案要点。",
+		"围绕库洛技术美术工程师（程序向）面试高频考点整理的题库，涵盖 C++、图形学、Shader、Unreal 渲染、性能分析、算法与计算机基础。点击题目展开参考答案要点。",
 
 	categories: [
 		{
@@ -338,6 +338,155 @@ export const interviewConfig: InterviewConfig = {
 					difficulty: "hard",
 					tags: ["抗锯齿", "渲染"],
 					postSlug: "graphics-shadows-aa",
+				},
+			],
+		},
+		{
+			id: "ta",
+			name: "TA 管线与 Shader",
+			description: "技术美术区别于普通程序岗的核心考察方向",
+			icon: "material-symbols:auto-fix-high",
+			questions: [
+				{
+					id: "ta-01",
+					question: "PBR 的核心参数是什么？DCC 到 UE5 的材质映射怎么搭？",
+					hint: "BaseColor/Metallic/Roughness 与生产管线",
+					answer: [
+						"BaseColor、Metallic、Roughness、Normal、AO、Emissive 是核心输入",
+						"金属工作流：金属度区分导体/非导体，BaseColor 同时承担反照率与金属色",
+						"DCC/Substance 导出贴图时要注意 sRGB/线性、压缩格式和通道打包",
+						"UE5 用 Material Instance 暴露参数，Parameter Collection 做全局参数",
+						"TA 的价值是制定统一命名、材质分层和参数范围，避免每个美术各自发挥",
+					],
+					difficulty: "medium",
+					tags: ["PBR", "材质管线"],
+				},
+				{
+					id: "ta-02",
+					question: "二次元/卡通渲染常见的 Ramp、Outline、Rim 是怎么实现的？",
+					hint: "库洛风格化渲染高频考点",
+					answer: [
+						"Ramp：把 NdotL 映射到一维渐变纹理或分段阈值，获得色阶式阴影",
+						"Rim：用 viewDir 与 normal 的夹角做边缘光，常配合 Fresnel 调强度",
+						"Outline：常用 Back Face 沿法线膨胀再描边，或 Post Process 基于深度/法线检测边缘",
+						"风格化阴影可控制阴影颜色、阈值、硬化程度和接收方向",
+						"对比方案时要说明边缘质量、穿帮、性能和移动端支持差异",
+					],
+					difficulty: "hard",
+					tags: ["NPR", "Shader"],
+				},
+				{
+					id: "ta-03",
+					question: "前向渲染、延迟渲染、Forward+ 各自适合什么场景？",
+					hint: "与图形学基础题衔接，关注 TA 视角的取舍",
+					answer: [
+						"前向：每个物体直接做完整光照，支持 MSAA，但多光源会放大开销",
+						"延迟：先写 G-Buffer 再屏幕空间光照，多光源友好，但带宽大且 MSAA 受限",
+						"Forward+：按屏幕分块维护光源列表，兼顾前向与多光源",
+						"移动端要关注带宽、半精度、Tile Memory 和渲染特性差异",
+						"TA 要能从目标平台、光源数量、材质复杂度和性能预算倒推方案",
+					],
+					difficulty: "hard",
+					tags: ["渲染架构", "性能"],
+				},
+				{
+					id: "ta-04",
+					question: "Shader 性能分析看哪些指标？Overdraw 怎么定位和优化？",
+					hint: "Draw Call、Shader 复杂度、带宽、Overdraw",
+					answer: [
+						"CPU 看 Draw Call/状态切换，GPU 看指令数、纹理采样、带宽、填充率",
+						"Overdraw 是同一像素被多次写入，透明物体、粒子和后处理最明显",
+						"用 RenderDoc/ProfileGPU 的 Overdraw 视图定位热点",
+						"优化：减少透明层、裁剪 alpha、合并小粒子、控制后处理分辨率",
+						"还要看纹理 mipmap、压缩格式、LOD 和材质实例是否造成不必要的变体",
+					],
+					difficulty: "hard",
+					tags: ["性能", "RenderDoc"],
+				},
+				{
+					id: "ta-05",
+					question: "你会如何设计一个 DCC 资产命名/三角面/LOD 检查工具？",
+					hint: "Python、DCC API、自动化管线",
+					answer: [
+						"先定规则：命名前缀、三角面预算、LOD 数量、贴图尺寸与通道",
+						"用 Python 读取资产清单或 DCC API 遍历场景对象",
+						"输出结构化报告（CSV/JSON）、错误级别和退出码，方便接入 CI",
+						"要区分阻断错误与警告，并提供可点击定位或批量修复入口",
+						"加分：覆盖增量检查、规则配置化、与 Git 提交钩子集成",
+					],
+					difficulty: "medium",
+					tags: ["Python", "管线工具"],
+				},
+				{
+					id: "ta-06",
+					question: "法线贴图的原理？为什么通常在切线空间？",
+					hint: "美术资产与 Shader 的结合点",
+					answer: [
+						"把高模细节烘焙成法线扰动，低模渲染时替代几何法线参与光照",
+						"切线空间相对表面定义法线，贴图可复用、UV 变换和蒙皮更稳定",
+						"通过 TBN 矩阵把贴图法线转换到世界/视图空间",
+						"要注意 Y 轴方向（OpenGL/UE 与 DirectX 差异）和 sRGB 处理",
+						"还要了解 BC5/BC7 压缩、Mipmap 对法线细节和能耗的影响",
+					],
+					difficulty: "medium",
+					tags: ["法线贴图", "资产"],
+				},
+				{
+					id: "ta-07",
+					question:
+						"UE5 Material Instance、Parameter Collection、Material Function 怎么分工？",
+					hint: "引擎材质架构与工程化",
+					answer: [
+						"Master Material 定义结构，Material Instance 暴露参数供美术快速调整",
+						"Material Function 封装可复用节点组，降低重复和版本维护成本",
+						"Parameter Collection 是全局参数，适合日夜、天气、风格切换",
+						"参数命名和默认值要形成规范，避免实例过多导致变体爆炸",
+						"TA 通常负责 Master Material 和 Function 框架，美术只调实例参数",
+					],
+					difficulty: "medium",
+					tags: ["UE5", "材质架构"],
+				},
+				{
+					id: "ta-08",
+					question: "如果美术反馈某个场景在移动端掉帧，你的排查顺序是什么？",
+					hint: "模拟真实 TA 排障流程",
+					answer: [
+						"先复现并确认环境、设备、画质档位和具体镜头",
+						"用 Profiler 区分 CPU/GPU 瓶颈，再看 Draw Call、Overdraw、Shader 与带宽",
+						"对比同类资源：面数、材质复杂度、贴图尺寸、透明层和粒子数量",
+						"二分法关闭后处理/特效/特定资产定位主因",
+						"修复后给出前后对比数据，并把规范写回流程防止复发",
+					],
+					difficulty: "hard",
+					tags: ["性能", "排障"],
+				},
+				{
+					id: "ta-09",
+					question: "PCG、Houdini、Niagara 对 TA 的作用是什么？",
+					hint: "程序化内容与特效生产",
+					answer: [
+						"PCG/Houdini 用规则和参数批量生成场景、建筑、地形和生态",
+						"Niagara 负责特效系统，TA 常做模块化模板、参数封装和性能预算",
+						"TA 需要把节点图转化为美术可理解、可复用的参数化流程",
+						"还要建立资产导入、烘焙、校验和版本管理规范",
+						"重点不是会用工具，而是能定义生产标准并降低协作成本",
+					],
+					difficulty: "medium",
+					tags: ["PCG", "Houdini", "Niagara"],
+				},
+				{
+					id: "ta-10",
+					question: "如何跟美术和程序沟通一个效果需求？",
+					hint: "TA 的软技能与工程方法",
+					answer: [
+						"把美术目标拆成可验证指标：轮廓、光影、色彩、性能预算",
+						"给出原型和对比选项，而不是只给抽象描述",
+						"向程序说明技术约束与改动边界，向美术说明参数含义和效果代价",
+						"用文档沉淀方案、参数范围和排障结论",
+						"TA 的核心价值是让‘想要的画面’与‘可行的实现’收敛",
+					],
+					difficulty: "easy",
+					tags: ["沟通", "流程"],
 				},
 			],
 		},

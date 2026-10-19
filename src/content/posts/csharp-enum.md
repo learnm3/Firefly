@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(七):枚举
 published: 2026-09-03T17:30:00+08:00
 description: C# 枚举学习笔记:用"有名字的固定取值"替代魔法数字,掌握 enum 定义、与 int/string 互转、switch 搭配与 [Flags] 位运算,记录底层 int 等易错点。
@@ -7,7 +7,7 @@ tags:
   - Unity
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/s/SKnjiHf8
 ---
 

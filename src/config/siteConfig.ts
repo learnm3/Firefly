@@ -9,14 +9,14 @@ export const siteConfig: SiteConfig = {
 	title: "NoFinalLevel",
 
 	// 站点副标题
-	subtitle: "游戏客户端开发 · 求职之路",
+	subtitle: "游戏技术美术（程序向） · 求职之路",
 
 	// 站点 URL
 	site_url: "https://nofinallevel.space",
 
 	// 站点描述
 	description:
-		"软件工程大二学生的游戏客户端求职之路：目标库洛（Kuro Games）UE5 客户端实习。记录 UE5/C++、图形学学习笔记，LeetCode 热题 100 打卡，以及 UE 动作游戏项目作品集。",
+		"软件工程大三学生，目标库洛游戏技术美术工程师（程序向）。记录 GAMES101/202、Shader、UE5 渲染、性能优化与工具开发，以及可运行的 TA 作品集。",
 
 	// 站点关键词
 	keywords: [
@@ -26,8 +26,12 @@ export const siteConfig: SiteConfig = {
 		"ACGN",
 		"博客",
 		"LearnOpenGL",
-		"gems101",
-		"pbrt",
+		"GAMES101",
+		"GAMES202",
+		"Shader",
+		"UE5 材质",
+		"技术美术",
+		"TA",
 		"技术博客",
 		"静态博客",
 	],

@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 蓝图创建：从 C++ 类派生 BP_Item 并理解蓝图编辑器
 published: 2026-09-06
 description: 基于《虚幻5 C++ 游戏开发从入门到秃头》第 39 集整理：为什么不直接拖 C++ 类进场景，而是"基于 C++ 类创建蓝图子类"；蓝图编辑器四大区域、Event BeginPlay + Print String、UE_LOG 打印到输出日志、热重载与 Live Coding。
 image: ""
 tags: [UE5, C++, 蓝图, PrintString, UE_LOG, 热重载, 游戏开发, 学习笔记]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 39 集「Blueprint Creation」整理，UP 主：**黑子的游戏空间**。第 38 集创建了第一个 C++ 类 `AItem`，本集回答"怎么把它用起来"——用蓝图。

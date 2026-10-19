@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(九):数组
 published: 2026-09-03T15:30:00+08:00
 description: C# 数组学习笔记:用"储物柜"理解定长、强类型、内存连续的数组,梳理声明初始化、遍历、多维数组与常用方法,记录下标越界等易错点。
@@ -8,7 +8,7 @@ tags:
   - 数据结构
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/ynoteshare/index.html?id=8b0d4f5ac232e5257a6720fad5f24aa5&type=notebook#/WEBafd523566d2847e48e32b26d6603d67c
 ---
 

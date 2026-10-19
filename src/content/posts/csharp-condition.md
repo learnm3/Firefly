@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(五):判断语句
 published: 2026-09-03T19:30:00+08:00
 description: C# 判断语句学习笔记:if/else if/switch/三元运算符各自适合什么,配月份分季节、字符分类案例,记录漏 else 兜底、switch 忘 break 等易错点。
@@ -7,7 +7,7 @@ tags:
   - Unity
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/s/SKnjiHf8
 ---
 

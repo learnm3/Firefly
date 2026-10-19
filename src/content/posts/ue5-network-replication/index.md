@@ -1,11 +1,11 @@
----
+﻿---
 title: UE 网络同步完全解析：Replication/RPC/客户端预测，联机游戏核心考点
 published: 2026-08-24
 description: UE 网络同步面试必考题：属性复制 Replication、RPC 三种类型（Server/Multicast/Client）、服务器权威模型、客户端预测与纠偏、帧同步 vs 状态同步、移动同步方案。附代码示例、流程图与面试标准答案。
 image: api
 tags: [UE5, 网络同步, Replication, RPC, 客户端预测, 帧同步, 面试, 游戏客户端]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 这是求职路线图「阶段二：引擎落地」的 UE 方向进阶产出，也是面试题库 ue-10 的深度展开。网络同步是 UE 面试**最难也最拉分**的考点——答好了直接证明你有架构级理解，是客户端岗面试的核心加分项。

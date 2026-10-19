@@ -1,11 +1,11 @@
----
+﻿---
 title: UE Gameplay 框架完全解析：GameMode/GameState/PlayerController/Pawn 的分工
 published: 2026-08-22
 description: UE 面试必考的 Gameplay 框架题：GameMode、GameState、PlayerController、Pawn、PlayerState 五个核心类各自职责与协作流程，单机与联机的差异，生命周期与生成顺序，附面试标准答案与实战场景。
 image: api
 tags: [UE5, Gameplay框架, GameMode, PlayerController, Pawn, 面试, 游戏客户端]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 这是求职路线图「阶段二：引擎落地」的 UE 方向核心产出。Gameplay 框架是 UE 面试**必考框架题**——面试官几乎一定会问"GameMode 和 GameState 有什么区别？"，答不清楚基本告别二面。本文把五个核心类讲透，并附单机/联机的差异对比。

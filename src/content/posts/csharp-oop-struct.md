@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(十九):结构体
 published: 2026-09-03T05:30:00+08:00
 description: C# 结构体学习笔记:值类型 struct 与引用类型 class 的差异,赋值是复制还是共享引用,坐标/颜色等纯数据场景如何取舍。
@@ -7,7 +7,7 @@ tags:
   - Unity
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/s/PHuYhaz8
 ---
 

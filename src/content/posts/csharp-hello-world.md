@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(一):Hello World
 published: 2026-09-03T23:30:00+08:00
 description: Unity C# 入门第一课:认识类与方法的基本结构、在 Unity 中输出 Hello World、Debug.Log 三种日志,以及分号括号注释等编码规矩与常见坑。
@@ -7,7 +7,7 @@ tags:
   - Unity
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/s/SKnjiHf8
 ---
 

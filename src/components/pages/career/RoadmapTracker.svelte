@@ -66,6 +66,12 @@ function togglePhase(phaseId: string) {
 	collapsedPhases = new Set(collapsedPhases);
 }
 
+function resetAllProgress() {
+	if (typeof window !== "undefined" && !window.confirm("确认重置所有任务进度？此操作不可恢复。")) return;
+	completedTasks = new Set();
+	saveProgress();
+}
+
 function phaseCompletedTasks(phase: RoadmapPhase): number {
 	return phase.tasks.filter((t) => completedTasks.has(t.id)).length;
 }
@@ -286,6 +292,18 @@ onMount(() => {
 	<p class="text-center text-xs text-30 mb-2">
 		进度自动保存在浏览器本地（localStorage），换设备不迁移。
 	</p>
+
+	<!-- 数据管理 -->
+	<div class="card-base px-5 py-4 mt-4">
+		<div class="text-sm font-bold text-90 mb-2">🗑️ 数据管理</div>
+		<p class="text-xs text-50 mb-3">从零开始？重置所有任务勾选状态。</p>
+		<button
+			class="px-4 py-2 rounded-lg bg-red-500/15 text-red-500 text-sm font-bold hover:bg-red-500/25 transition-colors cursor-pointer"
+			on:click={resetAllProgress}
+		>
+			重置全部任务进度
+		</button>
+	</div>
 </div>
 
 <style>

@@ -1,11 +1,11 @@
----
+﻿---
 title: 光照模型完全解析：Phong、Blinn-Phong 与 PBR，从面试到实战
 published: 2026-08-21
 description: 图形学面试高频考点：冯氏光照模型三要素（环境光/漫反射/镜面反射）、Phong 与 Blinn-Phong 的区别、PBR 核心概念（BRDF/金属度/粗糙度/能量守恒）。附 GLSL 实现、面试标准答案与游戏引擎对比。
 image: api
 tags: [图形学, 光照, Phong, Blinn-Phong, PBR, 着色器, 面试, 游戏客户端]
 category: 图形学
-draft: false
+draft: true
 ---
 
 > 这是求职路线图「阶段二：引擎落地」图形学方向的第二篇产出（承接《[渲染管线完全图解](/posts/graphics-rendering-pipeline/)》）。光照是图形学面试第二高频考点——渲染管线讲"怎么画"，光照讲"画成什么样"。本文从经典冯氏模型讲到现代 PBR，每节附 GLSL 代码和面试标准答案。

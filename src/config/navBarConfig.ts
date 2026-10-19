@@ -77,6 +77,9 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 			// LeetCode 打卡
 			LinkPresets.LeetCode,
 
+			// 学习追踪（艾宾浩斯复习）
+			LinkPresets.StudyTracker,
+
 			// 热题 100
 			LinkPresets.Hot100,
 
@@ -225,6 +228,11 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		name: "LeetCode 打卡",
 		url: "/leetcode/",
 		icon: "material-symbols:code",
+	},
+	StudyTracker: {
+		name: "学习追踪",
+		url: "/study/",
+		icon: "material-symbols:school",
 	},
 	Hot100: {
 		name: "热题 100",

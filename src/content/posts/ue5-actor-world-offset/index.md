@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 C++ Actor 世界偏移与 DeltaTime：帧率无关的移动与旋转
 published: 2026-09-06
 description: 基于《虚幻5 C++ 游戏开发从入门到秃头》第 49 集整理：AddActorWorldOffset / AddActorWorldRotation 的"偏移叠加"用法，为什么"每帧加固定量"会让移动速度依赖帧率，以及如何用 Tick 的 DeltaTime 缩放出恒定速度。
 image: ""
 tags: [UE5, C++, Actor, DeltaTime, 游戏开发, 学习笔记]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 49 集「Actor World Offset」整理，UP 主：**黑子的游戏空间**。代码风格沿用课程自建项目的 `Item` 类与 Debug Macros 头文件。

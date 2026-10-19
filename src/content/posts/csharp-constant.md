@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(三):常量
 published: 2026-09-03T21:30:00+08:00
 description: C# 常量学习笔记:用 const "焊死"不该变的值,对比常量与变量的差异,掌握声明即初始化、全大写命名与类名访问,记录重赋值等易错点。
@@ -7,7 +7,7 @@ tags:
   - Unity
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/s/SKnjiHf8
 ---
 

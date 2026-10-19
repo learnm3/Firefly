@@ -1,11 +1,11 @@
----
+﻿---
 title: 现代 OpenGL 入门（一）：理解核心概念
 published: 2026-07-11
 description: 在开始编写 OpenGL 代码之前，先理解它是什么——核心模式、状态机、对象与扩展，这些是贯穿整个图形学学习的基础。
 image: api
 tags: [OpenGL, 图形学, 渲染, 计算机图形学]
 category: 图形学
-draft: false
+draft: true
 ---
 
 > 本文是对 [LearnOpenGL CN](https://learnopengl-cn.github.io/01%20Getting%20started/01%20OpenGL/) 入门章节的学习笔记与总结，适合作为学习现代 OpenGL 的起点。

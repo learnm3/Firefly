@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 C++ DrawDebugSphere：可视化"看不见的"Actor
 published: 2026-09-06
 description: 基于《虚幻5 C++ 游戏开发从入门到秃头》第 42 集整理：为什么需要调试形状、蓝图与 C++ 里用 DrawDebugSphere 在 Actor 位置绘制球体（中心/半径/分段/颜色/持续时长/厚度），以及如何用 #define 宏把一次绘制收成一行。
 image: ""
 tags: [UE5, C++, DrawDebugSphere, 调试, 宏, 游戏开发, 学习笔记]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 42 集「Drawing Debug Spheres」整理，UP 主：**黑子的游戏空间**。代码沿用课程项目 `Item` 类风格。

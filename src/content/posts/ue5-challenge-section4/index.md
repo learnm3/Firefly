@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 C++ 第 4 节挑战：把"解释一个 C++ 概念"当作练习
 published: 2026-09-06
 description: 基于《虚幻5 C++ 游戏开发从入门到秃头》第 37 集整理：第四节的概念挑战——选一个 C++ 难点（指针/继承/函数重载等），用自己的话解释并发布到课程社区，再阅读他人解释、发现误解并给出建设性反馈。
 image: ""
 tags: [UE5, C++, 游戏开发, 课程挑战, 学习方法]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 37 集「Section 4 Challenge」整理，UP 主：**黑子的游戏空间**。这是第 4 节（C++ 概念复习）收尾的一次"概念性挑战"，不是写代码任务。

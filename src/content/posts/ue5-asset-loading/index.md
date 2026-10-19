@@ -1,11 +1,11 @@
----
+﻿---
 title: UE 资源加载与内存管理：硬引用/软引用/异步加载/关卡流送，开放世界性能核心
 published: 2026-08-25
 description: UE 面试高频性能考点：硬引用与软引用（TSoftObjectPtr）的区别、引用链拖拽问题、异步加载（FStreamableManager/AssetManager）、关卡流送 Level Streaming、资源寻址与打包，附代码示例与面试标准答案。
 image: api
 tags: [UE5, 资源加载, 软引用, 异步加载, 关卡流送, 内存, 面试, 游戏客户端]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 这是求职路线图「阶段二：引擎落地」的 UE 方向产出，也是面试题库 ue-11 的深度展开。资源加载是**开放世界游戏（《鸣潮》就是典型）的性能核心**——加载策略决定启动速度、切换场景的卡顿、内存占用。这是客户端面试区分度很高的实战考点。

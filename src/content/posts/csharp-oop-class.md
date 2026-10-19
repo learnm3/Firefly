@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(十五):类
 published: 2026-09-03T09:30:00+08:00
 description: C# 类学习笔记:类是模板、对象是实例,梳理类定义、new 实例化、构造函数与 public/private 访问修饰符,记录忘 new、构造名错等易错点。
@@ -7,7 +7,7 @@ tags:
   - Unity
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/s/PHuYhaz8
 ---
 

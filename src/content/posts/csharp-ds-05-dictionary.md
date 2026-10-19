@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(十三):字典
 published: 2026-09-03T11:30:00+08:00
 description: C# Dictionary 学习笔记:用"查字典"类比理解键值对与哈希查找,掌握 Add/索引器/TryGetValue/ContainsKey/Remove 与遍历,记录重复键等易错点。
@@ -8,7 +8,7 @@ tags:
   - 数据结构
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/ynoteshare/index.html?id=8b0d4f5ac232e5257a6720fad5f24aa5&type=notebook#/WEB982ffa653c304e958198da1bb85a9108
 ---
 

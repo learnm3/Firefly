@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 C++ Character 类完全解析：从骨骼网格到移动输入
 published: 2026-08-08
 description: 以《虚幻5 C++ 游戏开发从入门到秃头》第8集为蓝本，系统梳理 UE5 Character 类的骨骼网格体、弹簧臂与摄像机、移动输入、控制器方向等核心概念，并延伸面试高频考点——从 Pawn 到 Character 的继承链、PerformMovement 八阶段、动画蓝图通信、3C 系统设计思路。
 image: ""
 tags: [UE5, C++, Character, 游戏开发, 面试, 3C, 渲染]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 8 集「Character」整理，UP 主**黑子的游戏空间**。在原视频内容基础上补充了面试常考的深度知识点，适合正在准备游戏客户端面试的同学。

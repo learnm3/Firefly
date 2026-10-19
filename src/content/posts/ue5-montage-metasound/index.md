@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 C++ 动画蒙太奇与 MetaSound：从代码里驱动动画和音频
 published: 2026-08-08
 description: 以《虚幻5 C++ 游戏开发从入门到秃头》第23集为蓝本，系统梳理 C++ 播放动画蒙太奇（Montage）、AnimNotify 通知回调、动作状态机防打断、MetaSound 程序化音频系统、脚步声与武器音效实现，并延伸面试常考的 Montage vs Sequence 区别、MetaSound vs SoundCue 对比、动画与音频的 C++ 控制链路。
 image: ""
 tags: [UE5, C++, Montage, MetaSound, 动画, 音频, 游戏开发, 面试]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 23 集整理，UP 主**黑子的游戏空间**。本集覆盖动画蒙太奇 C++ 播放、MetaSound 程序化音频、脚步声与武器音效等，是让你的角色"动起来并且有声音"的关键一课。

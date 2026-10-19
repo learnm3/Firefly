@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(十六):面向对象三大特征
 published: 2026-09-03T08:30:00+08:00
 description: C# 面向对象三大特征学习笔记:封装把状态收进类、继承让子类复用扩展、多态统一调用,virtual/override 动态绑定,配玩家属性与敌人基类示例。
@@ -7,7 +7,7 @@ tags:
   - Unity
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/s/PHuYhaz8
 ---
 

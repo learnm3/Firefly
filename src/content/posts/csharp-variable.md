@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(二):变量
 published: 2026-09-03T22:30:00+08:00
 description: C# 变量学习笔记:用"贴标签的储物格"理解声明与赋值,梳理 int/float/string/bool 常用类型、命名规范、装箱拆箱与类型转换,记录未初始化等易错点。
@@ -7,7 +7,7 @@ tags:
   - Unity
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/s/SKnjiHf8
 ---
 

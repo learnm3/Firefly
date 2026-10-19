@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 C++ 绘制调试线：用 DrawDebugLine 可视化前向向量
 published: 2026-09-06
 description: 基于《虚幻5 C++ 游戏开发从入门到秃头》第 43 集整理：蓝图与 C++ 中绘制调试线的方法——以 Actor 位置为起点、位置加前向向量为终点，向量放大技巧，DrawDebugLine 参数，以及封装 DRAW_LINE 宏。
 image: ""
 tags: [UE5, C++, DrawDebugLine, GetActorForwardVector, 调试, 宏, 游戏开发, 学习笔记]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 43 集「Drawing Debug Lines」整理，UP 主：**黑子的游戏空间**。代码风格沿用课程自建项目的 `Item` 类与调试宏头文件（本集字幕所称主头文件 `Slash.h`）。

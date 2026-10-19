@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 C++ 创建第一个 Actor 类：从蓝图项目起步的完整流程
 published: 2026-09-06
 description: 基于《虚幻5 C++ 游戏开发从入门到秃头》第 38 集整理：在 UE 中创建第一个 C++ 类 AItem 的完整流程——类向导选基类、public/private 目录组织、生成的 Item.h/Item.cpp 模板代码逐行解读（反射、GENERATED_BODY、BeginPlay/Tick 覆写、Super 调用、bCanEverTick）。
 image: ""
 tags: [UE5, C++, 游戏开发, Actor, 类向导, 学习笔记]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 38 集「Actor Creation」整理，UP 主：**黑子的游戏空间**。本集是"第一次真正写 UE C++"：在蓝图项目里创建第一个派生自 Actor 的 C++ 类。

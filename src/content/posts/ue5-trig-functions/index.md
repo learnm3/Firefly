@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 三角函数入门：sin/cos、弧度与"正弦波"运动
 published: 2026-09-06
 description: 基于《虚幻5 C++ 游戏开发从入门到秃头》第 50 集整理：从直角三角形与单位圆理解正弦/余弦，弧度与角度换算（360°=2π），正弦/余弦函数图像与周期性，以及如何用它给物体加上下浮动的"正弦波"运动。
 image: ""
 tags: [UE5, C++, 三角函数, 数学, 正弦, 余弦, 弧度, 游戏开发, 学习笔记]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 50 集「Trig Functions」整理，UP 主：**黑子的游戏空间**。本集是纯数学铺垫：把 `sin` / `cos` 讲透，下一集就会在 UE 里用它们做"正弦波"运动。

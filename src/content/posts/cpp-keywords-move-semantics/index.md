@@ -1,11 +1,11 @@
----
+﻿---
 title: C++ 关键字与移动语义专题：const、static、左值右值一次讲清
 published: 2026-08-19
 description: C++ 面试高频关键字与 C++11 移动语义的完整解析：const 的八种用法与顶层/底层 const、static 的四种含义、左值右值与 std::move/完美转发、拷贝与移动构造的坑。每节附面试标准答案与代码示例。
 image: api
 tags: [C++, const, static, 移动语义, 右值引用, 面试, 游戏客户端]
 category: C++
-draft: false
+draft: true
 ---
 
 > 这是求职路线图「阶段一：地基补强」的产出之三，也是 C++ 面试专题系列的**收官篇**。前两篇解决了内存（《[内存管理完全指南](/posts/cpp-memory-management/)》）和多态（《[多态与虚函数完全解析](/posts/cpp-polymorphism-vtable/)》），这一篇补齐面试官最爱考的**关键字语义**和**C++11 移动语义**——这三篇合起来，C++ 面试的主干就齐了。

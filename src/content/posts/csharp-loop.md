@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(六):循环语句
 published: 2026-09-03T18:30:00+08:00
 description: C# 循环语句学习笔记:for/while/do-while/foreach 的节奏与选型直觉,break/continue 的区别,记录死循环与边界差一等易错点。
@@ -7,7 +7,7 @@ tags:
   - Unity
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/s/SKnjiHf8
 ---
 

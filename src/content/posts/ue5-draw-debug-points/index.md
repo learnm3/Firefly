@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 C++ DrawDebugPoint 与 DRAW_VECTOR 宏：用"点"看清向量的两端
 published: 2026-09-06
 description: 基于《虚幻5 C++ 游戏开发从入门到秃头》第 44 集整理：DrawDebugPoint 调试点的大小特性（不随距离缩放）、在向量末端画点辅助观察方向，以及用跨行宏 DRAW_POINT / DRAW_VECTOR 把"线 + 点"打包。
 image: ""
 tags: [UE5, C++, DrawDebugPoint, 调试, 宏, 向量, 游戏开发, 学习笔记]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 44 集「Drawing Debug Points」整理，UP 主：**黑子的游戏空间**。代码沿用课程项目风格（上一集画了调试线，本集在线的末端加点）。

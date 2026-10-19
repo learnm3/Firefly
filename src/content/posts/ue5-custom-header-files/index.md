@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 调试宏搬家：创建自己的 DebugMacros.h 自定义头文件
 published: 2026-09-06
 description: 基于《虚幻5 C++ 游戏开发从入门到秃头》第 45 集整理：为什么调试宏不该堆在总头文件里、如何在 Visual Studio 里新建自定义头文件、正确放到 Source 目录，以及按需 include 的模块化习惯。
 image: ""
 tags: [UE5, C++, 调试宏, 头文件, 模块化, 游戏开发, 学习笔记]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 45 集「Custom Header Files」整理，UP 主：**黑子的游戏空间**。代码风格沿用课程自建项目（`Item` 类与调试宏）。

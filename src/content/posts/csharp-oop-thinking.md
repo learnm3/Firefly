@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(十四):编程思想
 published: 2026-09-03T10:30:00+08:00
 description: C# 面向对象入门第一课:用五子棋、计算器例子对比面向过程与面向对象,理解类与对象的关系,以及为什么游戏开发需要 OOP。
@@ -7,7 +7,7 @@ tags:
   - Unity
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/s/PHuYhaz8
 ---
 

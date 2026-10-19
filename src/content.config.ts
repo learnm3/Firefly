@@ -38,7 +38,7 @@ const specCollection = defineCollection({
 });
 
 /**
- * 知识库：Unity 学习成长与踩坑参考（独立于 posts 的第二内容体系）
+ * 知识库：技术学习成长与踩坑参考（独立于 posts 的第二内容体系）
  * - type   内容形态：note 学习笔记 / pitfall 踩坑手册 / practice 项目实践 / journey 成长历程
  * - branch 所属领域：与导图"按领域"分支对应
  * - topic  领域内子主题（导图第二层）

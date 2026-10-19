@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 屏幕调试消息：Print String 的 Key 机制与 C++ 的 AddOnScreenDebugMessage
 published: 2026-09-06
 description: 基于《虚幻5 C++ 游戏开发从入门到秃头》第 40 集整理：Print String / Log String 的区别、Key 如何控制消息替换与堆叠、C++ 里用 GEngine->AddOnScreenDebugMessage 把消息打到屏幕。
 image: ""
 tags: [UE5, C++, 调试, PrintString, 游戏开发, 学习笔记]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 40 集「Onscreen Debug Messages」整理，UP 主：**黑子的游戏空间**。代码风格沿用课程自建项目（`Item` 类）。

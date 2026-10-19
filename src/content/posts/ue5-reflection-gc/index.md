@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 反射与垃圾回收：UCLASS / UPROPERTY / UFUNCTION 背后的机制
 published: 2026-09-06
 description: 基于《虚幻5 C++ 游戏开发从入门到秃头》第 36 集整理：什么是反射（程序运行时检查自身）、为什么 C++ 需要 UE 自研反射系统；垃圾回收如何替我们管理内存；UHT 如何根据 UCLASS/UPROPERTY/UFUNCTION 宏自动生成代码。
 image: ""
 tags: [UE5, C++, 反射, 垃圾回收, UCLASS, UPROPERTY, UFUNCTION, 游戏开发, 学习笔记]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 36 集「Reflection and Garbage Collection」整理，UP 主：**黑子的游戏空间**。本集是纯概念课：讲清 UE 里"反射 + 垃圾回收"这套系统为什么存在、由什么驱动。

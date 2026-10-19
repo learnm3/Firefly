@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(八):字符串
 published: 2026-09-03T16:30:00+08:00
 description: C# 字符串学习笔记:理解不可变性与转义符,掌握 + 拼接与 $ 插值、Length/Substring/Replace/Split 等常用方法,记录忘转义、越界等易错点。
@@ -7,7 +7,7 @@ tags:
   - Unity
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/s/SKnjiHf8
 ---
 

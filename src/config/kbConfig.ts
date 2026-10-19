@@ -31,6 +31,13 @@ export const kbBranchMetaList: KbBranchMeta[] = [
 		color: "#e4572e",
 	},
 	{
+		id: "ta",
+		name: "TA 图形与管线",
+		description:
+			"技术美术主线：GAMES101/202、Shader、UE5 材质、NPR 渲染与 DCC 生产管线",
+		color: "#0ea5e9",
+	},
+	{
 		id: "project",
 		name: "项目实战",
 		description: "小游戏 Demo、MMORPG 全栈等实战项目的过程记录与架构沉淀",

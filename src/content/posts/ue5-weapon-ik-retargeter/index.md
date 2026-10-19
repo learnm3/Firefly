@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 C++ 武器系统与 IK 动画重定向：从装备到战斗
 published: 2026-08-08
 description: 以《虚幻5 C++ 游戏开发从入门到秃头》第11集为蓝本，系统梳理武器类设计、Socket 挂载、装备拾取系统、IK Rig 与 IK Retargeter 动画重定向、角色状态枚举驱动动画蓝图等核心内容，并延伸面试常考的武器系统架构、IK 原理与常见陷阱。
 image: ""
 tags: [UE5, C++, 武器系统, IK, 动画重定向, 游戏开发, 面试]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 11 集「Weapon and IK Retargeter」整理，UP 主**黑子的游戏空间**。在原视频基础上补充了面试深度的 IK 原理、武器系统架构设计和实战坑点。

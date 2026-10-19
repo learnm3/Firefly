@@ -1,11 +1,11 @@
----
+﻿---
 title: GAS 技能系统完全解析：AbilitySystemComponent/GameplayAbility/GameplayEffect 一文讲透
 published: 2026-08-23
 description: GAS（Gameplay Ability System）是 UE 大型项目技能系统的事实标准，也是动作游戏客户端面试的高频加分考点。本文解析 GAS 四大核心类（ASC/GA/GE/AttributeSet）的关系、技能激活数据流、常见实现（连招/闪避/伤害）、与网络同步的配合，附面试标准答案。
 image: api
 tags: [UE5, GAS, 技能系统, GameplayAbility, GameplayEffect, 面试, 游戏客户端]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 这是求职路线图「阶段三：作品打磨」的核心理论产出，也是面试题库 ue-04 的深度展开。库洛的《鸣潮》《战双帕弥什》都是动作游戏——**GAS 是动作游戏客户端面试含金量最高的加分方向**。能讲清"技能怎么从按键到伤害结算"的完整链路，面试官会立刻把你和其他候选人区分开。

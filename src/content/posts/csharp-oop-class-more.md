@@ -1,4 +1,4 @@
----
+﻿---
 title: Unity C# 学习笔记(十七):类的更多知识
 published: 2026-09-03T07:30:00+08:00
 description: C# 类的进阶形态:静态类、抽象类、密封类、泛型类与方法四种特殊写法,各自用途与"不能 new、漏实现、类型要显式指定"等坑。
@@ -7,7 +7,7 @@ tags:
   - Unity
   - 学习笔记
 category: C# 学习笔记
-draft: false
+draft: true
 sourceLink: https://share.note.youdao.com/s/PHuYhaz8
 ---
 

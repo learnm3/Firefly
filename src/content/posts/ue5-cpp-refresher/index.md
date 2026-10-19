@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 C++ 学前复习：继承、虚函数、多态与类型转换
 published: 2026-09-06
 description: 基于《虚幻5 C++ 游戏开发从入门到秃头》第 35 集整理：进入 UE C++ 编码前必会的面向对象概念——类与继承、虚函数与重写、多态、父指针指向子对象、向下转换（static_cast / dynamic_cast），以及 Unreal 自身的 UObject→AActor→APawn→ACharacter 类层次与 is-a / has-a 关系。
 image: ""
 tags: [UE5, C++, 游戏开发, C++复习, 继承, 多态]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 35 集「C++ Refresher」整理，UP 主：**黑子的游戏空间**。本集是纯概念复习（无代码演示），为接下来真正写 UE C++ 做准备。

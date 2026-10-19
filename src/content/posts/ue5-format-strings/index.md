@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 字符串格式化：UE_LOG 与 FString::Printf 的 %f / %s
 published: 2026-09-06
 description: 基于《虚幻5 C++ 游戏开发从入门到秃头》第 41 集整理：用格式说明符把 DeltaTime 等值打印到输出日志与屏幕（%f），以及用 FString::Printf 构造格式化字符串、用 %s 打印对象名时为何必须写 *Name。
 image: ""
 tags: [UE5, C++, FString, Printf, UE_LOG, 格式说明符, 游戏开发, 学习笔记]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 41 集「Formatting Strings」整理，UP 主：**黑子的游戏空间**。上一集只会打印写死的文本，本集学会把**变量的值**（浮点、字符串）拼进日志消息。

@@ -1,11 +1,11 @@
----
+﻿---
 title: 实时阴影与抗锯齿完全解析：Shadow Map、Shadow Acne、MSAA/FXAA/TAA
 published: 2026-08-26
 description: 图形学面试高频考点：Shadow Map 阴影映射原理、shadow acne/彼得潘现象的成因与解决（深度偏移/法线偏移）、PCF 软阴影与级联阴影 CSM，以及 MSAA/FXAA/TAA 三种抗锯齿的原理对比。附代码示例与面试标准答案。
 image: api
 tags: [图形学, 阴影, Shadow Map, 抗锯齿, MSAA, TAA, 面试, 游戏客户端]
 category: 图形学
-draft: false
+draft: true
 ---
 
 > 这是求职路线图「阶段二：引擎落地」图形学方向的收尾产出，也是面试题库 gr-10/gr-11 的深度展开。阴影和抗锯齿是图形学面试的**两大高频进阶考点**——渲染管线和光照回答完基础题后，面试官几乎必然会往这两个方向深挖。

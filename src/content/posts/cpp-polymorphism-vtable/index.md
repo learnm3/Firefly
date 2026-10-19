@@ -1,11 +1,11 @@
----
+﻿---
 title: C++ 多态与虚函数完全解析：vtable、纯虚函数与 RTTI，面试一次问透
 published: 2026-08-17
 description: 多态是 C++ 面试出现率最高的考点。本文深入虚函数表 vtable/vptr 的内存布局、继承下的覆盖与隐藏、构造析构中的虚函数陷阱、纯虚函数与抽象类、override/final、dynamic_cast 与 RTTI，每节附面试标准答案与手画内存图。
 image: api
 tags: [C++, 多态, 虚函数, vtable, RTTI, 面试, 游戏客户端]
 category: C++
-draft: false
+draft: true
 ---
 
 > 这是求职路线图「阶段一：地基补强」的产出之二。上一篇《[C++ 内存管理完全指南](/posts/cpp-memory-management/)》解决了"内存长什么样"，这一篇解决"C++ 怎么实现多态"——**虚函数是 C++ 面试提问频率最高的单点话题**，面试官会从"什么是多态"一路追到"vtable 在内存里长什么样"。

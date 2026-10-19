@@ -1,11 +1,11 @@
----
+﻿---
 title: UE5 C++ SetActorRotation：用 FRotator 设定 Actor 的朝向
 published: 2026-09-06
 description: 基于《虚幻5 C++ 游戏开发从入门到秃头》第 48 集整理：蓝图 Set Actor Rotation 的 Rotator 输入与 Teleport Physics 含义，以及 C++ SetActorRotation 的 FRotator/FQuat 两个重载与 ETeleportType 参数。
 image: ""
 tags: [UE5, C++, SetActorRotation, FRotator, Actor, 游戏开发, 学习笔记]
 category: 游戏开发
-draft: false
+draft: true
 ---
 
 > 本文基于 B 站教程《[虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy)》第 48 集「SetActorRotation」整理，UP 主：**黑子的游戏空间**。与上一集 `SetActorLocation` 对称：一个是"设定位置"，一个是"设定旋转"。

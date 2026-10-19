@@ -1,11 +1,11 @@
----
+﻿---
 title: 现代 OpenGL 入门（二）：创建第一个窗口
 published: 2026-07-11
 description: 配置 GLFW + GLAD，理解渲染循环与双缓冲机制，写出你的第一个 OpenGL 程序——一个青色的空白窗口。
 image: api
 tags: [OpenGL, 图形学, GLFW, GLAD, 窗口]
 category: 图形学
-draft: false
+draft: true
 ---
 
 > 本文是对 [LearnOpenGL CN — 创建窗口](https://learnopengl-cn.github.io/01%20Getting%20started/02%20Creating%20a%20window/) 的学习笔记。我们将从零开始搭建开发环境，并写出第一个 OpenGL 程序。

@@ -1,4 +1,4 @@
----
+﻿---
 title: 求职宣言：专注 UE5/C++，我的库洛客户端实习作战计划
 published: 2026-08-15
 updated: 2026-09-03
@@ -6,7 +6,7 @@ description: 软件工程大二学生，目标库洛游戏客户端开发实习�
 image: api
 tags: [求职, 职业规划, 库洛, UE5, C++, 游戏客户端, 学习计划]
 category: 求职日记
-draft: false
+draft: true
 pinned: true
 ---
 
