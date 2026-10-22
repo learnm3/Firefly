@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 420" font-family="ui-sans-serif, system-ui, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <rect width="1080" height="420" fill="#f7f8fa"/>
+  <text x="30" y="42" font-size="22" font-weight="700" fill="#1f2937">双指针"每列反转"：i 与 k 相向而行</text>
+  <text x="30" y="68" font-size="14" fill="#4b5563">以 4 元素列 [1, 5, 9, 13]（n=4）为例。蓝色 i 从顶部出发向下，橙色 k 从底部出发向上，每轮交换一对，直到 i ≥ k 停止。</text>
+
+  <!-- ================= 卡 1：步骤 1 ================= -->
+  <g transform="translate(40,96)">
+    <rect x="-10" y="-30" width="280" height="250" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+    <text x="0" y="-10" font-size="15" font-weight="700" fill="#d97706">步骤 1：准备交换</text>
+
+    <rect x="0" y="0" width="46" height="46" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5"/><text x="23" y="30" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">1</text>
+    <text x="58" y="30" font-size="13" font-weight="600" fill="#2563eb">i=0 ↓</text>
+    <rect x="0" y="52" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="82" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">5</text>
+    <rect x="0" y="104" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="134" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">9</text>
+    <rect x="0" y="156" width="46" height="46" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="2.5"/><text x="23" y="186" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">13</text>
+    <text x="58" y="186" font-size="13" font-weight="600" fill="#ea580c">k=3 ↑</text>
+
+    <text x="0" y="220" font-size="13" fill="#6b7280">swap(1, 13) → 交换首尾</text>
+  </g>
+
+  <!-- ================= 卡 2：步骤 2 ================= -->
+  <g transform="translate(400,96)">
+    <rect x="-10" y="-30" width="280" height="250" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+    <text x="0" y="-10" font-size="15" font-weight="700" fill="#d97706">步骤 2：向中间靠拢</text>
+
+    <rect x="0" y="0" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">13</text>
+    <rect x="0" y="52" width="46" height="46" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5"/><text x="23" y="82" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">5</text>
+    <text x="58" y="82" font-size="13" font-weight="600" fill="#2563eb">i=1 ↓</text>
+    <rect x="0" y="104" width="46" height="46" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="2.5"/><text x="23" y="134" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">9</text>
+    <text x="58" y="134" font-size="13" font-weight="600" fill="#ea580c">k=2 ↑</text>
+    <rect x="0" y="156" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="186" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">1</text>
+
+    <text x="0" y="220" font-size="13" fill="#6b7280">swap(5, 9) → 指针各进一步</text>
+  </g>
+
+  <!-- ================= 卡 3：步骤 3 ================= -->
+  <g transform="translate(760,96)">
+    <rect x="-10" y="-30" width="280" height="250" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+    <text x="0" y="-10" font-size="15" font-weight="700" fill="#16a34a">步骤 3：i ≥ k，停止</text>
+
+    <rect x="0" y="0" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">13</text>
+    <rect x="0" y="52" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="82" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">9</text>
+    <rect x="0" y="104" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="134" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">5</text>
+    <rect x="0" y="156" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="186" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">1</text>
+    <text x="58" y="186" font-size="13" fill="#6b7280">i=2, k=1</text>
+
+    <text x="0" y="220" font-size="13" font-weight="600" fill="#16a34a">结果 [13, 9, 5, 1] 完全颠倒 ✓</text>
+  </g>
+
+  <line x1="30" y1="376" x2="1050" y2="376" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="30" y="402" font-size="13" fill="#6b7280">终止条件：奇数 n（如 3）中间元素不换（i 与 k 碰头即停）；偶数 n（如 4）每对恰换一次（擦肩而过）。条件 i&lt;k 保证每对只交换一次——写成 i&lt;n 会交换两次、等于没反转。</text>
+</svg>
