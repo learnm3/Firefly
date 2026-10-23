@@ -1,99 +1,99 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 660" font-family="ui-sans-serif, system-ui, 'Segoe UI', 'Microsoft YaHei', sans-serif">
-  <rect width="1080" height="660" fill="#f7f8fa"/>
-  <text x="30" y="46" font-size="22" font-weight="700" fill="#1f2937">矩阵旋转角度全家桶：推导流水线（2×2 实例）</text>
-  <text x="30" y="72" font-size="14" fill="#4b5563">核心：90° 系 = 转置 + 一次翻转（顺序决定方向）；180° = 两次翻转（行列未互换，无需转置）</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="760" viewBox="0 0 1080 760" font-family="system-ui, -apple-system, 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', sans-serif">
+  <rect width="1080" height="760" fill="#f8fafc"/>
+  <text x="30" y="58" font-size="30" font-weight="700" fill="#1f2937">矩阵旋转角度全家桶：推导流水线（2×2 实例）</text>
+  <text x="30" y="94" font-size="18" fill="#4b5563">核心：90° 系 = 转置 + 一次翻转（顺序决定方向）；180° = 两次翻转（行列未互换，无需转置）</text>
 
   <!-- ================= 行 1：顺时针 90° ================= -->
-  <text x="30" y="118" font-size="17" font-weight="700" fill="#16a34a">顺时针 90°</text>
-  <g transform="translate(30,130)">
-    <rect x="0" y="0" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">1</text>
-    <rect x="52" y="0" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="75" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">2</text>
-    <rect x="0" y="52" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="82" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">3</text>
-    <rect x="52" y="52" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="75" y="82" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">4</text>
-    <text x="0" y="-8" font-size="12" fill="#6b7280">原矩阵</text>
+  <text x="30" y="150" font-size="22" font-weight="700" fill="#16a34a">顺时针 90°</text>
+  <g transform="translate(30,168)">
+    <rect x="0" y="0" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="32" y="41" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">1</text>
+    <rect x="70" y="0" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="102" y="41" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">2</text>
+    <rect x="0" y="70" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="32" y="111" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">3</text>
+    <rect x="70" y="70" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="102" y="111" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">4</text>
+    <text x="0" y="-12" font-size="16" fill="#6b7280">原矩阵</text>
   </g>
-  <text x="200" y="180" font-size="15" font-weight="600" text-anchor="middle" fill="#2563eb">① 转置</text>
-  <text x="226" y="160" font-size="20" text-anchor="middle" fill="#94a3b8">→</text>
-  <g transform="translate(290,130)">
-    <rect x="0" y="0" width="46" height="46" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/><text x="23" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">1</text>
-    <rect x="52" y="0" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="75" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">3</text>
-    <rect x="0" y="52" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="82" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">2</text>
-    <rect x="52" y="52" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="75" y="82" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">4</text>
-    <text x="0" y="-8" font-size="12" fill="#2563eb">行变列</text>
+  <text x="208" y="218" font-size="18" font-weight="600" text-anchor="middle" fill="#2563eb">① 转置</text>
+  <text x="240" y="196" font-size="24" text-anchor="middle" fill="#94a3b8">→</text>
+  <g transform="translate(300,168)">
+    <rect x="0" y="0" width="64" height="64" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/><text x="32" y="41" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">1</text>
+    <rect x="70" y="0" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="102" y="41" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">3</text>
+    <rect x="0" y="70" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="32" y="111" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">2</text>
+    <rect x="70" y="70" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="102" y="111" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">4</text>
+    <text x="0" y="-12" font-size="16" fill="#2563eb">行变列</text>
   </g>
-  <text x="460" y="180" font-size="15" font-weight="600" text-anchor="middle" fill="#2563eb">② 每行反转</text>
-  <text x="486" y="160" font-size="20" text-anchor="middle" fill="#94a3b8">→</text>
-  <g transform="translate(550,130)">
-    <rect x="0" y="0" width="46" height="46" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/><text x="23" y="30" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">3</text>
-    <rect x="52" y="0" width="46" height="46" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/><text x="75" y="30" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">1</text>
-    <rect x="0" y="52" width="46" height="46" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/><text x="23" y="82" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">4</text>
-    <rect x="52" y="52" width="46" height="46" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/><text x="75" y="82" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">2</text>
-    <text x="0" y="-8" font-size="12" fill="#16a34a">最终结果</text>
+  <text x="478" y="218" font-size="18" font-weight="600" text-anchor="middle" fill="#2563eb">② 每行反转</text>
+  <text x="510" y="196" font-size="24" text-anchor="middle" fill="#94a3b8">→</text>
+  <g transform="translate(570,168)">
+    <rect x="0" y="0" width="64" height="64" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/><text x="32" y="41" font-size="26" font-weight="700" text-anchor="middle" fill="#1f2937">3</text>
+    <rect x="70" y="0" width="64" height="64" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/><text x="102" y="41" font-size="26" font-weight="700" text-anchor="middle" fill="#1f2937">1</text>
+    <rect x="0" y="70" width="64" height="64" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/><text x="32" y="111" font-size="26" font-weight="700" text-anchor="middle" fill="#1f2937">4</text>
+    <rect x="70" y="70" width="64" height="64" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/><text x="102" y="111" font-size="26" font-weight="700" text-anchor="middle" fill="#1f2937">2</text>
+    <text x="0" y="-12" font-size="16" fill="#16a34a">最终结果</text>
   </g>
-  <text x="790" y="180" font-size="15" fill="#374151">(i,j) → (j, n-1-i)</text>
-  <text x="790" y="204" font-size="13" fill="#6b7280">1 从左上角 → 右上角 ✓</text>
+  <text x="790" y="196" font-size="19" fill="#374151">(i,j) → (j, n-1-i)</text>
+  <text x="790" y="222" font-size="17" fill="#6b7280">1 从左上角 → 右上角 ✓</text>
 
   <!-- ================= 行 2：逆时针 90° ================= -->
-  <text x="30" y="288" font-size="17" font-weight="700" fill="#7c3aed">逆时针 90°</text>
-  <g transform="translate(30,300)">
-    <rect x="0" y="0" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">1</text>
-    <rect x="52" y="0" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="75" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">2</text>
-    <rect x="0" y="52" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="82" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">3</text>
-    <rect x="52" y="52" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="75" y="82" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">4</text>
-    <text x="0" y="-8" font-size="12" fill="#6b7280">原矩阵</text>
+  <text x="30" y="356" font-size="22" font-weight="700" fill="#7c3aed">逆时针 90°</text>
+  <g transform="translate(30,374)">
+    <rect x="0" y="0" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="32" y="41" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">1</text>
+    <rect x="70" y="0" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="102" y="41" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">2</text>
+    <rect x="0" y="70" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="32" y="111" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">3</text>
+    <rect x="70" y="70" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="102" y="111" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">4</text>
+    <text x="0" y="-12" font-size="16" fill="#6b7280">原矩阵</text>
   </g>
-  <text x="200" y="350" font-size="15" font-weight="600" text-anchor="middle" fill="#2563eb">① 每行反转</text>
-  <text x="226" y="330" font-size="20" text-anchor="middle" fill="#94a3b8">→</text>
-  <g transform="translate(290,300)">
-    <rect x="0" y="0" width="46" height="46" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/><text x="23" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">2</text>
-    <rect x="52" y="0" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="75" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">1</text>
-    <rect x="0" y="52" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="82" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">4</text>
-    <rect x="52" y="52" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="75" y="82" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">3</text>
-    <text x="0" y="-8" font-size="12" fill="#2563eb">左右颠倒</text>
+  <text x="208" y="424" font-size="18" font-weight="600" text-anchor="middle" fill="#2563eb">① 每行反转</text>
+  <text x="240" y="402" font-size="24" text-anchor="middle" fill="#94a3b8">→</text>
+  <g transform="translate(300,374)">
+    <rect x="0" y="0" width="64" height="64" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/><text x="32" y="41" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">2</text>
+    <rect x="70" y="0" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="102" y="41" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">1</text>
+    <rect x="0" y="70" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="32" y="111" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">4</text>
+    <rect x="70" y="70" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="102" y="111" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">3</text>
+    <text x="0" y="-12" font-size="16" fill="#2563eb">左右颠倒</text>
   </g>
-  <text x="460" y="350" font-size="15" font-weight="600" text-anchor="middle" fill="#2563eb">② 转置</text>
-  <text x="486" y="330" font-size="20" text-anchor="middle" fill="#94a3b8">→</text>
-  <g transform="translate(550,300)">
-    <rect x="0" y="0" width="46" height="46" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2.5"/><text x="23" y="30" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">2</text>
-    <rect x="52" y="0" width="46" height="46" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2.5"/><text x="75" y="30" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">4</text>
-    <rect x="0" y="52" width="46" height="46" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2.5"/><text x="23" y="82" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">1</text>
-    <rect x="52" y="52" width="46" height="46" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2.5"/><text x="75" y="82" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">3</text>
-    <text x="0" y="-8" font-size="12" fill="#7c3aed">最终结果</text>
+  <text x="478" y="424" font-size="18" font-weight="600" text-anchor="middle" fill="#2563eb">② 转置</text>
+  <text x="510" y="402" font-size="24" text-anchor="middle" fill="#94a3b8">→</text>
+  <g transform="translate(570,374)">
+    <rect x="0" y="0" width="64" height="64" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2.5"/><text x="32" y="41" font-size="26" font-weight="700" text-anchor="middle" fill="#1f2937">2</text>
+    <rect x="70" y="0" width="64" height="64" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2.5"/><text x="102" y="41" font-size="26" font-weight="700" text-anchor="middle" fill="#1f2937">4</text>
+    <rect x="0" y="70" width="64" height="64" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2.5"/><text x="32" y="111" font-size="26" font-weight="700" text-anchor="middle" fill="#1f2937">1</text>
+    <rect x="70" y="70" width="64" height="64" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2.5"/><text x="102" y="111" font-size="26" font-weight="700" text-anchor="middle" fill="#1f2937">3</text>
+    <text x="0" y="-12" font-size="16" fill="#7c3aed">最终结果</text>
   </g>
-  <text x="790" y="350" font-size="15" fill="#374151">(i,j) → (n-1-j, i)</text>
-  <text x="790" y="374" font-size="13" fill="#6b7280">1 从左上角 → 左下角 ✓</text>
+  <text x="790" y="402" font-size="19" fill="#374151">(i,j) → (n-1-j, i)</text>
+  <text x="790" y="428" font-size="17" fill="#6b7280">1 从左上角 → 左下角 ✓</text>
 
   <!-- ================= 行 3：180° ================= -->
-  <text x="30" y="458" font-size="17" font-weight="700" fill="#d97706">180°（无需转置）</text>
-  <g transform="translate(30,470)">
-    <rect x="0" y="0" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">1</text>
-    <rect x="52" y="0" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="75" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">2</text>
-    <rect x="0" y="52" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="82" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">3</text>
-    <rect x="52" y="52" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="75" y="82" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">4</text>
-    <text x="0" y="-8" font-size="12" fill="#6b7280">原矩阵</text>
+  <text x="30" y="562" font-size="22" font-weight="700" fill="#d97706">180°（无需转置）</text>
+  <g transform="translate(30,580)">
+    <rect x="0" y="0" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="32" y="41" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">1</text>
+    <rect x="70" y="0" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="102" y="41" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">2</text>
+    <rect x="0" y="70" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="32" y="111" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">3</text>
+    <rect x="70" y="70" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="102" y="111" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">4</text>
+    <text x="0" y="-12" font-size="16" fill="#6b7280">原矩阵</text>
   </g>
-  <text x="200" y="520" font-size="15" font-weight="600" text-anchor="middle" fill="#2563eb">① 每行反转</text>
-  <text x="226" y="500" font-size="20" text-anchor="middle" fill="#94a3b8">→</text>
-  <g transform="translate(290,470)">
-    <rect x="0" y="0" width="46" height="46" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/><text x="23" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">2</text>
-    <rect x="52" y="0" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="75" y="30" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">1</text>
-    <rect x="0" y="52" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="23" y="82" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">4</text>
-    <rect x="52" y="52" width="46" height="46" rx="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="75" y="82" font-size="18" font-weight="600" text-anchor="middle" fill="#1f2937">3</text>
-    <text x="0" y="-8" font-size="12" fill="#2563eb">左右颠倒</text>
+  <text x="208" y="630" font-size="18" font-weight="600" text-anchor="middle" fill="#2563eb">① 每行反转</text>
+  <text x="240" y="608" font-size="24" text-anchor="middle" fill="#94a3b8">→</text>
+  <g transform="translate(300,580)">
+    <rect x="0" y="0" width="64" height="64" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/><text x="32" y="41" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">2</text>
+    <rect x="70" y="0" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="102" y="41" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">1</text>
+    <rect x="0" y="70" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="32" y="111" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">4</text>
+    <rect x="70" y="70" width="64" height="64" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/><text x="102" y="111" font-size="26" font-weight="600" text-anchor="middle" fill="#1f2937">3</text>
+    <text x="0" y="-12" font-size="16" fill="#2563eb">左右颠倒</text>
   </g>
-  <text x="460" y="520" font-size="15" font-weight="600" text-anchor="middle" fill="#2563eb">② 每列反转</text>
-  <text x="486" y="500" font-size="20" text-anchor="middle" fill="#94a3b8">→</text>
-  <g transform="translate(550,470)">
-    <rect x="0" y="0" width="46" height="46" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="2.5"/><text x="23" y="30" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">4</text>
-    <rect x="52" y="0" width="46" height="46" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="2.5"/><text x="75" y="30" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">3</text>
-    <rect x="0" y="52" width="46" height="46" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="2.5"/><text x="23" y="82" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">2</text>
-    <rect x="52" y="52" width="46" height="46" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="2.5"/><text x="75" y="82" font-size="18" font-weight="700" text-anchor="middle" fill="#1f2937">1</text>
-    <text x="0" y="-8" font-size="12" fill="#d97706">最终结果</text>
+  <text x="478" y="630" font-size="18" font-weight="600" text-anchor="middle" fill="#2563eb">② 每列反转</text>
+  <text x="510" y="608" font-size="24" text-anchor="middle" fill="#94a3b8">→</text>
+  <g transform="translate(570,580)">
+    <rect x="0" y="0" width="64" height="64" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="2.5"/><text x="32" y="41" font-size="26" font-weight="700" text-anchor="middle" fill="#1f2937">4</text>
+    <rect x="70" y="0" width="64" height="64" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="2.5"/><text x="102" y="41" font-size="26" font-weight="700" text-anchor="middle" fill="#1f2937">3</text>
+    <rect x="0" y="70" width="64" height="64" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="2.5"/><text x="32" y="111" font-size="26" font-weight="700" text-anchor="middle" fill="#1f2937">2</text>
+    <rect x="70" y="70" width="64" height="64" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="2.5"/><text x="102" y="111" font-size="26" font-weight="700" text-anchor="middle" fill="#1f2937">1</text>
+    <text x="0" y="-12" font-size="16" fill="#d97706">最终结果</text>
   </g>
-  <text x="790" y="520" font-size="15" fill="#374151">(i,j) → (n-1-i, n-1-j)</text>
-  <text x="790" y="544" font-size="13" fill="#6b7280">1 从左上角 → 右下角 ✓</text>
+  <text x="790" y="608" font-size="19" fill="#374151">(i,j) → (n-1-i, n-1-j)</text>
+  <text x="790" y="634" font-size="17" fill="#6b7280">1 从左上角 → 右下角 ✓</text>
 
-  <line x1="30" y1="588" x2="1050" y2="588" stroke="#e5e7eb" stroke-width="1"/>
-  <text x="30" y="616" font-size="13" fill="#6b7280">图例：灰框 = 原矩阵 · 蓝标签 = 每一步操作 · 绿/紫/橙框 = 各角度最终结果（2×2 示意，非真实 n×n 用例）</text>
-  <text x="30" y="638" font-size="13" fill="#6b7280">记忆：转置 = 行列互换（90° 系专用）；翻转 = 调方向（90° 系定方向，180° 全靠它）</text>
+  <line x1="30" y1="684" x2="1050" y2="684" stroke="#e5e7eb" stroke-width="1"/>
+  <text x="30" y="718" font-size="17" fill="#6b7280">图例：灰框 = 原矩阵 · 蓝标签 = 每一步操作 · 绿/紫/橙框 = 各角度最终结果（2×2 示意，非真实 n×n 用例）</text>
+  <text x="30" y="746" font-size="17" fill="#6b7280">记忆：转置 = 行列互换（90° 系专用）；翻转 = 调方向（90° 系定方向，180° 全靠它）</text>
 </svg>
