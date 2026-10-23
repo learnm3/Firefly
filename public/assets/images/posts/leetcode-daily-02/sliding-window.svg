@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 620" font-family="ui-sans-serif, system-ui, 'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <rect width="1080" height="620" fill="#f7f8fa"/>
+  <text x="30" y="40" font-size="22" font-weight="700" fill="#1f2937">209 长度最小的子数组：滑动窗口逐步演示</text>
+  <text x="30" y="66" font-size="14" fill="#4b5563">nums = [2,3,1,2,4,3]，target = 7。右指针扩张窗口，和 ≥ 7 后左指针收缩找最短。橙色 = 当前窗口。</text>
+
+  <!-- 快照模板：每行 y 起始，数组格 52px，6 格 -->
+  <!-- 第 1 行 -->
+  <g transform="translate(30,90)">
+    <text x="0" y="14" font-size="13" font-weight="700" fill="#2563eb">第 1 步</text>
+    <rect x="60" y="0" width="52" height="42" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/><text x="86" y="28" font-size="15" text-anchor="middle" fill="#1f2937">2</text>
+    <rect x="116" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="142" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">3</text>
+    <rect x="172" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="198" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">1</text>
+    <rect x="228" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="254" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">2</text>
+    <rect x="284" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="310" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">4</text>
+    <rect x="340" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="366" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">3</text>
+    <text x="60" y="64" font-size="12" font-weight="700" fill="#2563eb">left=0</text>
+    <text x="80" y="-8" font-size="12" font-weight="700" fill="#ea580c">right=0</text>
+    <text x="420" y="20" font-size="13" fill="#374151">sum = 2 &lt; 7，和不足 → 右指针继续扩张</text>
+  </g>
+
+  <!-- 第 2 行 -->
+  <g transform="translate(30,160)">
+    <text x="0" y="14" font-size="13" font-weight="700" fill="#2563eb">第 2 步</text>
+    <rect x="60" y="0" width="52" height="42" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="86" y="28" font-size="15" text-anchor="middle" fill="#1f2937">2</text>
+    <rect x="116" y="0" width="52" height="42" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="142" y="28" font-size="15" text-anchor="middle" fill="#1f2937">3</text>
+    <rect x="172" y="0" width="52" height="42" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="198" y="28" font-size="15" text-anchor="middle" fill="#1f2937">1</text>
+    <rect x="228" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="254" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">2</text>
+    <rect x="284" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="310" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">4</text>
+    <rect x="340" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="366" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">3</text>
+    <text x="60" y="64" font-size="12" font-weight="700" fill="#2563eb">left=0</text>
+    <text x="188" y="-8" font-size="12" font-weight="700" fill="#ea580c">right=2</text>
+    <text x="420" y="20" font-size="13" fill="#374151">sum = 6 &lt; 7，仍不足 → 继续右移</text>
+  </g>
+
+  <!-- 第 3 行 -->
+  <g transform="translate(30,230)">
+    <text x="0" y="14" font-size="13" font-weight="700" fill="#2563eb">第 3 步</text>
+    <rect x="60" y="0" width="52" height="42" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="86" y="28" font-size="15" text-anchor="middle" fill="#1f2937">2</text>
+    <rect x="116" y="0" width="52" height="42" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="142" y="28" font-size="15" text-anchor="middle" fill="#1f2937">3</text>
+    <rect x="172" y="0" width="52" height="42" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="198" y="28" font-size="15" text-anchor="middle" fill="#1f2937">1</text>
+    <rect x="228" y="0" width="52" height="42" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="254" y="28" font-size="15" text-anchor="middle" fill="#1f2937">2</text>
+    <rect x="284" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="310" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">4</text>
+    <rect x="340" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="366" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">3</text>
+    <text x="60" y="64" font-size="12" font-weight="700" fill="#2563eb">left=0</text>
+    <text x="240" y="-8" font-size="12" font-weight="700" fill="#ea580c">right=3</text>
+    <text x="420" y="20" font-size="13" fill="#16a34a" font-weight="700">sum = 8 ≥ 7 → 满足！记 len=4，开始收缩左端</text>
+  </g>
+
+  <!-- 第 4 行 -->
+  <g transform="translate(30,300)">
+    <text x="0" y="14" font-size="13" font-weight="700" fill="#2563eb">第 4 步</text>
+    <rect x="60" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="86" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">2</text>
+    <rect x="116" y="0" width="52" height="42" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="142" y="28" font-size="15" text-anchor="middle" fill="#1f2937">3</text>
+    <rect x="172" y="0" width="52" height="42" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="198" y="28" font-size="15" text-anchor="middle" fill="#1f2937">1</text>
+    <rect x="228" y="0" width="52" height="42" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="254" y="28" font-size="15" text-anchor="middle" fill="#1f2937">2</text>
+    <rect x="284" y="0" width="52" height="42" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="310" y="28" font-size="15" text-anchor="middle" fill="#1f2937">4</text>
+    <rect x="340" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="366" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">3</text>
+    <text x="132" y="64" font-size="12" font-weight="700" fill="#2563eb">left=1</text>
+    <text x="300" y="-8" font-size="12" font-weight="700" fill="#ea580c">right=4</text>
+    <text x="420" y="20" font-size="13" fill="#374151">sum = 10 ≥ 7 → 记 4；收缩：去掉 3 → sum=7 记 3；再去掉 1 → sum=6 停</text>
+  </g>
+
+  <!-- 第 5 行 -->
+  <g transform="translate(30,370)">
+    <text x="0" y="14" font-size="13" font-weight="700" fill="#2563eb">第 5 步</text>
+    <rect x="60" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="86" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">2</text>
+    <rect x="116" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="142" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">3</text>
+    <rect x="172" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="198" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">1</text>
+    <rect x="228" y="0" width="52" height="42" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="254" y="28" font-size="15" text-anchor="middle" fill="#1f2937">2</text>
+    <rect x="284" y="0" width="52" height="42" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="310" y="28" font-size="15" text-anchor="middle" fill="#1f2937">4</text>
+    <rect x="340" y="0" width="52" height="42" rx="5" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/><text x="366" y="28" font-size="15" text-anchor="middle" fill="#1f2937">3</text>
+    <text x="244" y="64" font-size="12" font-weight="700" fill="#2563eb">left=3</text>
+    <text x="356" y="-8" font-size="12" font-weight="700" fill="#ea580c">right=5</text>
+    <text x="420" y="20" font-size="13" fill="#374151">sum = 9 ≥ 7 → 记 3；收缩：去掉 2 → sum=7 记 2 ✓；再去掉 4 → sum=3 停</text>
+  </g>
+
+  <!-- 第 6 行：最优窗口 -->
+  <g transform="translate(30,440)">
+    <text x="0" y="14" font-size="13" font-weight="700" fill="#16a34a">答案</text>
+    <rect x="60" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="86" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">2</text>
+    <rect x="116" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="142" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">3</text>
+    <rect x="172" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="198" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">1</text>
+    <rect x="228" y="0" width="52" height="42" rx="5" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/><text x="254" y="28" font-size="15" text-anchor="middle" fill="#9ca3af">2</text>
+    <rect x="284" y="0" width="52" height="42" rx="5" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/><text x="310" y="28" font-size="16" font-weight="700" text-anchor="middle" fill="#16a34a">4</text>
+    <rect x="340" y="0" width="52" height="42" rx="5" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/><text x="366" y="28" font-size="16" font-weight="700" text-anchor="middle" fill="#16a34a">3</text>
+    <text x="298" y="64" font-size="12" font-weight="700" fill="#16a34a">left=4</text>
+    <text x="376" y="-8" font-size="12" font-weight="700" fill="#16a34a">right=5</text>
+    <text x="420" y="20" font-size="14" font-weight="700" fill="#16a34a">窗口 [4,3]：sum=7，长度 2 → 最短答案 ans = 2</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <rect x="30" y="520" width="1020" height="78" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="48" y="544" font-size="14" font-weight="700" fill="#1d4ed8">为什么 O(n)：</text>
+  <text x="48" y="566" font-size="13.5" fill="#374151">right 把每个元素"加进"窗口一次，left 把每个元素"减出"窗口一次 —— 双指针各走一遍，没有重复扫描。</text>
+  <text x="48" y="586" font-size="13" fill="#6b7280">前提：数组必须全为正数（和才有单调性）。含负数时"右移变大、左移变小"不成立，要用前缀和 + 二分。</text>
+</svg>
