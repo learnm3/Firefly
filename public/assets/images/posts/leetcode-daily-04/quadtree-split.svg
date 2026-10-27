@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320" width="100%" style="max-width:560px;display:block;background:#fafafa;border:1px solid #e5e7eb;border-radius:8px;">
+  <title>427 建立四叉树 · 4×4 网格分割演示</title>
+  <text x="16" y="28" font-size="13" font-weight="700" fill="#1f2937" font-family="'Segoe UI',system-ui,sans-serif">原 4×4 网格</text>
+  <!-- 网格：原点 (40,44)，每格 60 -->
+  <rect x="40"  y="44"  width="60" height="60" fill="#3b82f6"/><text x="70" y="82" font-size="20" fill="#fff" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">1</text>
+  <rect x="100" y="44"  width="60" height="60" fill="#3b82f6"/><text x="130" y="82" font-size="20" fill="#fff" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">1</text>
+  <rect x="160" y="44"  width="60" height="60" fill="#3b82f6"/><text x="190" y="82" font-size="20" fill="#fff" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">1</text>
+  <rect x="220" y="44"  width="60" height="60" fill="#3b82f6"/><text x="250" y="82" font-size="20" fill="#fff" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">1</text>
+  <rect x="40"  y="104" width="60" height="60" fill="#3b82f6"/><text x="70" y="142" font-size="20" fill="#fff" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">1</text>
+  <rect x="100" y="104" width="60" height="60" fill="#3b82f6"/><text x="130" y="142" font-size="20" fill="#fff" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">1</text>
+  <rect x="160" y="104" width="60" height="60" fill="#3b82f6"/><text x="190" y="142" font-size="20" fill="#fff" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">1</text>
+  <rect x="220" y="104" width="60" height="60" fill="#3b82f6"/><text x="250" y="142" font-size="20" fill="#fff" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">1</text>
+  <rect x="40"  y="164" width="60" height="60" fill="#e5e7eb"/><text x="70" y="202" font-size="20" fill="#1f2937" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">0</text>
+  <rect x="100" y="164" width="60" height="60" fill="#e5e7eb"/><text x="130" y="202" font-size="20" fill="#1f2937" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">0</text>
+  <rect x="160" y="164" width="60" height="60" fill="#3b82f6"/><text x="190" y="202" font-size="20" fill="#fff" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">1</text>
+  <rect x="220" y="164" width="60" height="60" fill="#3b82f6"/><text x="250" y="202" font-size="20" fill="#fff" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">1</text>
+  <rect x="40"  y="224" width="60" height="60" fill="#e5e7eb"/><text x="70" y="262" font-size="20" fill="#1f2937" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">0</text>
+  <rect x="100" y="224" width="60" height="60" fill="#e5e7eb"/><text x="130" y="262" font-size="20" fill="#1f2937" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">0</text>
+  <rect x="160" y="224" width="60" height="60" fill="#3b82f6"/><text x="190" y="262" font-size="20" fill="#fff" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">1</text>
+  <rect x="220" y="224" width="60" height="60" fill="#3b82f6"/><text x="250" y="262" font-size="20" fill="#fff" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">1</text>
+  <!-- 中央分割线（红色虚线） -->
+  <line x1="160" y1="44" x2="160" y2="284" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="7,4"/>
+  <line x1="40"  y1="164" x2="280" y2="164" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="7,4"/>
+  <!-- 行/列标签 -->
+  <text x="16" y="80"  font-size="11" fill="#6b7280" font-family="'Segoe UI',system-ui,sans-serif">行0</text>
+  <text x="16" y="140" font-size="11" fill="#6b7280" font-family="'Segoe UI',system-ui,sans-serif">行1</text>
+  <text x="16" y="200" font-size="11" fill="#6b7280" font-family="'Segoe UI',system-ui,sans-serif">行2</text>
+  <text x="16" y="260" font-size="11" fill="#6b7280" font-family="'Segoe UI',system-ui,sans-serif">行3</text>
+  <text x="58"  y="300" font-size="11" fill="#6b7280" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">列0</text>
+  <text x="118" y="300" font-size="11" fill="#6b7280" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">列1</text>
+  <text x="178" y="300" font-size="11" fill="#6b7280" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">列2</text>
+  <text x="238" y="300" font-size="11" fill="#6b7280" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif">列3</text>
+  <!-- 右侧：四等分结果 -->
+  <text x="320" y="28" font-size="13" font-weight="700" fill="#1f2937" font-family="'Segoe UI',system-ui,sans-serif">四等分 → 递归 → 叶子</text>
+  <rect x="320" y="44" width="180" height="54" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="332" y="66" font-size="12" fill="#1f2937" font-family="'Segoe UI',system-ui,sans-serif">TL（行0~1,列0~1）</text>
+  <text x="332" y="86" font-size="12" fill="#1f2937" font-family="'Segoe UI',system-ui,sans-serif">全 1 → 叶子 val = 1</text>
+  <rect x="320" y="110" width="180" height="54" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="332" y="132" font-size="12" fill="#1f2937" font-family="'Segoe UI',system-ui,sans-serif">TR（行0~1,列2~3）</text>
+  <text x="332" y="152" font-size="12" fill="#1f2937" font-family="'Segoe UI',system-ui,sans-serif">全 1 → 叶子 val = 1</text>
+  <rect x="320" y="176" width="180" height="54" rx="6" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.2"/>
+  <text x="332" y="198" font-size="12" fill="#1f2937" font-family="'Segoe UI',system-ui,sans-serif">BL（行2~3,列0~1）</text>
+  <text x="332" y="218" font-size="12" fill="#1f2937" font-family="'Segoe UI',system-ui,sans-serif">全 0 → 叶子 val = 0</text>
+  <rect x="320" y="242" width="180" height="54" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="332" y="264" font-size="12" fill="#1f2937" font-family="'Segoe UI',system-ui,sans-serif">BR（行2~3,列2~3）</text>
+  <text x="332" y="284" font-size="12" fill="#1f2937" font-family="'Segoe UI',system-ui,sans-serif">全 1 → 叶子 val = 1</text>
+  <line x1="286" y1="120" x2="312" y2="120" stroke="#ef4444" stroke-width="2" marker-end="url(#arr)"/>
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#ef4444"/>
+    </marker>
+  </defs>
+</svg>
