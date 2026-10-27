@@ -1,6 +1,6 @@
 ---
 title: GAMES101 作业2 源码精读：光栅化与 Z-buffer 全解（叉积判内 · 包围盒遍历 · MSAA 抗锯齿）
-published: 2026-10-21
+published: 2026-10-27
 description: GAMES101 作业2 源码逐段精读。从 rasterizer 类设计图出发，讲透两个核心手写函数：insideTriangle 叉积符号法判断点在三角形内、rasterize_triangle 包围盒遍历+深度测试+透视校正插值。提高项 MSAA 多重采样抗锯齿的实现要点与 resolve_samples 求平均原理。
 image: api
 tags: [图形学, GAMES101, 光栅化, Z-buffer, 三角形, 叉积, 重心坐标, MSAA, 抗锯齿, C++, Eigen]
