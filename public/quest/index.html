@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SUN 作战面板 · 美术 TA</title>
+<style>
+:root{
+  --bg:#070a12; --panel:#0e1524; --panel2:#0a101c; --line:#1e2a40;
+  --fg:#e9eefb; --dim:#8fa0bd; --faint:#5b6b86;
+  --cyan:#51e6c8; --blue:#7aa2ff; --violet:#c58cff; --gold:#ffc85e; --pink:#ff7aa8;
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{
+  background:
+    radial-gradient(900px 500px at 12% -10%, rgba(81,230,200,.12), transparent 60%),
+    radial-gradient(900px 520px at 100% 0%, rgba(122,162,255,.14), transparent 60%),
+    radial-gradient(700px 460px at 50% 120%, rgba(197,140,255,.10), transparent 60%),
+    var(--bg);
+  color:var(--fg);
+  font-family: ui-sans-serif, "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:22px 18px 48px}
+.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(81,230,200,.18),rgba(122,162,255,.22));border:1px solid rgba(122,162,255,.35);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.mark svg{width:27px;height:27px}
+h1{font-size:21px;margin:0;letter-spacing:.02em}
+.sub{font-size:11.5px;color:var(--faint);margin-top:3px;letter-spacing:.08em}
+.rank-pill{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px}
+.rank-pill b{color:var(--gold)}
+.rank-pill .lv{font-family:ui-monospace,Consolas,monospace;color:var(--cyan);font-size:12px}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}
+@media(max-width:880px){.grid{grid-template-columns:1fr}.wrap{padding:16px 13px 40px}h1{font-size:18px}}
+.card{background:linear-gradient(180deg,rgba(16,23,38,.94),rgba(9,14,24,.94));border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:0 18px 40px rgba(0,0,0,.28);position:relative;overflow:hidden}
+.card + .card{margin-top:14px}
+.card h2{font-size:13px;margin:0 0 12px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.card h2 .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.xp-line{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:8px}
+.xp-line strong{font-size:22px;font-family:ui-monospace,Consolas,monospace}
+.xp-line span{font-size:12px;color:var(--faint)}
+.xpbar{height:10px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden;border:1px solid rgba(255,255,255,.05)}
+.xpbar > i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--cyan),var(--blue));box-shadow:0 0 18px rgba(81,230,200,.45);transition:width .35s ease}
+.identity{background:linear-gradient(160deg,rgba(197,140,255,.10),rgba(12,18,30,.92) 55%)}
+.identity .vision{font-size:16px;line-height:1.5;font-weight:600;margin:0 0 10px}
+.identity .anti{font-size:12.5px;line-height:1.6;color:#ffb3c6;background:rgba(255,122,168,.07);border-left:2px solid rgba(255,122,168,.5);padding:8px 10px;border-radius:0 8px 8px 0;margin:0}
+.identity textarea{width:100%;background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:10px;color:var(--fg);padding:9px 10px;font:inherit;font-size:12.5px;line-height:1.5;resize:vertical;min-height:44px;margin-top:8px}
+.identity textarea:focus{outline:2px solid rgba(81,230,200,.55);border-color:transparent}
+.quests{display:flex;flex-direction:column;gap:9px}
+.quest{display:flex;align-items:flex-start;gap:11px;padding:12px 12px;border-radius:13px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);cursor:pointer;transition:.16s transform,.16s background,.16s border-color;user-select:none}
+.quest:hover{background:rgba(122,162,255,.09);border-color:rgba(122,162,255,.3);transform:translateY(-1px)}
+.quest.done{background:rgba(81,230,200,.08);border-color:rgba(81,230,200,.35)}
+.quest .check{width:22px;height:22px;flex:0 0 auto;border-radius:7px;border:1.5px solid #33425c;display:grid;place-items:center;margin-top:1px;transition:.15s}
+.quest .check svg{width:13px;height:13px;opacity:0;transform:scale(.5);transition:.15s;color:#06241e}
+.quest.done .check{background:var(--cyan);border-color:var(--cyan)}
+.quest.done .check svg{opacity:1;transform:scale(1)}
+.quest .body{min-width:0;flex:1;display:block}
+.quest .t{display:block;font-size:13.5px;font-weight:600;line-height:1.45}
+.quest.done .t{color:#a8f5e6;text-decoration:line-through;text-decoration-color:rgba(168,245,230,.4)}
+.quest .d{display:block;font-size:11.5px;color:var(--faint);margin-top:3px;line-height:1.5}
+.quest .xp{font-family:ui-monospace,Consolas,monospace;font-size:11px;color:var(--gold);flex:0 0 auto;padding-top:2px}
+.bonus{margin-top:10px;font-size:12px;color:var(--faint);display:flex;align-items:center;gap:8px}
+.bonus b{color:var(--gold)}
+.streak{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.day{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);display:grid;place-items:center;font-size:10px;color:var(--faint)}
+.day.on{background:rgba(81,230,200,.16);border-color:rgba(81,230,200,.35);color:#bff7ec}
+.day.today{outline:2px solid rgba(122,162,255,.6);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 13px;border-radius:11px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--fg);font:inherit;font-size:12.5px;cursor:pointer;transition:.15s}
+.btn:hover{background:rgba(122,162,255,.13);border-color:rgba(122,162,255,.35)}
+.btn.primary{background:linear-gradient(135deg,rgba(81,230,200,.22),rgba(122,162,255,.2));border-color:rgba(81,230,200,.4)}
+.btn.gold{background:linear-gradient(135deg,rgba(255,200,94,.2),rgba(255,122,168,.14));border-color:rgba(255,200,94,.4)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.timer{font-family:ui-monospace,Consolas,monospace;font-size:30px;letter-spacing:.06em;text-align:center;margin:6px 0 10px}
+.boss{background:linear-gradient(160deg,rgba(255,122,168,.10),rgba(12,18,30,.94) 55%)}
+.boss .name{font-size:15px;font-weight:700;margin:2px 0 6px}
+.boss .meta{font-size:11.5px;color:var(--faint);line-height:1.5}
+.boss .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chain{background:linear-gradient(160deg,rgba(122,162,255,.10),rgba(12,18,30,.94) 55%)}
+.chain-node{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed rgba(255,255,255,.08)}
+.chain-node:last-child{border-bottom:0;padding-bottom:0}
+.chain-node .c-icon{width:30px;height:30px;flex:0 0 auto;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:13px;color:var(--dim)}
+.chain-node.done .c-icon{background:rgba(81,230,200,.18);border-color:rgba(81,230,200,.4);color:#bff7ec}
+.chain-node.locked{opacity:.45}
+.chain-node .c-body{min-width:0;flex:1}
+.chain-node .c-title{font-size:13px;font-weight:600;line-height:1.4;display:flex;gap:8px;align-items:center}
+.chain-node .c-desc{font-size:11.5px;color:var(--faint);line-height:1.5;margin-top:3px}
+.chain-node .c-xp{font-family:ui-monospace,Consolas,monospace;font-size:11px;color:var(--gold);white-space:nowrap}
+.chain-node .c-btn{margin-top:7px;padding:5px 9px;font-size:11px;border-radius:8px}
+.chain-progress{display:flex;gap:4px;margin:0 0 10px}
+.chain-progress i{height:5px;flex:1;border-radius:99px;background:rgba(255,255,255,.08)}
+.chain-progress i.on{background:linear-gradient(90deg,var(--cyan),var(--blue))}
+.sync{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;color:var(--faint);font-family:ui-monospace,Consolas,monospace}
+.sync .sdot{width:6px;height:6px;border-radius:50%;background:#5b6b86}
+.sync.ok .sdot{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.sync.off .sdot{background:var(--gold)}
+.course-total{font-size:11.5px;color:var(--faint);margin:0 0 10px}
+.course{display:flex;gap:9px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed rgba(255,255,255,.07)}
+.course:last-child{border-bottom:0;padding-bottom:0}
+.course .c-main{min-width:0;flex:1}
+.course .c-top{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;line-height:1.4}
+.course .c-top a{color:var(--blue);text-decoration:none;font-size:11px;font-weight:400;white-space:nowrap}
+.course .c-top a:hover{text-decoration:underline}
+.course .c-note{font-size:10.5px;color:var(--faint);margin-top:2px;line-height:1.4}
+.course .c-bar{height:4px;border-radius:99px;background:rgba(255,255,255,.07);margin-top:6px;overflow:hidden}
+.course .c-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--violet),var(--blue))}
+.course .c-add{flex:0 0 auto;padding:5px 8px;font-size:10.5px;border-radius:8px;white-space:nowrap}
+.course .c-add:disabled{opacity:.4}
+.log{max-height:180px;overflow:auto;display:flex;flex-direction:column;gap:7px;font-size:12px}
+.log .item{display:flex;gap:8px;color:var(--dim);line-height:1.45}
+.log .item b{color:var(--cyan);font-family:ui-monospace,Consolas,monospace;font-size:10.5px;white-space:nowrap;padding-top:2px}
+.note{width:100%;min-height:74px;background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:10px;color:var(--fg);padding:10px;font:inherit;font-size:12.5px;line-height:1.55;resize:vertical}
+.note:focus{outline:2px solid rgba(81,230,200,.5);border-color:transparent}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.foot{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;color:var(--faint);font-size:11px}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:rgba(8,14,24,.95);border:1px solid rgba(81,230,200,.4);color:#c8fff2;padding:10px 16px;border-radius:999px;font-size:13px;opacity:0;pointer-events:none;transition:.25s;z-index:50;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:40}
+.hide{display:none!important}
+.tabs{display:flex;gap:4px;padding:3px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;margin-bottom:12px}
+.tab{flex:1;padding:7px 8px;border:0;border-radius:8px;background:transparent;color:var(--faint);font:inherit;font-size:12px;cursor:pointer}
+.tab.active{background:rgba(81,230,200,.14);color:#bff7ec}
+.badge-list{display:flex;gap:8px;flex-wrap:wrap}
+.badge{padding:6px 10px;border-radius:99px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:11px;color:var(--faint)}
+.badge.on{color:#ffe6b0;border-color:rgba(255,200,94,.4);background:rgba(255,200,94,.09)}
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<div class="wrap">
+  <div class="top">
+    <div class="brand">
+      <div class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2.8 21.4 20.8H2.6L12 2.8Z" stroke="#51e6c8" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 2.9V20.7M2.7 20.8 21.3 2.7" stroke="#7aa2ff" stroke-width="1" opacity=".6"/><circle cx="12" cy="2.9" r="1.5" fill="#51e6c8"/></svg>
+      </div>
+      <div>
+        <h1>SUN 作战面板</h1>
+        <div class="sub">库洛 · 美术 TA 日常实习 · 2028 届</div>
+      </div>
+    </div>
+    <div class="rank-pill"><b id="rankName">见习 TA</b><span class="lv" id="levelText">Lv.1</span><span id="totalXp">0 XP</span><span class="sync" id="syncState"><span class="sdot"></span><span id="syncText">本地</span></span></div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <div class="card identity">
+        <h2><span class="dot"></span>身份与赌注（Dan Koe）</h2>
+        <p class="vision" id="visionText">我是能把美术创意翻译成 UE5 落地方案、还能写文档分享的美术 TA。</p>
+        <p class="anti" id="antiText">反愿景：2028 年毕业还没进过游戏公司，作品集里只有代码作业没有画面。</p>
+        <textarea id="visionInput" placeholder="写你的愿景（一句话）"></textarea>
+        <textarea id="antiInput" placeholder="写你的反愿景（越具体越扎心）"></textarea>
+      </div>
+
+      <div class="card">
+        <h2><span class="dot"></span>今日任务 <span style="margin-left:auto;font-size:10.5px;color:var(--faint);letter-spacing:0" id="todayLabel"></span></h2>
+        <div class="quests" id="quests"></div>
+        <div class="bonus"><span>全部完成额外 +25 XP</span><b id="bonusState"></b></div>
+        <div class="streak" id="streak"></div>
+      </div>
+
+      <div class="card chain">
+        <h2><span class="dot" style="background:var(--blue);box-shadow:0 0 12px var(--blue)"></span>作品集 Boss 链</h2>
+        <div class="chain-progress" id="chainProgress"></div>
+        <div id="chain"></div>
+      </div>
+
+      <div class="card boss">
+        <h2><span class="dot" style="background:var(--pink);box-shadow:0 0 12px var(--pink)"></span>本周 Boss</h2>
+        <div class="name" id="bossName">—</div>
+        <div class="meta" id="bossMeta"></div>
+        <div class="actions">
+          <button class="btn gold" id="bossBtn">标记 Boss 完成 +120 XP</button>
+          <button class="btn" id="bossReset">撤销</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <h2><span class="dot"></span>经验</h2>
+        <div class="xp-line"><strong id="xpNum">0</strong><span id="xpNext">距下一级 120 XP</span></div>
+        <div class="xpbar"><i id="xpFill" style="width:0%"></i></div>
+        <div style="margin-top:12px" class="badge-list" id="badges"></div>
+      </div>
+
+      <div class="card">
+        <h2><span class="dot" style="background:var(--violet);box-shadow:0 0 12px var(--violet)"></span>课程 XP</h2>
+        <div class="course-total" id="courseTotal">每看一讲 +10 XP</div>
+        <div id="courses"></div>
+      </div>
+
+      <div class="card">
+        <h2><span class="dot" style="background:var(--violet);box-shadow:0 0 12px var(--violet)"></span>10 分钟启动</h2>
+        <div class="timer" id="timer">10:00</div>
+        <div class="row">
+          <button class="btn primary" id="timerBtn">启动 10 分钟</button>
+          <button class="btn" id="timerReset">重置</button>
+        </div>
+        <div style="font-size:11.5px;color:var(--faint);margin-top:9px;line-height:1.5">不用想「今天要学多久」，先坐 10 分钟。开始就给 5 XP。</div>
+      </div>
+
+      <div class="card">
+        <h2><span class="dot" style="background:var(--gold);box-shadow:0 0 12px var(--gold)"></span>今日复盘</h2>
+        <textarea class="note" id="noteInput" placeholder="完成 / 卡点 / 明天最重要的一件事"></textarea>
+        <div class="row" style="margin-top:9px">
+          <button class="btn" id="saveNote">保存复盘</button>
+          <button class="btn" id="shareBtn">复制战报</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2><span class="dot"></span>战报</h2>
+        <div class="log" id="log"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div>数据只存在本机浏览器 · <span id="weekHint">第 1 周</span> · <span id="startHint"></span></div>
+    <div class="row">
+      <button class="btn" id="exportBtn">导出</button>
+      <button class="btn" id="importBtn">导入</button>
+      <input type="file" id="importFile" accept="application/json" class="hide">
+      <button class="btn" id="resetBtn" style="color:#ffb3c6">重置</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+  const KEY = 'sun-ta-quest-v1';
+  const START = '2026-11-05';
+  const LEVELS = [
+    {xp:0, rank:'见习 TA'}, {xp:120, rank:'入门 TA'}, {xp:300, rank:'场景 TA'},
+    {xp:560, rank:'镜头 TA'}, {xp:900, rank:'SUN 实习生'}, {xp:1400, rank:'正式 TA'},
+  ];
+  const WEEKS = [
+    {art:'速写：场景透视 1 张', dcc:'Blender 基础：界面 + 建模 1 个道具', ue:'UE5 装环境 + 场景 blockout', boss:'场景 blockout 截图 + 参考板'},
+    {art:'色彩/光影分析 2 张', dcc:'Blender 资产导入 UE', ue:'Lumen + Nanite + 灯光 + 第一镜', boss:'10s 镜头预览'},
+    {art:'构图/镜头拉片 2 帧', dcc:'Blender Python 资产检查工具 v0.1', ue:'Niagara + Post Process + 镜头', boss:'30s 粗剪 + 工具截图'},
+    {art:'写实参考拆解 1 张', dcc:'工具补完 + 资产检查', ue:'精修 + 30–60s 成片 + breakdown', boss:'作品集 v0.5 + 投递材料'},
+    {art:'作品集视觉排版', dcc:'简历/作品集页', ue:'面试 demo 讲解练习', boss:'投递记录 + 面试复盘'},
+    {art:'第二支场景参考', dcc:'Shader 包整理', ue:'作品集 v1 补强', boss:'作品集 v1 草稿'},
+    {art:'速写 15min', dcc:'20min 作品集维护', ue:'1h 课程复习', boss:'期末不挂科'},
+    {art:'速写 15min', dcc:'20min 作品集维护', ue:'1h 课程复习', boss:'期末不挂科'},
+    {art:'速写 15min', dcc:'20min 作品集维护', ue:'1h 课程复习', boss:'期末不挂科'},
+    {art:'实习前作品集整理', dcc:'面试材料准备', ue:'作品集讲解练习', boss:'考试通过 + 实习准备'},
+    {art:'实习/项目周报', dcc:'UE5/公司任务', ue:'第二支场景或角色', boss:'实习周报'},
+    {art:'作品集 v1.1 排版', dcc:'把实习产出写进作品集', ue:'复盘与补强', boss:'作品集 v1.1'},
+  ];
+  const QUEST_XP = {art:15, dcc:25, ue:35};
+  const BONUS_XP = 25, BOSS_XP = 120, TIMER_XP = 5;
+  const SYNC_URL = 'https://phone.nofinallevel.space/ta-sync-6c1f9b2d/state';
+  const CHAIN = [
+    {id:'scene', title:'UE5 影视级写实场景', desc:'30–60s 成片：Lumen + Nanite + Sequencer + Niagara + Post', xp:150},
+    {id:'shader', title:'Shader / 材质包', desc:'PBR 金属/布料/皮肤 + 风格化 + 后处理，每个带说明', xp:120},
+    {id:'tool', title:'Blender Python 资产检查工具', desc:'命名/三角面/贴图尺寸/LOD 检查 + 报告', xp:100},
+    {id:'breakdown', title:'Breakdown + 作品集页', desc:'目标/方案/踩坑/性能/复盘，发博客/B站/GitHub', xp:120},
+  ];
+  const COURSE_XP = 10;
+  const COURSES = [
+    {id:'games101', name:'GAMES101 现代计算机图形学', total:22, url:'https://www.bilibili.com/video/BV1X7411F744', note:'闫令琪 · 光栅化/着色/几何/光追'},
+    {id:'games202', name:'GAMES202 高质量实时渲染', total:10, url:'https://www.bilibili.com/video/BV1YK4y1T7yY', note:'阴影/GI/PBR/抗锯齿'},
+    {id:'ue5', name:'UE5 官方学习路径', total:10, url:'https://dev.epicgames.com/community/unreal-engine/learning', note:'Lumen/Nanite/Sequencer/Niagara'},
+    {id:'blender', name:'Blender 2025 新手入门', total:10, url:'https://www.bilibili.com/video/BV1USZgYaEUf', note:'建模/材质/灯光/渲染'},
+    {id:'shader', name:'HLSL Shader 入门', total:10, url:'https://www.bilibili.com/video/BV1zUUKY5EgV', note:'着色器基础与材质节点'},
+    {id:'film', name:'影视拉片：构图/光影', total:8, url:'https://www.bilibili.com/video/BV131umz8EnY', note:'美术眼与镜头感'},
+  ];
+
+  const $ = (s) => document.querySelector(s);
+  const pad = (n) => String(n).padStart(2, '0');
+  const todayKey = () => { const d = new Date(); return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; };
+  const addDays = (key, n) => { const d = new Date(key + 'T12:00:00'); d.setDate(d.getDate() + n); return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; };
+  const fromStart = () => { const a = new Date(START + 'T12:00:00'); const b = new Date(todayKey() + 'T12:00:00'); return Math.floor((b - a) / 86400000); };
+  const weekIndex = () => Math.max(0, Math.min(WEEKS.length - 1, Math.floor(fromStart() / 7)));
+
+  function dayRecord(s, key) {
+    if (!s.days[key]) {
+      const w = WEEKS[Math.max(0, Math.min(WEEKS.length - 1, Math.floor((new Date(key + 'T12:00:00') - new Date(START + 'T12:00:00')) / 86400000 / 7)))] || WEEKS[0];
+      s.days[key] = {
+        quests: [
+          {id:'art', label:'美术基础 30–45min', detail:w.art, xp:QUEST_XP.art, done:false},
+          {id:'dcc', label:'DCC 60–90min', detail:w.dcc, xp:QUEST_XP.dcc, done:false},
+          {id:'ue',  label:'UE5 60–90min', detail:w.ue, xp:QUEST_XP.ue, done:false},
+        ],
+        bonus:false, note:'',
+      };
+    }
+    return s.days[key];
+  }
+
+  function defaultState() {
+    return {version:1, xp:0, streak:0, lastDone:'', days:{}, logs:[], vision:'', antiVision:'', timerDone:{}, bossDone:{}, chain:{}, courses:{}, updatedAt:0};
+  }
+  function load() {
+    try { const raw = localStorage.getItem(KEY); if (raw) { const s = JSON.parse(raw); return Object.assign(defaultState(), s); } } catch {}
+    return defaultState();
+  }
+  let S = load();
+  const key = todayKey();
+  let day = dayRecord(S, key);
+
+  function save() { S.updatedAt = Date.now(); try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} schedulePush(); }
+
+  /* 云端同步（手机/博客/DSH 面板/爱弥斯共用） */
+  let pushTimer = null;
+  function syncStatus(text, mode) {
+    const el = $('#syncState'); if (!el) return;
+    el.classList.remove('ok', 'off');
+    if (mode) el.classList.add(mode);
+    $('#syncText').textContent = text;
+  }
+  function schedulePush() {
+    clearTimeout(pushTimer);
+    pushTimer = setTimeout(pushState, 500);
+  }
+  async function pushState() {
+    try {
+      const res = await fetch(SYNC_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(S),
+      });
+      if (!res.ok) throw new Error('http ' + res.status);
+      const remote = await res.json();
+      if (remote && remote.updatedAt) {
+        S.updatedAt = remote.updatedAt;
+        try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {}
+      }
+      syncStatus('已同步', 'ok');
+    } catch {
+      syncStatus('离线·本地', 'off');
+    }
+  }
+  async function pullState() {
+    try {
+      const res = await fetch(SYNC_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('http ' + res.status);
+      const remote = await res.json();
+      if (!remote || typeof remote !== 'object') throw new Error('bad state');
+      const localTs = S.updatedAt || 0;
+      const remoteTs = remote.updatedAt || 0;
+      if (remoteTs >= localTs) {
+        S = Object.assign(defaultState(), remote);
+        day = dayRecord(S, key);
+        try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {}
+        syncStatus('已同步', 'ok');
+      } else {
+        syncStatus('本地较新', 'off');
+        pushState();
+      }
+    } catch {
+      syncStatus('离线·本地', 'off');
+    }
+    render();
+  }
+  function levelInfo() {
+    let i = 0; while (i + 1 < LEVELS.length && S.xp >= LEVELS[i+1].xp) i++;
+    const cur = LEVELS[i], next = LEVELS[i+1];
+    const base = cur.xp, span = next ? next.xp - base : 1;
+    const pct = next ? Math.min(100, Math.round((S.xp - base) / span * 100)) : 100;
+    return {i, cur, next, pct};
+  }
+  function addXp(n) { S.xp = Math.max(0, S.xp + n); save(); }
+  function toast(msg) { const el=$('#toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove('show'),2200); }
+  function log(text) { S.logs.unshift({date: todayKey(), text}); S.logs = S.logs.slice(0, 60); save(); }
+
+  function allDone() { return day.quests.every(q => q.done); }
+  function checkStreak() {
+    if (!allDone()) return;
+    if (S.lastDone === key) return;
+    const y = addDays(key, -1);
+    S.streak = (S.lastDone === y) ? (S.streak || 0) + 1 : 1;
+    S.lastDone = key;
+    if (!day.bonus) { day.bonus = true; addXp(BONUS_XP); log(`全部完成 +${BONUS_XP} XP，连续 ${S.streak} 天`); }
+    save();
+  }
+
+  function render() {
+    const lv = levelInfo();
+    $('#rankName').textContent = lv.cur.rank;
+    $('#levelText').textContent = 'Lv.' + (lv.i + 1);
+    $('#totalXp').textContent = S.xp + ' XP';
+    $('#xpNum').textContent = S.xp;
+    $('#xpNext').textContent = lv.next ? `距 ${lv.next.rank} 还差 ${lv.next.xp - S.xp} XP` : '已满级';
+    $('#xpFill').style.width = lv.pct + '%';
+
+    $('#visionText').textContent = S.vision || '我是能把美术创意翻译成 UE5 落地方案、还能写文档分享的美术 TA。';
+    $('#antiText').textContent = S.antiVision || '反愿景：2028 年毕业还没进过游戏公司，作品集里只有代码作业没有画面。';
+    if (document.activeElement !== $('#visionInput')) $('#visionInput').value = S.vision || '';
+    if (document.activeElement !== $('#antiInput')) $('#antiInput').value = S.antiVision || '';
+
+    const qs = $('#quests'); qs.innerHTML = '';
+    day.quests.forEach(q => {
+      const el = document.createElement('div');
+      el.className = 'quest' + (q.done ? ' done' : '');
+      el.innerHTML = `<span class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5 9.5 18 20 6.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="body"><span class="t">${q.label}</span><span class="d">${q.detail}</span></span><span class="xp">+${q.xp}</span>`;
+      el.onclick = () => {
+        const was = q.done; q.done = !q.done;
+        addXp(q.done ? q.xp : -q.xp);
+        if (q.done) log(`完成：${q.label}`); else log(`撤销：${q.label}`);
+        checkStreak(); save(); render();
+        if (!was && q.done) confetti(70);
+      };
+      qs.appendChild(el);
+    });
+    $('#bonusState').textContent = day.bonus ? '已拿 ✓' : '';
+    $('#todayLabel').textContent = `${key} · 第 ${weekIndex() + 1}/12 周`;
+
+    const wk = WEEKS[weekIndex()];
+    $('#bossName').textContent = wk.boss;
+    const bossDone = !!(S.bossDone && S.bossDone[weekIndex()]);
+    $('#bossMeta').textContent = bossDone ? '已完成 · 这周你就是干掉了它' : `第 ${weekIndex() + 1}/12 周 · 截止本周日 · 完成 +${BOSS_XP} XP`;
+    $('#bossBtn').disabled = bossDone;
+    $('#bossBtn').textContent = bossDone ? 'Boss 已完成 ✓' : '标记 Boss 完成 +120 XP';
+    $('#bossReset').style.display = bossDone ? '' : 'none';
+
+    /* 作品集 Boss 链 */
+    const chainEl = $('#chain'); chainEl.innerHTML = '';
+    const prog = $('#chainProgress'); prog.innerHTML = '';
+    let doneCount = 0;
+    CHAIN.forEach((c, i) => {
+      const done = !!(S.chain && S.chain[c.id]);
+      if (done) doneCount++;
+      const prevDone = i === 0 || !!(S.chain && S.chain[CHAIN[i - 1].id]);
+      const locked = !prevDone && !done;
+      const node = document.createElement('div');
+      node.className = 'chain-node' + (done ? ' done' : '') + (locked ? ' locked' : '');
+      node.innerHTML = `<div class="c-icon">${done ? '✓' : i + 1}</div>
+        <div class="c-body"><div class="c-title">${c.title}<span class="c-xp">+${c.xp}</span></div>
+        <div class="c-desc">${c.desc}${locked ? ' · 先击破上一只' : ''}</div>
+        ${!done && !locked ? `<button class="btn gold c-btn" data-chain="${c.id}">击破 Boss +${c.xp} XP</button>` : ''}
+        </div>`;
+      chainEl.appendChild(node);
+      const bar = document.createElement('i'); bar.className = done ? 'on' : ''; prog.appendChild(bar);
+    });
+    chainEl.querySelectorAll('[data-chain]').forEach(btn => {
+      btn.onclick = () => {
+        const id = btn.getAttribute('data-chain');
+        const c = CHAIN.find(x => x.id === id); if (!c || (S.chain && S.chain[id])) return;
+        S.chain = S.chain || {}; S.chain[id] = true;
+        addXp(c.xp); log(`作品集 Boss：${c.title} +${c.xp} XP`); save(); render();
+        confetti(200); toast(`Boss 击破：${c.title} +${c.xp} XP`);
+      };
+    });
+
+    /* 课程 XP */
+    const coursesEl = $('#courses'); coursesEl.innerHTML = '';
+    const totalSeen = COURSES.reduce((sum, c) => sum + Math.min(c.total, (S.courses && S.courses[c.id]) || 0), 0);
+    const totalLessons = COURSES.reduce((sum, c) => sum + c.total, 0);
+    $('#courseTotal').textContent = `已看 ${totalSeen}/${totalLessons} 讲 · 每讲 +${COURSE_XP} XP`;
+    COURSES.forEach(c => {
+      const n = Math.min(c.total, (S.courses && S.courses[c.id]) || 0);
+      const row = document.createElement('div');
+      row.className = 'course';
+      row.innerHTML = `<div class="c-main">
+        <div class="c-top"><span>${c.name}</span><a href="${c.url}" target="_blank" rel="noopener noreferrer">打开</a></div>
+        <div class="c-note">${c.note} · ${n}/${c.total}</div>
+        <div class="c-bar"><i style="width:${Math.round(n / c.total * 100)}%"></i></div>
+      </div>
+      <button class="btn c-add" data-course="${c.id}" ${n >= c.total ? 'disabled' : ''}>${n >= c.total ? '已看完' : '+1 讲'}</button>`;
+      coursesEl.appendChild(row);
+    });
+    coursesEl.querySelectorAll('[data-course]').forEach(btn => {
+      btn.onclick = () => {
+        const id = btn.getAttribute('data-course');
+        const c = COURSES.find(x => x.id === id); if (!c) return;
+        S.courses = S.courses || {};
+        const n = S.courses[id] || 0; if (n >= c.total) return;
+        S.courses[id] = n + 1;
+        addXp(COURSE_XP); log(`课程：${c.name} 第 ${n + 1} 讲 +${COURSE_XP} XP`); save(); render();
+        confetti(35); toast(`+${COURSE_XP} XP：${c.name} ${n + 1}/${c.total}`);
+      };
+    });
+    $('#weekHint').textContent = `第 ${weekIndex() + 1}/12 周`;
+    $('#startHint').textContent = `从 ${START} 开始`;
+
+    const streakEl = $('#streak'); streakEl.innerHTML = '';
+    for (let i = 13; i >= 0; i--) {
+      const k = addDays(key, -i);
+      const on = S.days[k] && S.days[k].quests && S.days[k].quests.every(q => q.done);
+      const d = document.createElement('div');
+      d.className = 'day' + (on ? ' on' : '') + (i === 0 ? ' today' : '');
+      d.textContent = k.slice(5).replace('-', '/');
+      d.title = k + (on ? ' 全部完成' : '');
+      streakEl.appendChild(d);
+    }
+
+    const badges = [
+      {on: S.xp >= 120, t:'上路'},
+      {on: S.xp >= 300, t:'场景起步'},
+      {on: S.xp >= 560, t:'镜头感'},
+      {on: S.streak >= 3, t:'3 天连续'},
+      {on: S.streak >= 7, t:'一周不断'},
+      {on: Object.values(S.days).some(d => d.bonus), t:'首日全清'},
+      {on: !!(S.chain && S.chain.scene), t:'首杀 Boss'},
+      {on: CHAIN.every(c => S.chain && S.chain[c.id]), t:'作品集四件套'},
+      {on: COURSES.reduce((sum, c) => sum + Math.min(c.total, (S.courses && S.courses[c.id]) || 0), 0) >= 10, t:'课程 10 讲'},
+    ];
+    $('#badges').innerHTML = badges.map(b => `<span class="badge ${b.on ? 'on' : ''}">${b.on ? '🏅' : '·'} ${b.t}</span>`).join('');
+
+    const lg = $('#log'); lg.innerHTML = '';
+    S.logs.slice(0, 14).forEach(item => {
+      const d = document.createElement('div'); d.className = 'item';
+      d.innerHTML = `<b>${item.date.slice(5)}</b><span>${item.text}</span>`;
+      lg.appendChild(d);
+    });
+  }
+
+  /* quests / boss */
+  $('#bossBtn').onclick = () => {
+    const w = weekIndex();
+    if (S.bossDone && S.bossDone[w]) return;
+    S.bossDone = S.bossDone || {}; S.bossDone[w] = true;
+    addXp(BOSS_XP); log(`Boss 完成：${WEEKS[w].boss} +${BOSS_XP} XP`); save(); render(); confetti(180); toast('Boss 击破！+120 XP');
+  };
+  $('#bossReset').onclick = () => {
+    const w = weekIndex();
+    if (!S.bossDone || !S.bossDone[w]) return;
+    S.bossDone[w] = false; addXp(-BOSS_XP); log('撤销 Boss'); save(); render();
+  };
+
+  /* note */
+  $('#saveNote').onclick = () => { day.note = $('#noteInput').value.trim(); save(); log('保存复盘'); render(); toast('复盘已保存'); };
+  $('#noteInput').value = day.note || '';
+
+  /* vision */
+  $('#visionInput').oninput = () => { S.vision = $('#visionInput').value; save(); $('#visionText').textContent = S.vision || '我是能把美术创意翻译成 UE5 落地方案、还能写文档分享的美术 TA。'; };
+  $('#antiInput').oninput = () => { S.antiVision = $('#antiInput').value; save(); $('#antiText').textContent = S.antiVision || '反愿景：2028 年毕业还没进过游戏公司，作品集里只有代码作业没有画面。'; };
+
+  /* timer */
+  let timerLeft = 600, timerId = null;
+  function renderTimer() { $('#timer').textContent = `${pad(Math.floor(timerLeft/60))}:${pad(timerLeft%60)}`; }
+  $('#timerBtn').onclick = () => {
+    if (timerId) return;
+    timerLeft = 600; renderTimer(); $('#timerBtn').disabled = true; toast('开始 10 分钟，只做最小一步');
+    timerId = setInterval(() => {
+      timerLeft--;
+      renderTimer();
+      if (timerLeft <= 0) {
+        clearInterval(timerId); timerId = null; $('#timerBtn').disabled = false; $('#timer').textContent = '完成';
+        const tk = todayKey();
+        if (!S.timerDone[tk]) { S.timerDone[tk] = true; addXp(TIMER_XP); log('10 分钟启动 +5 XP'); }
+        save(); render(); confetti(120); toast('10 分钟到了，你已经开始赢了 +5 XP');
+      }
+    }, 1000);
+  };
+  $('#timerReset').onclick = () => { if (timerId) clearInterval(timerId); timerId = null; timerLeft = 600; $('#timerBtn').disabled = false; renderTimer(); };
+
+  /* share */
+  $('#shareBtn').onclick = async () => {
+    const done = day.quests.filter(q => q.done).length;
+    const text = `【SUN 作战面板】${key}\n第 ${weekIndex()+1}/12 周 · ${LEVELS[levelInfo().i].rank} Lv.${levelInfo().i+1} · ${S.xp} XP\n今日任务 ${done}/3，连续 ${S.streak} 天\nBoss：${WEEKS[weekIndex()].boss}\n${day.note ? '复盘：' + day.note : ''}`;
+    try { await navigator.clipboard.writeText(text); toast('战报已复制，去发博客/QQ'); } catch { toast('复制失败，手动复制吧'); }
+  };
+
+  /* export / import / reset */
+  $('#exportBtn').onclick = () => {
+    const blob = new Blob([JSON.stringify(S, null, 2)], {type:'application/json'});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `sun-ta-progress-${todayKey()}.json`; a.click();
+  };
+  $('#importBtn').onclick = () => $('#importFile').click();
+  $('#importFile').onchange = (e) => {
+    const f = e.target.files[0]; if (!f) return;
+    const r = new FileReader();
+    r.onload = () => { try { S = Object.assign(defaultState(), JSON.parse(r.result)); day = dayRecord(S, todayKey()); save(); render(); toast('导入成功'); } catch { toast('文件格式不对'); } };
+    r.readAsText(f);
+  };
+  $('#resetBtn').onclick = () => { if (confirm('确定重置全部进度？')) { S = defaultState(); day = dayRecord(S, key); save(); render(); toast('已重置'); } };
+
+  /* confetti */
+  const canvas = $('#confetti'); const ctx = canvas.getContext('2d');
+  let parts = [], raf = 0;
+  function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; }
+  addEventListener('resize', resize); resize();
+  function confetti(n) {
+    const colors = ['#51e6c8','#7aa2ff','#c58cff','#ffc85e','#ff7aa8'];
+    for (let i = 0; i < n; i++) parts.push({x: innerWidth/2 + (Math.random()-0.5)*260, y: innerHeight*0.38, vx:(Math.random()-0.5)*9, vy:-Math.random()*9-2, g:0.28+Math.random()*0.15, r:2+Math.random()*4, c:colors[(Math.random()*colors.length)|0], life:70+Math.random()*30});
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+  function tick() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    parts = parts.filter(p => p.life > 0);
+    for (const p of parts) { p.vy += p.g; p.x += p.vx; p.y += p.vy; p.life--; ctx.globalAlpha = Math.min(1, p.life/30); ctx.fillStyle = p.c; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); }
+    ctx.globalAlpha = 1;
+    if (parts.length) raf = requestAnimationFrame(tick); else { raf = 0; ctx.clearRect(0,0,canvas.width,canvas.height); }
+  }
+
+  render();
+  pullState();
+  setInterval(pullState, 30000);
+})();
+</script>
+</body>
+</html>

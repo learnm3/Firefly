@@ -1,0 +1,23 @@
+---
+
+import { getEntry, render } from "astro:content";
+import Markdown from "@components/common/Markdown.astro";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+
+const planPost = await getEntry("spec", "plan");
+
+if (!planPost) {
+	throw new Error("Plan page content not found");
+}
+
+const { Content } = await render(planPost);
+---
+<MainGridLayout title="TA 作战计划" description="2028 届库洛技术美术（程序向）一年作战计划：时间线、12 周冲刺表、每日与每周执行模板。">
+    <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-9 py-6 relative w-full">
+            <Markdown class="mt-2">
+                <Content />
+            </Markdown>
+        </div>
+    </div>
+</MainGridLayout>

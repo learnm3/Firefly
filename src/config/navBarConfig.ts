@@ -71,6 +71,12 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 			// 求职路线图
 			LinkPresets.Roadmap,
 
+			// TA 作战计划（2028 届）
+			LinkPresets.Plan,
+
+			// SUN 作战面板
+			LinkPresets.Quest,
+
 			// 面试题库
 			LinkPresets.Interview,
 
@@ -213,6 +219,16 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		name: "求职路线图",
 		url: "/roadmap/",
 		icon: "material-symbols:route",
+	},
+	Plan: {
+		name: "TA 作战计划",
+		url: "/plan/",
+		icon: "material-symbols:flag",
+	},
+	Quest: {
+		name: "SUN 作战面板",
+		url: "/quest/",
+		icon: "material-symbols:sports-esports",
 	},
 	MockInterview: {
 		name: "模拟面试",
