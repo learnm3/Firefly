@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TA 学习面板 · 库洛 SUN 美术 TA</title>
+<style>
+:root{
+  --bg:#0d1015; --panel:#151a22; --panel2:#1b222c; --line:#2a3442;
+  --text:#e8edf5; --muted:#8b98a9; --accent:#4fd1c5; --accent2:#f6c453;
+  --green:#48bb78; --yellow:#ecc94b; --red:#f56565; --gray:#718096;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:"Segoe UI","Microsoft YaHei","PingFang SC",system-ui,sans-serif;line-height:1.6;padding-bottom:60px}
+.wrap{max-width:1040px;margin:0 auto;padding:18px}
+header{padding:22px 0 10px;border-bottom:1px solid var(--line)}
+h1{font-size:22px;letter-spacing:.5px}
+h1 span{color:var(--accent)}
+.sub{color:var(--muted);font-size:13px;margin-top:4px}
+.counts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 6px}
+.count{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.count .k{font-size:12px;color:var(--muted)}
+.count .v{font-size:20px;font-weight:700;color:var(--accent2)}
+.count .v small{font-size:12px;color:var(--muted);font-weight:400}
+nav{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}
+nav button{background:var(--panel);color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:8px 14px;cursor:pointer;font-size:14px}
+nav button.active{background:var(--accent);color:#06222a;border-color:var(--accent);font-weight:700}
+section{display:none}
+section.active{display:block}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+.card h2{font-size:15px;margin-bottom:10px;color:var(--accent)}
+.card h3{font-size:14px;margin:12px 0 6px;color:var(--accent2)}
+.muted{color:var(--muted);font-size:13px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button.btn{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer;font-size:13px}
+button.btn:hover{border-color:var(--accent)}
+button.primary{background:var(--accent);color:#06222a;font-weight:700;border-color:var(--accent)}
+button.ghost{background:transparent}
+.state-btn{padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);color:var(--text);cursor:pointer;font-weight:700;font-size:14px}
+.state-btn.active{outline:2px solid var(--accent);border-color:var(--accent)}
+.state-S{border-left:4px solid var(--green)}
+.state-A{border-left:4px solid var(--yellow)}
+.state-B{border-left:4px solid var(--orange,#ed8936)}
+.state-C{border-left:4px solid var(--red)}
+.task{display:flex;gap:10px;align-items:center;margin:8px 0}
+.task input[type=text]{flex:1;background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);padding:9px 10px;font-size:14px}
+.task input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent)}
+.energy button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--panel2);color:var(--text);cursor:pointer;font-weight:700}
+.energy button.active{background:var(--accent);color:#06222a}
+input[type=number],input[type=text],textarea{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);padding:8px 10px;font-size:14px;font-family:inherit}
+textarea{width:100%;min-height:58px;resize:vertical}
+.timer{font-size:48px;font-weight:800;letter-spacing:2px;color:var(--accent2);text-align:center;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 9px;margin:2px 4px 2px 0}
+.milestone{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--line)}
+.bar{height:8px;background:#0a0e13;border-radius:999px;overflow:hidden;margin:6px 0}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%}
+.project-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.project-grid{grid-template-columns:1fr}.counts{grid-template-columns:1fr}}
+.project{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px}
+.project .item{display:flex;gap:8px;align-items:flex-start;font-size:13px;padding:3px 0;color:var(--muted)}
+.project .item input{margin-top:4px;accent-color:var(--accent)}
+.project .item.done{color:var(--green);text-decoration:line-through}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px}
+.stat .n{font-size:22px;font-weight:800;color:var(--accent)}
+.stat .l{font-size:12px;color:var(--muted)}
+.chart{display:flex;gap:8px;align-items:flex-end;height:120px;padding:8px 0}
+.chart .col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:4px}
+.chart .col i{display:block;width:70%;background:linear-gradient(180deg,var(--accent),#2c7a7b);border-radius:4px 4px 0 0;min-height:2px}
+.chart .col span{font-size:10px;color:var(--muted)}
+.chart .col b{font-size:10px;color:var(--accent2);font-weight:600}
+a{color:var(--accent)}
+.res-group{margin-bottom:14px}
+.res-group a{display:inline-block;margin:3px 10px 3px 0;font-size:13px}
+.note{font-size:12px;color:var(--muted);border-left:2px solid var(--line);padding-left:10px;margin-top:8px}
+.warn{color:var(--red)}
+footer{color:var(--muted);font-size:12px;text-align:center;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>TA 学习面板 <span>· 库洛 SUN 美术 TA（28 届）</span></h1>
+  <div class="sub" id="todayLabel"></div>
+  <div class="counts" id="countdowns"></div>
+</header>
+
+<nav id="tabs">
+  <button data-tab="today" class="active">今日</button>
+  <button data-tab="roadmap">路线图</button>
+  <button data-tab="portfolio">作品集</button>
+  <button data-tab="data">数据</button>
+  <button data-tab="tech">技术</button>
+  <button data-tab="resources">资源</button>
+</nav>
+
+<section id="today" class="active">
+  <div class="card">
+    <h2>1 · 今天什么状态？（30 秒判断）</h2>
+    <p class="muted">看睡眠 / 身体 / 情绪，点一个档位，下面会给出对应任务菜单。低状态不是失败，是系统的一部分。</p>
+    <div class="row" style="margin:10px 0">
+      <button class="state-btn state-S" data-state="S">🟢 S 高能</button>
+      <button class="state-btn state-A" data-state="A">🟡 A 正常</button>
+      <button class="state-btn state-B" data-state="B">🔴 B 低能</button>
+      <button class="state-btn state-C" data-state="C">⚫ C 恢复</button>
+    </div>
+    <div id="protocol" class="card" style="background:var(--panel2);margin-bottom:0"></div>
+  </div>
+
+  <div class="card">
+    <h2>2 · 今天的 3 件事（只做 3 件）</h2>
+    <div class="task"><input type="checkbox" data-task="0"><input type="text" data-task-text="0" placeholder="① 美术基础：速写 / 拉片 / 色彩 / 构图"></div>
+    <div class="task"><input type="checkbox" data-task="1"><input type="text" data-task-text="1" placeholder="② 主线：今天唯一要推进的 UE/Blender/Shader 动作"></div>
+    <div class="task"><input type="checkbox" data-task="2"><input type="text" data-task-text="2" placeholder="③ 输出：3 行笔记 / 1 张截图 / 整理"></div>
+    <div class="note">打卡条件不是"学满几小时"，而是：打开工程/笔记 + 做一个动作。</div>
+  </div>
+
+  <div class="card">
+    <h2>3 · 专注计时</h2>
+    <div class="row" style="margin-bottom:8px">
+      <label class="muted">时长
+        <select id="timerLen" class="btn">
+          <option value="25">25 分钟（启动/低能）</option>
+          <option value="50" selected>50 分钟（常规）</option>
+          <option value="90">90 分钟（高能）</option>
+        </select>
+      </label>
+      <span class="muted" id="focusCount"></span>
+    </div>
+    <div class="timer" id="timerDisplay">50:00</div>
+    <div class="row" style="justify-content:center;margin-top:10px">
+      <button class="btn primary" id="timerStart">开始</button>
+      <button class="btn" id="timerPause">暂停</button>
+      <button class="btn ghost" id="timerReset">重置</button>
+    </div>
+    <div class="note">开始前 90 秒仪式：手机放另一个房间 → 倒水 → 写下一个具体动作 → 打开工程到"下一步"的位置。</div>
+  </div>
+
+  <div class="card">
+    <h2>4 · 能量 / 睡眠 / 三行复盘</h2>
+    <div class="row" style="margin-bottom:8px">
+      <span class="muted">能量</span>
+      <div class="energy" id="energy"></div>
+      <span class="muted" style="margin-left:12px">睡眠</span>
+      <input type="number" id="sleep" min="0" max="14" step="0.5" style="width:80px" placeholder="小时">
+    </div>
+    <textarea id="review" placeholder="00:15 三行复盘：1) 完成什么 2) 卡在哪 3) 明天最重要的一件事"></textarea>
+    <div class="row" style="margin-top:8px">
+      <button class="btn primary" id="saveDay">保存今日</button>
+      <span class="muted" id="saveHint"></span>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="card">
+    <h2>12 个月路线（M1–M5）</h2>
+    <div id="milestones"></div>
+    <div class="bar"><i id="milestoneBar"></i></div>
+    <div class="note">详细任务见 TA学习系统_v2/03_12个月学习路线图.md。里程碑滞后 2 周内可接受，超过就降速调整。</div>
+  </div>
+  <div class="card">
+    <h2>关键时间锚点（调研外推）</h2>
+    <table style="width:100%;font-size:13px;border-collapse:collapse">
+      <tr><td style="padding:6px 0;color:var(--muted)">2027-02 ~ 05</td><td>日常实习 / 2028 届实习生窗口（日常实习不限毕业时间）</td></tr>
+      <tr><td style="padding:6px 0;color:var(--muted)">2027-08 下旬</td><td>秋招网申 + 笔试（外推）</td></tr>
+      <tr><td style="padding:6px 0;color:var(--muted)">2027-09 上/中旬</td><td>面试 → offer</td></tr>
+      <tr><td style="padding:6px 0;color:var(--muted)">2027-10 下旬</td><td>秋招截止；补录/春招</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>阶段任务</h2>
+    <div id="phases"></div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="card">
+    <h2>作品集看板（4 件核心 + 练习）</h2>
+    <p class="muted">每周日更新一次；连续两周没打勾就砍范围。作品集标准见 07_作品集规划.md。</p>
+    <div class="project-grid" id="projects"></div>
+  </div>
+  <div class="card">
+    <h2>投递前自检（按调研 rubric ≥80 分再投）</h2>
+    <div class="row">
+      <span class="pill">写实/美术 20%</span><span class="pill">UE5 技术 20%</span><span class="pill">材质 Shader 15%</span><span class="pill">性能 15%</span><span class="pill">工具 10%</span><span class="pill">Breakdown 10%</span><span class="pill">审美 10%</span>
+    </div>
+    <div class="note">每项 1/3/5 分，加权 ×20；≥80 再投库洛，60–80 投中小厂练手。</div>
+  </div>
+</section>
+
+<section id="tech">
+  <div class="card">
+    <h2>技术向 30 天训练（Technical Artist 技术线）</h2>
+    <p class="muted">配套 <b>09_技术向_30天启动.md</b>：每天 60–90 分钟，产出一个可验证的技术物件。勾选会保存在本地。</p>
+    <div id="techDrills"></div>
+    <div class="bar"><i id="techBar"></i></div>
+    <div class="note" id="techNote"></div>
+  </div>
+  <div class="card">
+    <h2>技术文件（本地）</h2>
+    <div class="res-group">
+      <a href="/ta/tech-ue5-checklist/" target="_blank" rel="noopener">UE5 技术检查清单</a>
+      <a href="/ta/tech-hlsl/" target="_blank" rel="noopener">HLSL 自定义节点模板</a>
+      <a href="/ta/tech-performance/" target="_blank" rel="noopener">性能记录模板</a>
+      <a href="/ta/tech-pipecheck/" target="_blank" rel="noopener">PipeCheck 插件</a>
+    </div>
+    <div class="note">如果浏览器打不开本地 md，请从文件夹直接打开对应文件。</div>
+  </div>
+</section>
+
+<section id="data">
+  <div class="card">
+    <h2>数据总览</h2>
+    <div class="stats" id="stats"></div>
+  </div>
+  <div class="card">
+    <h2>最近 8 周学习时长（手动填，单位：小时）</h2>
+    <div class="chart" id="chart"></div>
+    <div class="row" style="margin-top:8px">
+      <input type="number" id="weekHours" min="0" max="80" step="0.5" style="width:100px" placeholder="本周">
+      <button class="btn" id="saveWeek">保存本周</button>
+      <span class="muted" id="weekHint"></span>
+    </div>
+  </div>
+  <div class="card">
+    <h2>数据管理</h2>
+    <div class="row">
+      <button class="btn" id="exportBtn">导出 JSON 备份</button>
+      <label class="btn" style="cursor:pointer">导入 JSON<input type="file" id="importFile" accept="application/json" style="display:none"></label>
+      <button class="btn ghost" id="resetBtn">清空全部数据</button>
+    </div>
+    <div class="note">数据只存在这台电脑的浏览器 localStorage 里，不会上传。建议每周日导出一次备份。</div>
+  </div>
+</section>
+
+<section id="resources">
+  <div class="card">
+    <h2>常用入口</h2>
+    <div id="resourceGroups"></div>
+    <div class="note">完整清单见 06_资源库_视频清单.md。一条线只跟一个主课，别囤课。</div>
+  </div>
+</section>
+
+<footer>TA 学习系统 v2 · 2026-11-06 · 数据存本地浏览器 · 目标：2027-03 作品集 v0.5 / 2027-08 下旬秋招</footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var KEY = 'ta_system_v2_state_v1';
+  var $ = function(sel, root){ return (root||document).querySelector(sel); };
+  var $$ = function(sel, root){ return Array.prototype.slice.call((root||document).querySelectorAll(sel)); };
+
+  function pad(n){ return (n<10?'0':'')+n; }
+  function dateKey(d){
+    d = d || new Date();
+    return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate());
+  }
+  function parseDate(s){
+    var p = s.split('-');
+    return new Date(parseInt(p[0],10), parseInt(p[1],10)-1, parseInt(p[2],10));
+  }
+  function dayDiff(a,b){
+    var ms = parseDate(b).getTime() - parseDate(a).getTime();
+    return Math.round(ms/86400000);
+  }
+  function esc(s){
+    return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function mondayKey(d){
+    d = d || new Date();
+    var day = (d.getDay()+6)%7;
+    var m = new Date(d.getFullYear(), d.getMonth(), d.getDate()-day);
+    return dateKey(m);
+  }
+
+  var defaultState = function(){
+    return {
+      version: 1,
+      created: dateKey(),
+      days: {},
+      milestones: {},
+      projects: {},
+      weekly: {},
+      tech: {},
+      timer: { minutes: 50 }
+    };
+  };
+
+  var state;
+  try { state = JSON.parse(localStorage.getItem(KEY)); } catch(e){ state = null; }
+  if (!state || typeof state !== 'object') state = defaultState();
+  if (!state.days) state.days = {};
+  if (!state.milestones) state.milestones = {};
+  if (!state.projects) state.projects = {};
+  if (!state.weekly) state.weekly = {};
+  if (!state.tech) state.tech = {};
+
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(state)); return true; }
+    catch(e){ return false; }
+  }
+
+  function ensureDay(k){
+    if (!state.days[k]) {
+      state.days[k] = { state:null, tasks:[{text:'',done:false},{text:'',done:false},{text:'',done:false}], energy:null, sleep:'', review:'', startup:[false,false,false,false], focusCount:0 };
+    }
+    if (!state.days[k].tasks || state.days[k].tasks.length < 3) {
+      state.days[k].tasks = [{text:'',done:false},{text:'',done:false},{text:'',done:false}];
+    }
+    if (!state.days[k].startup) state.days[k].startup = [false,false,false,false];
+    return state.days[k];
+  }
+
+  /* ---------- countdown ---------- */
+  var anchors = [
+    {label:'日常实习窗口', date:'2027-02-01'},
+    {label:'秋招网申/笔试', date:'2027-08-20'},
+    {label:'面试/Offer 期', date:'2027-09-15'}
+  ];
+  function renderCountdowns(){
+    var today = dateKey();
+    var html = '';
+    for (var i=0;i<anchors.length;i++){
+      var d = dayDiff(today, anchors[i].date);
+      var txt;
+      if (d > 0) txt = d + ' <small>天</small>';
+      else if (d === 0) txt = '今天';
+      else txt = '已过 <small>' + (-d) + ' 天</small>';
+      html += '<div class="count"><div class="k">' + anchors[i].label + ' · ' + anchors[i].date.slice(5) + '</div><div class="v">' + txt + '</div></div>';
+    }
+    $('#countdowns').innerHTML = html;
+    var now = new Date();
+    var week = ['日','一','二','三','四','五','六'][now.getDay()];
+    $('#todayLabel').textContent = '今天是 ' + today + ' 星期' + week + ' · 目标岗位：SUN-美术 TA（广州 · 28 届）· 方向：程序向 TA';
+  }
+
+  /* ---------- today ---------- */
+  var protocols = {
+    S: { name:'🟢 S 高能', time:'2 × 90 分钟', good:['写 Shader / 搭场景主体','调灯光 / 解决卡很久的 bug','作品集核心部分（P1/P2）'], bad:['整理文件','刷教程','做计划'], tip:'把最难的事放在今天；手机放另一个房间，只开一个软件。' },
+    A: { name:'🟡 A 正常', time:'3 × 50 分钟', good:['跟教程做案例 / 复现','材质调整 / 导入资产','修改已有作品 / Blender 建模练习'], bad:['开新的大项目','同时学两个软件'], tip:'稳定推进，跟做 + 复现 + 小步交付。' },
+    B: { name:'🔴 B 低能', time:'25 分钟 + 可选 25 分钟', good:['看 20 分钟教程片段并记 3 行','给现有材质改 1 个参数并渲染对比','整理 5 张参考图 / 速写 1 张'], bad:['开始学新概念','做需要连续思考 1 小时的事','自责'], tip:'不硬撑新知识，只做低门槛、有产出的事，保持连续性。' },
+    C: { name:'⚫ C 恢复', time:'今天不学习', good:['补觉 / 好好吃饭 / 喝水','洗澡 / 散步 15 分钟','写一行：今天休息，明天 15 分钟重启'], bad:['刷学习短视频制造焦虑','做重大决定（放弃/换方向）'], tip:'恢复也是系统的一部分。允许今天零产出。' }
+  };
+
+  function todayKeyOfDay(d){ return d; }
+  var currentDayKey = dateKey();
+  var day = ensureDay(currentDayKey);
+
+  function renderProtocol(){
+    var p = protocols[day.state] || null;
+    var el = $('#protocol');
+    if (!p){
+      el.innerHTML = '<div class="muted">还没有选择状态。点上面四个按钮之一，我会给你今天的具体任务菜单。</div>';
+      return;
+    }
+    var html = '<div style="font-weight:700;margin-bottom:6px">' + p.name + ' · 建议时间块：' + p.time + '</div>';
+    html += '<div class="muted" style="margin-bottom:4px">适合做：</div><div>' + p.good.map(function(x){return '<span class="pill">'+esc(x)+'</span>';}).join('') + '</div>';
+    html += '<div class="muted" style="margin:8px 0 4px">今天不要：</div><div>' + p.bad.map(function(x){return '<span class="pill">'+esc(x)+'</span>';}).join('') + '</div>';
+    html += '<div class="note">' + esc(p.tip) + '</div>';
+    el.innerHTML = html;
+    $$('.state-btn').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-state')===day.state); });
+  }
+
+  function renderTasks(){
+    for (var i=0;i<3;i++){
+      var cb = $('input[data-task="'+i+'"]');
+      var tx = $('input[data-task-text="'+i+'"]');
+      var t = day.tasks[i] || {text:'',done:false};
+      cb.checked = !!t.done;
+      tx.value = t.text || '';
+    }
+  }
+
+  function renderEnergy(){
+    var box = $('#energy');
+    var html = '';
+    for (var i=1;i<=5;i++){
+      html += '<button data-energy="'+i+'" class="'+(day.energy===i?'active':'')+'">'+i+'</button>';
+    }
+    box.innerHTML = html;
+    $('#sleep').value = day.sleep || '';
+    $('#review').value = day.review || '';
+    $('#focusCount').textContent = '今日已完成专注：' + (day.focusCount||0) + ' 次';
+  }
+
+  function setState(s){
+    day.state = s;
+    if (!day.state) day.state = null;
+    save();
+    renderProtocol();
+  }
+
+  $$('.state-btn').forEach(function(b){
+    b.addEventListener('click', function(){
+      var s = b.getAttribute('data-state');
+      setState(day.state === s ? null : s);
+    });
+  });
+
+  $$('input[data-task]').forEach(function(cb){
+    cb.addEventListener('change', function(){
+      var i = parseInt(cb.getAttribute('data-task'),10);
+      day.tasks[i].done = cb.checked;
+      save();
+    });
+  });
+  $$('input[data-task-text]').forEach(function(inp){
+    inp.addEventListener('input', function(){
+      var i = parseInt(inp.getAttribute('data-task-text'),10);
+      day.tasks[i].text = inp.value;
+      save();
+    });
+  });
+
+  $('#energy').addEventListener('click', function(e){
+    var b = e.target.closest('button[data-energy]');
+    if (!b) return;
+    var v = parseInt(b.getAttribute('data-energy'),10);
+    day.energy = (day.energy === v) ? null : v;
+    save();
+    renderEnergy();
+  });
+  $('#sleep').addEventListener('input', function(){ day.sleep = this.value; save(); });
+  $('#review').addEventListener('input', function(){ day.review = this.value; save(); });
+  $('#saveDay').addEventListener('click', function(){
+    save();
+    var hint = $('#saveHint');
+    hint.textContent = '已保存 ' + new Date().toTimeString().slice(0,5);
+    setTimeout(function(){ hint.textContent=''; }, 2500);
+  });
+
+  /* ---------- timer ---------- */
+  var timer = { left: 50*60, total: 50*60, running: false, id: null };
+  function fmt(sec){
+    var m = Math.floor(sec/60), s = sec%60;
+    return pad(m)+':'+pad(s);
+  }
+  function renderTimer(){
+    $('#timerDisplay').textContent = fmt(Math.max(0, timer.left));
+  }
+  function stopTimer(){
+    timer.running = false;
+    if (timer.id) { clearInterval(timer.id); timer.id = null; }
+  }
+  function tick(){
+    timer.left -= 1;
+    renderTimer();
+    if (timer.left <= 0){
+      stopTimer();
+      day.focusCount = (day.focusCount||0) + 1;
+      save();
+      renderEnergy();
+      beep();
+      $('#timerDisplay').textContent = '完成！';
+      setTimeout(function(){ renderTimer(); }, 4000);
+    }
+  }
+  function beep(){
+    try {
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
+      var ctx = new Ctx();
+      var o = ctx.createOscillator();
+      var g = ctx.createGain();
+      o.type = 'sine'; o.frequency.value = 880;
+      g.gain.value = 0.08;
+      o.connect(g); g.connect(ctx.destination);
+      o.start();
+      setTimeout(function(){ o.stop(); ctx.close(); }, 600);
+    } catch(e){}
+  }
+  $('#timerStart').addEventListener('click', function(){
+    if (timer.running) return;
+    if (timer.left <= 0) timer.left = timer.total;
+    timer.running = true;
+    timer.id = setInterval(tick, 1000);
+  });
+  $('#timerPause').addEventListener('click', stopTimer);
+  $('#timerReset').addEventListener('click', function(){
+    stopTimer();
+    timer.total = parseInt($('#timerLen').value,10)*60;
+    timer.left = timer.total;
+    renderTimer();
+  });
+  $('#timerLen').addEventListener('change', function(){
+    stopTimer();
+    timer.total = parseInt(this.value,10)*60;
+    timer.left = timer.total;
+    renderTimer();
+  });
+  renderTimer();
+
+  /* ---------- milestones ---------- */
+  var milestones = [
+    {id:'m1', label:'M1 · 2027-01-31 · P1 室内写实小景完成，能讲 5 分钟'},
+    {id:'m2', label:'M2 · 2027-04-30 · 作品集 v0.5（2 件）+ 简历 + 首批投递 5 家'},
+    {id:'m3', label:'M3 · 2027-06-30 · 3–4 件作品 + 60s Showreel + 工具'},
+    {id:'m4', label:'M4 · 2027-08-01 · 作品集 v1.0 + 秋招材料 + 模拟面试 4 场'},
+    {id:'m5', label:'M5 · 2027-11-30 · 秋招投递 15 家 + 面试 3 场 / offer'}
+  ];
+  function renderMilestones(){
+    var done = 0;
+    var html = '';
+    milestones.forEach(function(m){
+      if (state.milestones[m.id]) done++;
+      html += '<div class="milestone"><input type="checkbox" data-ms="'+m.id+'" '+(state.milestones[m.id]?'checked':'')+'><span>'+esc(m.label)+'</span></div>';
+    });
+    $('#milestones').innerHTML = html;
+    var pct = Math.round(done/milestones.length*100);
+    $('#milestoneBar').style.width = pct+'%';
+    $('#milestoneBar').parentNode.setAttribute('title', pct+'%');
+    $$('input[data-ms]').forEach(function(cb){
+      cb.addEventListener('change', function(){
+        state.milestones[cb.getAttribute('data-ms')] = cb.checked;
+        save(); renderMilestones();
+      });
+    });
+  }
+
+  var phases = [
+    {t:'P0 破冰（第 1–4 周，2026-11）', d:'环境收口、UE5/Blender 破冰、第一张完整渲染图', items:['第一张 1920×1080 渲染图','材质球 3 个','连续打卡 ≥14 天']},
+    {t:'P1 基础（第 5–16 周，2026-12 ~ 2027-02）', d:'材质/灯光/建模/Shader 入门 + P1 小景 + M1', items:['P1 室内小景 3–5 图 + 10s 镜头','Breakdown 1 篇','GAMES101 选章 4 讲 + PA0–PA3']},
+    {t:'P2 作品集 v0.5（第 17–32 周，2027-03 ~ 2027-06）', d:'P2 霓虹街角 + P3 材质包 + P4 角色 + P5 工具 v0.5', items:['P2 成图 + 15s 视频','P3 8 材质 + 2–3 HLSL','P5 工具 v0.5 + GitHub','首批投递 5–10 家']},
+    {t:'P3 冲刺/实习（第 33–40 周，2027-07 ~ 2027-08 中）', d:'作品集 v1.0 + Showreel + 秋招材料', items:['Showreel 60–90s','性能数据页','简历 v1 + 讲解稿 3 份','模拟面试 4 场']},
+    {t:'P4 秋招（2027-08 下旬 ~ 2027-11）', d:'网申/笔试/面试/复盘/补录', items:['投递 ≥15 家','真实面试 ≥3 场','秋招复盘']}
+  ];
+  function renderPhases(){
+    var html = '';
+    phases.forEach(function(p){
+      html += '<div style="margin-bottom:12px"><div style="font-weight:700">'+esc(p.t)+'</div><div class="muted">'+esc(p.d)+'</div><div>'+p.items.map(function(i){return '<span class="pill">'+esc(i)+'</span>';}).join('')+'</div></div>';
+    });
+    $('#phases').innerHTML = html;
+  }
+
+  /* ---------- projects ---------- */
+  var projectDefs = [
+    {id:'p1', name:'P1 · 室内写实小景 First Light', items:['参考板 + 白模 blockout','材质（地面/墙/金属/布料/玻璃）','3 套灯光 + 后期','3–5 张成图','10s 镜头视频','Breakdown 文档','性能数据']},
+    {id:'p2', name:'P2 · 霓虹街角 Neon Rain', items:['blockout + 3 机位','湿地面/霓虹/墙面材质','灯光 + 雾 + 后期','3–5 张成图','15s 视频','Breakdown + 性能数据','B站/博客发布']},
+    {id:'p3', name:'P3 · 材质 Shader 包 Material Lab', items:['PBR 材质 ×5','风格化 ×3','HLSL ×2–3','后处理 ×1','GIF + 节点图','一页文档']},
+    {id:'p4', name:'P4 · 角色渲染 + Niagara', items:['角色材质（皮肤/眼睛/头发）','三点布光 + 轮廓光','Niagara 特效 1 个','3 张成图','25s 视频','Breakdown']},
+    {id:'p5', name:'P5 · 管线工具 PipeCheck', items:['命名检查','资产体检（面数/贴图/UV）','一键导出','HTML/CSV 报告','UI 面板','GitHub README','2 分钟演示视频']}
+  ];
+  function renderProjects(){
+    var html = '';
+    projectDefs.forEach(function(p){
+      if (!state.projects[p.id]) state.projects[p.id] = {};
+      var done = 0;
+      var items = p.items.map(function(it, idx){
+        var key = 'i'+idx;
+        if (state.projects[p.id][key]) done++;
+        var cls = state.projects[p.id][key] ? 'item done' : 'item';
+        return '<label class="'+cls+'"><input type="checkbox" data-proj="'+p.id+'" data-item="'+key+'" '+(state.projects[p.id][key]?'checked':'')+'><span>'+esc(it)+'</span></label>';
+      }).join('');
+      var pct = Math.round(done/p.items.length*100);
+      html += '<div class="project"><div style="font-weight:700;margin-bottom:4px">'+esc(p.name)+'</div>'+
+              '<div class="muted" style="font-size:12px">'+done+'/'+p.items.length+' · '+pct+'%</div>'+
+              '<div class="bar"><i style="width:'+pct+'%"></i></div>'+
+              '<div>'+items+'</div></div>';
+    });
+    $('#projects').innerHTML = html;
+  }
+  $('#projects').addEventListener('change', function(e){
+    var cb = e.target.closest('input[data-proj]');
+    if (!cb) return;
+    var pid = cb.getAttribute('data-proj');
+    var key = cb.getAttribute('data-item');
+    if (!state.projects[pid]) state.projects[pid] = {};
+    state.projects[pid][key] = cb.checked;
+    save();
+    renderProjects();
+    renderStats();
+  });
+
+  /* ---------- tech track ---------- */
+  var techWeeks = [
+    {w:'W1 · UE5 技术地基（D1–D7）', items:['D1 环境与项目基线','D2 资产导入技术','D3 材质系统（母材质+实例）','D4 灯光技术（3 角度）','D5 后处理技术','D6 MRQ 出图','D7 性能基线']},
+    {w:'W2 · Shader 编程（D8–D14）', items:['D8 材质函数','D9 Rim Light HLSL','D10 Dissolve 溶解','D11 扫描线/UV 流动','D12 三平面映射','D13 后处理材质','D14 性能实测 + Material Lab v0.1']},
+    {w:'W3 · 工具链（D15–D21）', items:['D15 Blender Python 基础','D16 批量重命名+体检脚本','D17 安装 PipeCheck v0.1','D18 HTML 报告+FBX 导出','D19 UE Python 脚本','D20 用工具修资产','D21 工具文档+演示']},
+    {w:'W4 · 技术整合（D22–D30）', items:['D22 P1 材质','D23 P1 灯光+后期','D24 MRQ 出图','D25 灯光 3 方案','D26 性能优化','D27 技术 Breakdown','D28 面试自测 15 题','D29 作品集技术页','D30 复盘+进入 P1']}
+  ];
+  function renderTech(){
+    var html = '';
+    var done = 0, total = 0;
+    techWeeks.forEach(function(gw, wi){
+      var items = gw.items.map(function(label, ii){
+        var key = 'w' + wi + '_i' + ii;
+        total++;
+        if (state.tech[key]) done++;
+        var checked = state.tech[key] ? 'checked' : '';
+        var cls = state.tech[key] ? 'item done' : 'item';
+        return '<label class="' + cls + '"><input type="checkbox" data-tech="' + key + '" ' + checked + '><span>' + esc(label) + '</span></label>';
+      }).join('');
+      html += '<div class="project" style="margin-bottom:10px"><div style="font-weight:700;margin-bottom:4px">' + esc(gw.w) + '</div>' + items + '</div>';
+    });
+    $('#techDrills').innerHTML = html;
+    var pct = total ? Math.round(done / total * 100) : 0;
+    $('#techBar').style.width = pct + '%';
+    $('#techNote').textContent = '技术向进度：' + done + '/' + total + '（' + pct + '%）· 参考 09_技术向_30天启动.md';
+  }
+  $('#techDrills').addEventListener('change', function(e){
+    var cb = e.target.closest('input[data-tech]');
+    if (!cb) return;
+    state.tech[cb.getAttribute('data-tech')] = cb.checked;
+    save();
+    renderTech();
+  });
+
+  /* ---------- stats ---------- */
+  function dayHasActivity(d){
+    if (!d) return false;
+    if (d.state) return true;
+    if (d.review && d.review.trim()) return true;
+    if (d.energy) return true;
+    if (d.tasks && d.tasks.some(function(t){ return t.done; })) return true;
+    return false;
+  }
+  function calcStreak(){
+    var streak = 0;
+    var d = new Date();
+    if (!dayHasActivity(state.days[dateKey(d)])) d.setDate(d.getDate()-1);
+    while (true){
+      var k = dateKey(d);
+      if (dayHasActivity(state.days[k])) { streak++; d.setDate(d.getDate()-1); }
+      else break;
+    }
+    return streak;
+  }
+  function renderStats(){
+    var activeDays = 0, tasksDone = 0, focusTotal = 0;
+    for (var k in state.days){
+      if (!Object.prototype.hasOwnProperty.call(state.days, k)) continue;
+      if (dayHasActivity(state.days[k])) activeDays++;
+      var d = state.days[k];
+      if (d.tasks) d.tasks.forEach(function(t){ if (t.done) tasksDone++; });
+      focusTotal += (d.focusCount||0);
+    }
+    var projDone = 0, projTotal = 0;
+    projectDefs.forEach(function(p){
+      var obj = state.projects[p.id] || {};
+      p.items.forEach(function(it, idx){
+        projTotal++;
+        if (obj['i'+idx]) projDone++;
+      });
+    });
+    var msDone = 0;
+    milestones.forEach(function(m){ if (state.milestones[m.id]) msDone++; });
+
+    $('#stats').innerHTML =
+      '<div class="stat"><div class="n">'+calcStreak()+'</div><div class="l">连续打卡（天）</div></div>'+
+      '<div class="stat"><div class="n">'+activeDays+'</div><div class="l">累计活跃天数</div></div>'+
+      '<div class="stat"><div class="n">'+tasksDone+'</div><div class="l">完成任务数</div></div>'+
+      '<div class="stat"><div class="n">'+focusTotal+'</div><div class="l">专注次数</div></div>'+
+      '<div class="stat"><div class="n">'+Math.round(projDone/projTotal*100)+'%</div><div class="l">作品集进度</div></div>'+
+      '<div class="stat"><div class="n">'+msDone+'/5</div><div class="l">里程碑</div></div>';
+
+    /* chart last 8 weeks */
+    var weeks = [];
+    var base = new Date();
+    for (var w=7; w>=0; w--){
+      var d = new Date(base.getFullYear(), base.getMonth(), base.getDate()-w*7);
+      var wk = mondayKey(d);
+      weeks.push({key: wk, label: wk.slice(5)});
+    }
+    var maxH = 1;
+    weeks.forEach(function(w){ var v = state.weekly[w.key]||0; if (v>maxH) maxH=v; });
+    var chart = '';
+    weeks.forEach(function(w){
+      var v = state.weekly[w.key]||0;
+      var h = Math.max(2, Math.round(v/maxH*90));
+      chart += '<div class="col"><b>'+(v||'')+'</b><i style="height:'+h+'px"></i><span>'+w.label+'</span></div>';
+    });
+    $('#chart').innerHTML = chart;
+    var cur = mondayKey(new Date());
+    $('#weekHours').value = state.weekly[cur] || '';
+  }
+  $('#saveWeek').addEventListener('click', function(){
+    var v = parseFloat($('#weekHours').value);
+    if (isNaN(v) || v < 0) v = 0;
+    state.weekly[mondayKey(new Date())] = v;
+    save();
+    renderStats();
+    $('#weekHint').textContent = '已保存';
+    setTimeout(function(){ $('#weekHint').textContent=''; }, 2000);
+  });
+
+  /* ---------- resources ---------- */
+  var resourceGroups = [
+    {t:'UE5 官方', links:[['UE 文档','https://dev.epicgames.com/documentation/unreal-engine'],['UE 学习社区','https://dev.epicgames.com/community/learning'],['MRQ 文档','https://dev.epicgames.com/documentation/en-us/unreal-engine/rendering-high-quality-frames-with-movie-render-queue-in-unreal-engine']]},
+    {t:'视频主课', links:[['Blender 4.0 入门 BV11H4y1P7RV','https://www.bilibili.com/video/BV11H4y1P7RV/'],['Blender Guru 5.0 BV1nTL76xEca','https://www.bilibili.com/video/BV1nTL76xEca/'],['UE5 峡谷深处 BV1zg4y1375m','https://www.bilibili.com/video/BV1zg4y1375m/'],['UE5 第一个材质 BV1gBa7zAEED','https://www.bilibili.com/video/BV1gBa7zAEED/'],['GAMES101 BV1X7411F744','https://www.bilibili.com/video/BV1X7411F744/'],['GAMES202 BV1YK4y1T7yY','https://www.bilibili.com/video/BV1YK4y1T7yY/']]},
+    {t:'美术基础', links:[['Proko BV1RG5CzPEni','https://www.bilibili.com/video/BV1RG5CzPEni/'],['ArtStation','https://www.artstation.com/'],['80.lv','https://80.lv/'],['TalkArtist','https://talkartist.cn/']]},
+    {t:'行业/面试', links:[['鸣潮 UFSH2023 BV1BK411v7FY','https://www.bilibili.com/video/BV1BK411v7FY/'],['鸣潮抓帧分析','https://whlsl.github.io/2024/10/10/%E9%B8%A3%E6%BD%AE%E6%8A%93%E5%B8%A7%E5%88%86%E6%9E%90/'],['Rain Yan 灯光 breakdown','https://80.lv/articles/the-changing-seasons-ue5-feudal-japan-cinematic-lighting-studies/'],['库洛招聘','https://kurogame.jobs.feishu.cn/index/position/list']]},
+    {t:'任务引导 / 视频课表', links:[['总执行手册（所有任务+教程）','技术向/SUN美术TA_总执行手册.html'],['总执行手册（Markdown）','13_总执行手册_任务与教程.md'],['最终清单：学什么/不学什么','12_最终学习清单_岗位导向.md'],['最终清单（图解）','技术向/SUN美术TA_学什么不学什么.html'],['零基础 10 天重启（视频引导）','技术向/零基础10天重启_视频引导.html'],['P2 灯光视频引导','技术向/P2灯光任务_视频引导.html'],['视频课表（按任务）','技术向/视频课表_按任务.md'],['UE 学习助手说明','技术向/UE学习助手_使用说明.md']]}
+  ];
+  function renderResources(){
+    var html = '';
+    resourceGroups.forEach(function(g){
+      html += '<div class="res-group"><h3>'+esc(g.t)+'</h3>';
+      g.links.forEach(function(l){ html += '<a href="'+l[1]+'" target="_blank" rel="noopener">'+esc(l[0])+'</a>'; });
+      html += '</div>';
+    });
+    $('#resourceGroups').innerHTML = html;
+  }
+
+  /* ---------- tabs ---------- */
+  $$('#tabs button').forEach(function(b){
+    b.addEventListener('click', function(){
+      $$('#tabs button').forEach(function(x){ x.classList.remove('active'); });
+      b.classList.add('active');
+      var id = b.getAttribute('data-tab');
+      $$('main section, .wrap > section').forEach(function(s){ s.classList.remove('active'); });
+      var sec = document.getElementById(id);
+      if (sec) sec.classList.add('active');
+      if (id === 'data') renderStats();
+    });
+  });
+
+  /* ---------- export/import/reset ---------- */
+  $('#exportBtn').addEventListener('click', function(){
+    var data = JSON.stringify(state, null, 2);
+    var blob = new Blob([data], {type:'application/json'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'TA学习面板备份_'+dateKey()+'.json';
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+  });
+  $('#importFile').addEventListener('change', function(e){
+    var f = e.target.files[0];
+    if (!f) return;
+    var reader = new FileReader();
+    reader.onload = function(){
+      try {
+        var obj = JSON.parse(reader.result);
+        if (!obj || typeof obj !== 'object') throw new Error('bad');
+        state = obj;
+        if (!state.days) state.days = {};
+        if (!state.milestones) state.milestones = {};
+        if (!state.projects) state.projects = {};
+        if (!state.weekly) state.weekly = {};
+        if (!state.tech) state.tech = {};
+        save();
+        day = ensureDay(currentDayKey);
+        renderAll();
+        alert('导入成功');
+      } catch(err){ alert('导入失败：不是有效的备份文件'); }
+    };
+    reader.readAsText(f);
+  });
+  $('#resetBtn').addEventListener('click', function(){
+    if (!confirm('确定清空全部打卡/进度数据？此操作不可恢复，建议先导出备份。')) return;
+    state = defaultState();
+    save();
+    day = ensureDay(currentDayKey);
+    renderAll();
+  });
+
+  /* ---------- init ---------- */
+  function renderAll(){
+    renderCountdowns();
+    renderProtocol();
+    renderTasks();
+    renderEnergy();
+    renderMilestones();
+    renderPhases();
+    renderProjects();
+    renderTech();
+    renderStats();
+    renderResources();
+    $('#timerLen').value = '50';
+    timer.total = 50*60; timer.left = timer.total; stopTimer(); renderTimer();
+  }
+  renderAll();
+})();
+</script>
+</body>
+</html>

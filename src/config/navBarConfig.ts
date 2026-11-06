@@ -74,6 +74,9 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 			// TA 作战计划（2028 届）
 			LinkPresets.Plan,
 
+			// TA 学习系统（平板可读）
+			LinkPresets.TASystem,
+
 			// SUN 作战面板
 			LinkPresets.Quest,
 
@@ -224,6 +227,11 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		name: "TA 作战计划",
 		url: "/plan/",
 		icon: "material-symbols:flag",
+	},
+	TASystem: {
+		name: "TA 学习系统",
+		url: "/ta/",
+		icon: "material-symbols:menu-book",
 	},
 	Quest: {
 		name: "SUN 作战面板",

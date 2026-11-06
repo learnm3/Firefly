@@ -1,0 +1,44 @@
+---
+import { getCollection, render } from "astro:content";
+import Markdown from "@components/common/Markdown.astro";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+
+export async function getStaticPaths() {
+	const entries = await getCollection("ta");
+	return entries.map((entry) => ({
+		params: { slug: entry.id },
+		props: { entry },
+	}));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const entries = (await getCollection("ta"))
+	.filter((e) => !e.data.draft)
+	.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+const index = entries.findIndex((e) => e.id === entry.id);
+const prev = index > 0 ? entries[index - 1] : null;
+const next = index >= 0 && index < entries.length - 1 ? entries[index + 1] : null;
+---
+
+<MainGridLayout title={entry.data.title} description={entry.data.description}>
+	<div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32 mb-4">
+		<div class="card-base z-10 px-6 md:px-9 py-6 relative w-full">
+			<a href="/ta/" class="inline-flex items-center gap-1 text-xs text-50 hover:text-(--primary) transition-colors mb-3">
+				← 返回 TA 学习系统
+			</a>
+			<h1 class="text-3xl md:text-[2.1rem] font-bold text-90 mb-2">{entry.data.title}</h1>
+			{entry.data.description && <p class="text-sm text-50 mb-2">{entry.data.description}</p>}
+			<div class="border-(--line-divider) border-dashed border-b mb-5" />
+			<Markdown class="markdown-content">
+				<Content />
+			</Markdown>
+
+			<div class="flex flex-wrap justify-between gap-3 mt-8 pt-4 border-t border-(--line-divider) text-sm">
+				{prev ? <a href={`/ta/${prev.id}/`} class="text-(--primary) hover:underline">← {prev.data.title}</a> : <span />}
+				{next ? <a href={`/ta/${next.id}/`} class="text-(--primary) hover:underline">{next.data.title} →</a> : <span />}
+			</div>
+		</div>
+	</div>
+</MainGridLayout>

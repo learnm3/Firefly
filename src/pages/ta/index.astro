@@ -1,0 +1,94 @@
+---
+import { getCollection } from "astro:content";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+
+const entries = (await getCollection("ta"))
+	.filter((e) => !e.data.draft)
+	.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+
+const guides = [
+	{
+		title: "总执行手册（所有任务 + 系列教程）",
+		desc: "45 项可勾选任务、4 阶段路线、28 张教程卡片；平板可直接阅读。",
+		href: "/ta/guides/master-manual/",
+		icon: "📘",
+	},
+	{
+		title: "零基础 10 天重启（视频引导）",
+		desc: "10 天每日任务 + 已核验视频 + 进度勾选。",
+		href: "/ta/guides/zero10/",
+		icon: "🧭",
+	},
+	{
+		title: "P2 灯光任务（视频引导）",
+		desc: "灯光/曝光对比实验：分步图文 + 内嵌视频。",
+		href: "/ta/guides/p2-lighting/",
+		icon: "💡",
+	},
+	{
+		title: "学什么 / 不学什么（最终版）",
+		desc: "按 SUN 美术 TA JD 过滤的最终学习地图。",
+		href: "/ta/guides/what-to-learn/",
+		icon: "🎯",
+	},
+];
+---
+
+<MainGridLayout
+	title="TA 学习系统"
+	description="库洛 SUN-美术 TA（程序向打法）学习系统：10 天重启、30 天技术线、作品集规划、系列教程与执行手册。"
+>
+	<div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32 mb-4">
+		<div class="card-base z-10 px-6 md:px-9 py-7 relative w-full">
+			<div class="text-xs text-50 mb-2">奋斗路径 · 程序向 TA</div>
+			<h1 class="text-3xl md:text-[2.2rem] font-bold text-90 mb-3">TA 学习系统</h1>
+			<p class="text-sm text-60 leading-relaxed">
+				目标：<strong>库洛 SUN-美术 TA 实习生</strong>（主投）+ 程序向 TA（秋招双投）。
+				方向：<strong>UE5 渲染 + Shader/HLSL + 性能 + DCC/UE 工具 + 图形学</strong>；
+				美术只做"判断"训练，每天 10–15 分钟。所有任务和系列教程都已按 JD 过滤。
+			</p>
+			<div class="flex flex-wrap gap-2 mt-4 text-xs">
+				<span class="px-3 py-1 rounded-full bg-(--btn-plain-bg) text-60">技术 70%</span>
+				<span class="px-3 py-1 rounded-full bg-(--btn-plain-bg) text-60">美术判断 15%</span>
+				<span class="px-3 py-1 rounded-full bg-(--btn-plain-bg) text-60">输出 15%</span>
+				<span class="px-3 py-1 rounded-full bg-(--btn-plain-bg) text-60">1080p / RTX 4070 8GB</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="card-base px-6 md:px-9 py-6 mb-4">
+		<h2 class="text-lg font-bold text-90 mb-3">交互式引导（平板可直接打开）</h2>
+		<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+			{guides.map((g) => (
+				<a
+					href={g.href}
+					class="block rounded-xl border border-(--line-divider) p-4 hover:border-(--primary) transition-colors"
+				>
+					<div class="flex items-center gap-2 font-bold text-90">
+						<span>{g.icon}</span>
+						<span>{g.title}</span>
+					</div>
+					<div class="text-xs text-50 mt-1.5 leading-relaxed">{g.desc}</div>
+				</a>
+			))}
+		</div>
+		<p class="text-xs text-40 mt-3">这些页面带视频、勾选进度和深色排版；部分交互（勾选）保存在你当前设备的浏览器里。</p>
+	</div>
+
+	<div class="card-base px-6 md:px-9 py-6">
+		<h2 class="text-lg font-bold text-90 mb-3">文档目录（按顺序读）</h2>
+		<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+			{entries.map((entry) => (
+				<a
+					href={`/ta/${entry.id}/`}
+					class="block rounded-xl border border-(--line-divider) p-4 hover:border-(--primary) transition-colors"
+				>
+					<div class="text-sm font-bold text-90">
+						{entry.data.title}
+					</div>
+					{entry.data.description && <div class="text-xs text-50 mt-1.5 leading-relaxed">{entry.data.description}</div>}
+				</a>
+			))}
+		</div>
+	</div>
+</MainGridLayout>

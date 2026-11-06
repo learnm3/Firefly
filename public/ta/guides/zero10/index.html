@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>零基础 10 天重启 · UE5 视频引导</title>
+<style>
+:root{--bg:#0d1015;--panel:#151a22;--panel2:#1b222c;--line:#2a3442;--text:#e8edf5;--muted:#8b98a9;--accent:#4fd1c5;--accent2:#f6c453;--green:#48bb78;--red:#f56565;--purple:#b794f4}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:"Segoe UI","Microsoft YaHei","PingFang SC",system-ui,sans-serif;line-height:1.65;padding-bottom:60px}
+.wrap{max-width:1000px;margin:0 auto;padding:20px}
+header{padding:8px 0 16px;border-bottom:1px solid var(--line)}
+h1{font-size:23px}h1 span{color:var(--accent)}
+.sub{color:var(--muted);font-size:13px;margin-top:5px}
+.badges{margin:10px 0 4px}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:12px;color:var(--muted);margin:3px 6px 3px 0}
+.badge.hot{color:var(--accent2);border-color:#5a4a1f}
+.progress{height:9px;background:#0a0e13;border-radius:999px;overflow:hidden;margin:14px 0 4px}
+.progress i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}
+.progress-txt{font-size:12px;color:var(--muted)}
+h2{font-size:17px;color:var(--accent);margin:26px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+.answer{border-color:#4a3f1f;background:linear-gradient(180deg,#1d1a10,#151a22)}
+.answer h2{color:var(--accent2);border-color:#4a3f1f;margin-top:0}
+.day{display:flex;gap:14px}
+.num{flex:0 0 42px;height:42px;border-radius:12px;background:var(--panel2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent2);font-size:15px}
+.body{flex:1}
+.day h3{font-size:16px;margin-bottom:3px}
+.meta{font-size:12px;color:var(--muted);margin-bottom:8px}
+.do{font-size:14px;margin:6px 0}
+.do b{color:var(--accent)}
+ul{margin:6px 0 6px 20px;font-size:14px}li{margin:4px 0}
+.out{font-size:13px;color:var(--muted);border-left:2px solid var(--line);padding:6px 0 6px 10px;margin-top:8px}
+.out b{color:var(--green)}
+.done{margin-top:10px;font-size:13px;color:var(--muted)}
+.done input{width:17px;height:17px;vertical-align:-3px;accent-color:var(--accent);margin-right:6px}
+.video-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+button.btn{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer;font-size:13px}
+button.btn.primary{background:var(--accent);color:#06222a;font-weight:700;border-color:var(--accent)}
+button.btn.purple{background:#2d1f3d;color:#e9d8ff;border-color:#4c3570}
+a.btn{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 12px;font-size:13px;text-decoration:none;display:inline-block}
+.video-box{margin-top:10px}
+iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:8px;background:#000}
+.tip{background:#122024;border:1px solid #1f4a48;border-radius:10px;padding:10px 14px;font-size:13px;margin:10px 0}
+.tip b{color:var(--accent)}
+.g10 a{color:var(--accent);margin-right:10px;font-size:13px;white-space:nowrap}
+pre{background:#0a0e13;border:1px solid var(--line);border-radius:8px;padding:12px;overflow:auto;font-size:12.5px;line-height:1.5;margin:8px 0;color:#cfe7ff}
+textarea{width:100%;min-height:80px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);padding:10px;font-family:inherit;font-size:14px;resize:vertical}
+.rule{font-size:13px;color:var(--muted)}
+.rule b{color:var(--accent2)}
+footer{color:var(--muted);font-size:12px;text-align:center;margin-top:28px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>零基础 10 天重启 <span>· UE5 跟做</span></h1>
+  <div class="sub">从"打开 UE 不知道点哪"到"能出两张灯光成图"。每天 40–60 分钟，做一个能截图的东西。</div>
+  <div class="badges">
+    <span class="badge hot">环境已就绪，不用重装/重配</span>
+    <span class="badge">方向：程序向 TA（技术 70%）</span>
+    <span class="badge">UE 5.7</span>
+    <span class="badge">视频只看 5–10 分钟就暂停动手</span>
+    <span class="badge">产出存 05_Renders\零基础</span>
+  </div>
+  <div class="progress"><i id="bar"></i></div>
+  <div class="progress-txt" id="barTxt">进度 0 / 10</div>
+</header>
+
+<div class="card answer">
+  <h2>先回答：GAMES101 还要看吗？</h2>
+  <p style="font-size:14px">前 10 天<strong style="color:#f6c453">不排</strong>，但不是"不看"：你是<strong>程序向 TA</strong>，图形学是底子。第 11 天起每周 2 讲（1.25x），选 10–11 讲；**PA1/PA2 可选，不做全课作业**。</p>
+  <p style="font-size:14px;margin-top:8px">第 11 天起按顺序看：</p>
+  <div class="g10" style="margin-top:8px">
+    <a href="https://www.bilibili.com/video/BV1X7411F744/?p=3" target="_blank" rel="noopener">L03 变换</a>
+    <a href="https://www.bilibili.com/video/BV1X7411F744/?p=5" target="_blank" rel="noopener">L05 光栅化</a>
+    <a href="https://www.bilibili.com/video/BV1X7411F744/?p=6" target="_blank" rel="noopener">L06 抗锯齿/Z-Buffer</a>
+    <a href="https://www.bilibili.com/video/BV1X7411F744/?p=7" target="_blank" rel="noopener">L07 着色</a>
+    <a href="https://www.bilibili.com/video/BV1X7411F744/?p=8" target="_blank" rel="noopener">L08 渲染管线</a>
+    <a href="https://www.bilibili.com/video/BV1X7411F744/?p=9" target="_blank" rel="noopener">L09 纹理</a>
+    <a href="https://www.bilibili.com/video/BV1X7411F744/?p=13" target="_blank" rel="noopener">L13 光追概念</a>
+    <a href="https://www.bilibili.com/video/BV1X7411F744/?p=15" target="_blank" rel="noopener">L15 光追进阶</a>
+    <a href="https://www.bilibili.com/video/BV1X7411F744/?p=16" target="_blank" rel="noopener">L16 蒙特卡洛</a>
+    <a href="https://www.bilibili.com/video/BV1X7411F744/?p=19" target="_blank" rel="noopener">L19 相机</a>
+    <a href="https://www.bilibili.com/video/BV1X7411F744/?p=20" target="_blank" rel="noopener">L20 色彩</a>
+  </div>
+  <p class="rule" style="margin-top:8px">GAMES202 等做 PBR/阴影专项时选 3 个主题即可；优先级：UE 作品集 &gt; GAMES101。</p>
+</div>
+
+<div class="tip"><b>10 天规则：</b>视频最多看 20 分钟 → <b>暂停，自己动手</b> → 有产出再继续。做不出来先跳过，第二天继续；连续 10 天 × 40 分钟 > 周末突击 5 小时。</div>
+
+<h2>10 天安排</h2>
+
+<div class="card day"><div class="num">D1</div><div class="body">
+  <h3>UE5 界面 + 移动视角 + 放物体</h3><div class="meta">40 分钟 · 只看前 2–3 集</div>
+  <div class="do">打开 <b>P2_NeonStreet.uproject</b>；学鼠标左键选中、右键+WASD 移动、F 聚焦；放 <b>1 Plane + 3 Cube</b>。</div>
+  <div class="video-row">
+    <button class="btn primary" data-bvid="BV1Cd4y1V7G5" data-title="GenJi UE5.1 全中文新手入门">播放 GenJi 新手课</button>
+    <a class="btn" href="https://www.bilibili.com/video/BV1Cd4y1V7G5/" target="_blank" rel="noopener">B站打开</a>
+    <button class="btn" data-bvid="BV1qYSvBHELW" data-title="星露 UE5 零基础完整系列">备选：星露系列</button>
+  </div>
+  <div class="video-box"></div>
+  <div class="out"><b>产出：</b>F9 截图 → <b>05_Renders\零基础\Day1_三个方块.png</b></div>
+  <div class="done"><label><input type="checkbox" data-day="d1">D1 完成</label></div>
+</div></div>
+
+<div class="card day"><div class="num">D2</div><div class="body">
+  <h3>材质第一课：颜色 / 粗糙度 / 金属度</h3><div class="meta">40 分钟</div>
+  <div class="do">新建 <b>M_Basic</b>；BaseColor 改色、Roughness 0.2/0.5/0.8、Metallic 0/1；做 3 个材质实例赋给 3 个 Cube。</div>
+  <div class="video-row">
+    <button class="btn primary" data-bvid="BV1gBa7zAEED" data-title="UE5 创建你的第一个材质">播放：第一个材质 11:34</button>
+    <a class="btn" href="https://www.bilibili.com/video/BV1gBa7zAEED/" target="_blank" rel="noopener">B站打开</a>
+    <button class="btn" data-bvid="BV1qw4bzZEy5" data-title="UE5 材质节点基础">播放：节点基础 6:27</button>
+  </div>
+  <div class="video-box"></div>
+  <div class="out"><b>产出：</b>3 张材质球截图 → 05_Renders\零基础\Day2_*；1 行笔记：粗糙度/金属度改了什么</div>
+  <div class="done"><label><input type="checkbox" data-day="d2">D2 完成</label></div>
+</div></div>
+
+<div class="card day"><div class="num">D3</div><div class="body">
+  <h3>灯光第一课：主光 + 天光 + 3 个角度</h3><div class="meta">40 分钟</div>
+  <div class="do">放 <b>DirectionalLight + SkyLight + SkyAtmosphere</b>；同一机位换 3 个主光角度/强度，各截 1 张。</div>
+  <div class="video-row">
+    <button class="btn primary" data-bvid="BV1VTtyzeENo" data-title="UE5 室内灯光全流程">播放：灯光全流程 21:54（前 10 分钟）</button>
+    <a class="btn" href="https://www.bilibili.com/video/BV1VTtyzeENo/" target="_blank" rel="noopener">B站打开</a>
+  </div>
+  <div class="video-box"></div>
+  <div class="out"><b>产出：</b>Day3_灯光_01/02/03.png；观察阴影方向、明暗对比、天光补色</div>
+  <div class="done"><label><input type="checkbox" data-day="d3">D3 完成</label></div>
+</div></div>
+
+<div class="card day"><div class="num">D4</div><div class="body">
+  <h3>相机与截图</h3><div class="meta">40 分钟</div>
+  <div class="do">Place Actors → <b>Camera Actor</b>，调机位；视口左上角切到相机（Pilot）；学三分法/前景中景背景；F9 出 1920×1080。</div>
+  <div class="out"><b>产出：</b>05_Renders\零基础\Day4_相机成图.png；面板记录 Day4</div>
+  <div class="done"><label><input type="checkbox" data-day="d4">D4 完成</label></div>
+</div></div>
+
+<div class="card day"><div class="num">D5</div><div class="body">
+  <h3>后期与曝光：-1.0 vs +0.5</h3><div class="meta">40 分钟</div>
+  <div class="do">放 <b>PostProcessVolume</b>（勾 Infinite Extent）；Exposure Compensation 设 -1.0 截一张、+0.5 截一张。</div>
+  <div class="video-row">
+    <button class="btn primary" data-bvid="BV1NUGtzqEhW" data-title="2025 虚幻引擎5 渲染指南">播放：渲染指南 13:06</button>
+    <a class="btn" href="https://www.bilibili.com/video/BV1NUGtzqEhW/" target="_blank" rel="noopener">B站打开</a>
+  </div>
+  <div class="video-box"></div>
+  <div class="out"><b>产出：</b>Day5_曝光_-1.png / Day5_曝光_+0.5.png；1 行笔记：哪张更适合你的场景，为什么</div>
+  <div class="done"><label><input type="checkbox" data-day="d5">D5 完成</label></div>
+</div></div>
+
+<div class="card day"><div class="num">D6</div><div class="body">
+  <h3>搭一个 5 物件的小场景</h3><div class="meta">60 分钟</div>
+  <div class="do">用 2 Box + 2 Cylinder + 1 Plane 摆出前后层次；给 3 个材质；按 D3/D5 打光 + 曝光；截白模和成图各 1 张。</div>
+  <div class="video-row">
+    <button class="btn primary" data-bvid="BV1zg4y1375m" data-title="UE5 峡谷深处写实场景小案例">播放：小案例 11:05</button>
+    <a class="btn" href="https://www.bilibili.com/video/BV1zg4y1375m/" target="_blank" rel="noopener">B站打开</a>
+  </div>
+  <div class="video-box"></div>
+  <div class="out"><b>产出：</b>Day6_白模.png + Day6_成图.png</div>
+  <div class="done"><label><input type="checkbox" data-day="d6">D6 完成</label></div>
+</div></div>
+
+<div class="card day"><div class="num">D7</div><div class="body">
+  <h3>复盘 + 发布</h3><div class="meta">30 分钟</div>
+  <div class="do">选 1 张最好的图；写 3 行（做了什么/卡在哪/下周先学什么）；发 1 条 B站动态或朋友圈；面板勾 D1。</div>
+  <div class="out"><b>产出：</b>3 行笔记 + 1 条公开动态 + 面板 D1</div>
+  <div class="done"><label><input type="checkbox" data-day="d7">D7 完成</label></div>
+</div></div>
+
+<div class="card day"><div class="num">D8</div><div class="body">
+  <h3>Blender 界面 + 建一个简单道具</h3><div class="meta">50 分钟</div>
+  <div class="do">只看 Blender 入门课的"界面/移动/建模基础"3–5 集；做一个箱子/灯柱/杯子；学会 G/R/S/Tab/E。</div>
+  <div class="video-row">
+    <button class="btn primary" data-bvid="BV11H4y1P7RV" data-title="Blender 4.0 零基础入门教程">播放：Blender 4.0 入门（选章节）</button>
+    <a class="btn" href="https://www.bilibili.com/video/BV11H4y1P7RV/" target="_blank" rel="noopener">B站打开</a>
+  </div>
+  <div class="video-box"></div>
+  <div class="out"><b>产出：</b>1 个 `.blend` 道具文件（放 01_Learning 下）</div>
+  <div class="done"><label><input type="checkbox" data-day="d8">D8 完成</label></div>
+</div></div>
+
+<div class="card day"><div class="num">D9</div><div class="body">
+  <h3>Blender → UE 管线</h3><div class="meta">50 分钟</div>
+  <div class="do">导出 FBX（Apply Scalings: FBX All，-Z Forward / Y Up）→ 导入 UE；检查缩放/法线/材质槽/UV；赋材质。</div>
+  <div class="video-row">
+    <button class="btn primary" data-bvid="BV1N1Yk6EEwD" data-title="Blender 到 UE5 资产流程">播放：资产流程（只看导出/导入章节）</button>
+    <a class="btn" href="https://www.bilibili.com/video/BV1N1Yk6EEwD/" target="_blank" rel="noopener">B站打开</a>
+  </div>
+  <div class="video-box"></div>
+  <div class="out"><b>产出：</b>Day9_导入UE.png + 3 条踩坑</div>
+  <div class="done"><label><input type="checkbox" data-day="d9">D9 完成</label></div>
+</div></div>
+
+<div class="card day"><div class="num">D10</div><div class="body">
+  <h3>组合 + 第二张成图</h3><div class="meta">50 分钟</div>
+  <div class="do">把 D9 道具放进 D6 场景；调一次灯光/曝光；F9 出第二张成图；写 3 行复盘；面板勾 D2。</div>
+  <div class="out"><b>产出：</b>Day10_成图2.png + 3 行笔记 + 面板 D2</div>
+  <div class="done"><label><input type="checkbox" data-day="d10">D10 完成</label></div>
+</div></div>
+
+<h2>每天结束记 3 行（本地保存）</h2>
+<div class="card">
+  <textarea id="note" placeholder="今天做了什么 → 卡在哪 → 明天先做什么"></textarea>
+  <p class="rule" style="margin-top:6px"><button class="btn" id="saveNote">保存笔记</button> <button class="btn" id="copyNote">复制</button> <span id="hint"></span></p>
+</div>
+
+<h2>工具与链接</h2>
+<div class="card">
+  <p style="font-size:14px">UE 里卡住时，可在 Output Log → Python 运行：</p>
+  <pre>import sys; sys.path.append(r"E:/TA_Workspace/02_Portfolio/P2_NeonStreet/Content/Python"); import ta_guide; ta_guide.help()</pre>
+  <p class="rule">常用：<b>ta_guide.setup_lighting_scene()</b> 搭测试场景 ｜ <b>ta_guide.exposure(-1)</b> 改曝光 ｜ <b>ta_guide.shot("Day1")</b> 截图到 05_Renders ｜ <b>ta_guide.open_guide()</b> 打开本页</p>
+  <p style="margin-top:10px">
+    <a class="btn" href="/ta/10-zero-10days/">10 天计划文档</a>
+    <a class="btn" href="/ta/guides/p2-lighting/">P2 灯光引导（11 天后）</a>
+    <a class="btn" href="/ta/tech-videos/">视频课表</a>
+    <a class="btn" href="/ta/00-start/">00 总览</a>
+  </p>
+</div>
+
+<footer>TA 学习系统 v2 · 链接已用 B站 API 核验（2026-11-06）· 进度保存在本机浏览器</footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var KEY='ta_zero_10days_v1';
+  var $=function(s,r){return (r||document).querySelector(s);};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+  function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return{};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));return true;}catch(e){return false;}}
+  var st=load(); if(!st.days)st.days={}; if(typeof st.note!=='string')st.note='';
+  var boxes=$$('input[data-day]');
+  function progress(){
+    var done=0; boxes.forEach(function(b){if(b.checked)done++;});
+    var pct=Math.round(done/boxes.length*100);
+    $('#bar').style.width=pct+'%';
+    $('#barTxt').textContent='进度 '+done+' / '+boxes.length+'（'+pct+'%）'+(done===boxes.length?' · 完成！去勾面板 D1/D2':'');
+  }
+  boxes.forEach(function(b){
+    var id=b.getAttribute('data-day'); b.checked=!!st.days[id];
+    b.addEventListener('change',function(){st.days[id]=b.checked;save(st);progress();});
+  });
+  progress();
+  var note=$('#note'); note.value=st.note||'';
+  note.addEventListener('input',function(){st.note=note.value;save(st);});
+  $('#saveNote').addEventListener('click',function(){st.note=note.value;save(st);$('#hint').textContent='已保存';setTimeout(function(){$('#hint').textContent='';},2000);});
+  $('#copyNote').addEventListener('click',function(){note.select();note.setSelectionRange(0,note.value.length);try{document.execCommand('copy');$('#hint').textContent='已复制';}catch(e){$('#hint').textContent='请手动复制';}setTimeout(function(){$('#hint').textContent='';},2000);});
+  $$('button[data-bvid]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var box=btn.closest('.body').querySelector('.video-box');
+      if(box.querySelector('iframe'))return;
+      var bv=btn.getAttribute('data-bvid');
+      var f=document.createElement('iframe');
+      f.src='https://player.bilibili.com/player.html?bvid='+encodeURIComponent(bv)+'&page=1&high_quality=1&danmaku=0&autoplay=0';
+      f.allowFullscreen=true;f.loading='lazy';
+      box.appendChild(f); btn.textContent='已加载'; btn.disabled=true;
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P2 灯光/曝光对比 · 视频引导</title>
+<style>
+:root{--bg:#0d1015;--panel:#151a22;--panel2:#1b222c;--line:#2a3442;--text:#e8edf5;--muted:#8b98a9;--accent:#4fd1c5;--accent2:#f6c453;--green:#48bb78;--red:#f56565}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:"Segoe UI","Microsoft YaHei","PingFang SC",system-ui,sans-serif;line-height:1.65;padding-bottom:60px}
+.wrap{max-width:1000px;margin:0 auto;padding:20px}
+header{padding:10px 0 16px;border-bottom:1px solid var(--line)}
+h1{font-size:23px;letter-spacing:.3px}
+h1 span{color:var(--accent)}
+.sub{color:var(--muted);font-size:13px;margin-top:5px}
+.badges{margin:12px 0 4px}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:12px;color:var(--muted);margin:3px 6px 3px 0}
+.badge.hot{color:var(--accent2);border-color:#5a4a1f}
+.progress{height:9px;background:#0a0e13;border-radius:999px;overflow:hidden;margin:14px 0 4px}
+.progress i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}
+.progress-txt{font-size:12px;color:var(--muted)}
+h2{font-size:17px;color:var(--accent);margin:26px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+.step{display:flex;gap:14px}
+.num{flex:0 0 40px;height:40px;border-radius:50%;background:var(--panel2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent2)}
+.step-body{flex:1}
+.step h3{font-size:16px;margin-bottom:2px}
+.step .time{font-size:12px;color:var(--muted);margin-bottom:8px}
+.step .do{font-size:14px;margin:6px 0}
+.step .do b{color:var(--accent)}
+.step ul{margin:6px 0 6px 20px;font-size:14px}
+.step li{margin:4px 0}
+.expected{font-size:13px;color:var(--muted);border-left:2px solid var(--line);padding:6px 0 6px 10px;margin-top:8px}
+.expected b{color:var(--green)}
+.done{margin-top:10px;font-size:13px;color:var(--muted)}
+.done input{width:17px;height:17px;vertical-align:-3px;accent-color:var(--accent);margin-right:6px}
+.tip{background:#122024;border:1px solid #1f4a48;border-radius:10px;padding:10px 14px;font-size:13px;margin:10px 0}
+.tip b{color:var(--accent)}
+video-wrap{}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.video-grid{grid-template-columns:1fr}}
+.video{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px}
+.video .t{font-size:14px;font-weight:700;margin-bottom:2px}
+.video .m{font-size:12px;color:var(--muted);margin-bottom:8px}
+.video .why{font-size:12px;color:var(--accent2);margin-bottom:8px}
+.video .btns{display:flex;gap:8px;flex-wrap:wrap}
+button.btn{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer;font-size:13px}
+button.btn.primary{background:var(--accent);color:#06222a;font-weight:700;border-color:var(--accent)}
+button.btn:hover{border-color:var(--accent)}
+iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:8px;margin-top:10px;background:#000}
+pre{background:#0a0e13;border:1px solid var(--line);border-radius:8px;padding:12px;overflow:auto;font-size:12.5px;line-height:1.5;margin:8px 0;color:#cfe7ff}
+textarea{width:100%;min-height:90px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);padding:10px;font-family:inherit;font-size:14px;resize:vertical}
+.note-meta{font-size:12px;color:var(--muted);margin-top:6px}
+a{color:var(--accent)}
+.links a{margin-right:14px;font-size:13px}
+ul.plain{margin-left:20px;font-size:14px}
+ul.plain li{margin:5px 0}
+footer{color:var(--muted);font-size:12px;text-align:center;margin-top:28px}
+kbd{background:#0a0e13;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>P2 第一次灯光 / 曝光对比 <span>· 视频引导</span></h1>
+  <div class="sub">目标：30–40 分钟，产出 3–4 张对比图 + 3 行可写进作品集的笔记。对应 JD：UE5 写实渲染（职责 1）+ 光影感知（要求 5）。</div>
+  <div class="badges">
+    <span class="badge hot">当前项目：E:\TA_Workspace\02_Portfolio\P2_NeonStreet</span>
+    <span class="badge">UE 5.7</span>
+    <span class="badge">产出存到 05_Renders\P2_基线</span>
+    <span class="badge">做完在面板勾 D1</span>
+  </div>
+  <div class="progress"><i id="bar"></i></div>
+  <div class="progress-txt" id="barTxt">进度 0 / 6</div>
+</header>
+
+<div class="tip"><b>视频使用规则：</b>先看当前步骤对应的片段（5–10 分钟）→ <b>暂停，自己在 UE 里做</b> → 做完再回来看下一段。不要从头刷到尾；1.25–1.5 倍速；每个视频结束必须有截图或笔记。</div>
+
+<h2>任务步骤（跟着做）</h2>
+
+<div class="card step">
+  <div class="num">1</div>
+  <div class="step-body">
+    <h3>打开地图 / 搭一个最小测试场景</h3>
+    <div class="time">2–5 分钟</div>
+    <div class="do">在 UE 内容浏览器双击 <b>Content/Maps/L_NeonStreet</b>；如果场景是空的，先放：<b>3 个 Cube + 1 个 Plane + DirectionalLight + SkyLight + PostProcessVolume</b>。</div>
+    <ul>
+      <li>Ground：Plane 放大 10 倍，材质先不管（默认灰模即可）。</li>
+      <li>3 个 Cube：一个金属感（Roughness 0.2）、一个粗糙（0.8）、一个做对比。</li>
+      <li>PostProcessVolume 勾选 <b>Infinite Extent (Unbound)</b>，否则影响不到整个场景。</li>
+    </ul>
+    <div class="expected"><b>预期：</b>视口里能看到地面 + 3 个方块 + 有明显方向的光。</div>
+    <div class="done"><label><input type="checkbox" data-step="s1">本步完成</label></div>
+  </div>
+</div>
+
+<div class="card step">
+  <div class="num">2</div>
+  <div class="step-body">
+    <h3>截一张基线图</h3>
+    <div class="time">3–5 分钟</div>
+    <div class="do">调整好一个能看全场景的机位 → 按 <kbd>F9</kbd> 高分辨率截图（或 MRQ 单帧）→ 存到 <b>E:\TA_Workspace\05_Renders\P2_基线\00_baseline.png</b>。</div>
+    <ul>
+      <li>截图前先保存工程（Ctrl+S）。</li>
+      <li>记录当前参数：主光角度/强度、曝光补偿、Lumen 开关（后面复盘用）。</li>
+    </ul>
+    <div class="expected"><b>预期：</b>一张能当"改造前"的图，后面和调完的图并排对比。</div>
+    <div class="done"><label><input type="checkbox" data-step="s2">本步完成</label></div>
+  </div>
+</div>
+
+<div class="card step">
+  <div class="num">3</div>
+  <div class="step-body">
+    <h3>曝光对比：-1.0 vs +0.5</h3>
+    <div class="time">8–10 分钟</div>
+    <div class="do">选中 <b>PostProcessVolume</b> → Details 搜索 <b>Exposure</b> → <b>Exposure Compensation</b> 设 <b>-1.0</b>，截一张；再设 <b>+0.5</b>，截一张。</div>
+    <ul>
+      <li>保存为 <b>01_exposure_-1.png</b> 和 <b>02_exposure_+0.5.png</b>。</li>
+      <li>如果画面完全没变化：检查项目设置里 <b>Auto Exposure 已关</b>、PPV 是否 Unbound、是否在 PPV 范围内。</li>
+      <li>观察：亮部细节丢了没有？暗部死黑了没有？哪一版更接近你想要的"电影感"？</li>
+    </ul>
+    <div class="expected"><b>预期：</b>两张图亮度明显不同，且你能说出"哪个更适合夜景霓虹"。</div>
+    <div class="done"><label><input type="checkbox" data-step="s3">本步完成</label></div>
+  </div>
+</div>
+
+<div class="card step">
+  <div class="num">4</div>
+  <div class="step-body">
+    <h3>主光色温对比：3200K vs 6500K</h3>
+    <div class="time">8–10 分钟</div>
+    <div class="do">选中 <b>DirectionalLight</b> → Details 搜索 <b>Temperature</b> → 勾选 <b>Use Temperature</b>，设 <b>3200K</b> 截一张，设 <b>6500K</b> 截一张。</div>
+    <ul>
+      <li>保存为 <b>03_temp_3200K.png</b> 和 <b>04_temp_6500K.png</b>。</li>
+      <li>顺手把主光角度转 20–30 度，再截一张，观察阴影方向变化。</li>
+      <li>思考：如果场景是霓虹夜景，主光偏暖还是偏冷？和霓虹的冷色怎么形成冷暖对比？</li>
+    </ul>
+    <div class="expected"><b>预期：</b>能一眼看出暖/冷差异，并能解释"色温对比"在画面里的作用。</div>
+    <div class="done"><label><input type="checkbox" data-step="s4">本步完成</label></div>
+  </div>
+</div>
+
+<div class="card step">
+  <div class="num">5</div>
+  <div class="step-body">
+    <h3>写 3 行笔记（面试能讲的技术因果）</h3>
+    <div class="time">5 分钟</div>
+    <div class="do">用下面的输入框写 3 行，点「保存笔记」；也可以复制到 <b>E:\TA_Workspace\06_Docs\notes\p2_lighting_log.md</b>。</div>
+    <textarea id="note" placeholder="参数怎么变 → 画面怎么变 → 为什么（例如：色温 3200K → 暗部偏暖、霓虹更突出 → 冷暖对比让夜景更有层次）"></textarea>
+    <div class="note-meta"><button class="btn" id="saveNote">保存笔记</button> <button class="btn" id="copyNote">复制</button> <span id="noteHint"></span></div>
+    <div class="expected"><b>验收：</b>3 行里至少有 1 行能解释"为什么"，而不是只写"变亮了/变暗了"。</div>
+    <div class="done"><label><input type="checkbox" data-step="s5">本步完成</label></div>
+  </div>
+</div>
+
+<div class="card step">
+  <div class="num">6</div>
+  <div class="step-body">
+    <h3>收尾 + 下一课</h3>
+    <div class="time">2 分钟</div>
+    <div class="do">保存工程 → 打开桌面「TA学习面板」→ 技术 Tab 勾 <b>D1</b>（D4 顺带覆盖）→ 浏览下一课视频。</div>
+    <ul>
+      <li>下一课 D2：材质第一课（`M_Basic` 母材质 + 3 个实例）</li>
+      <li>把这 4 张图先留在 <b>05_Renders\P2_基线</b>，后面写 Breakdown 直接用。</li>
+    </ul>
+    <div class="done"><label><input type="checkbox" data-step="s6">本步完成</label></div>
+  </div>
+</div>
+
+<h2>视频教程（先看当前步骤相关的片段）</h2>
+
+<div class="tip"><b>推荐顺序：</b>① 灯光全流程（看项目设置/主光/体积雾思路）→ ② 角色三点布光（理解主光/补光/轮廓光）→ ③ 渲染指南（曝光/画质）→ 之后 D2 再回来看材质视频。长课（大师班/5.7 工作流）当字典，不整刷。</div>
+
+<div class="video-grid">
+  <div class="video">
+    <div class="t">UE5 室内灯光全流程实战教程</div>
+    <div class="m">B站 · 叶桑讲UE5 · 21:54 · 1.2 万播放</div>
+    <div class="why">对应步骤 1/3：项目设置、写实布光、体积雾、补光系统</div>
+    <div class="btns">
+      <button class="btn primary" data-bvid="BV1VTtyzeENo" data-title="UE5室内灯光全流程实战教程">在此页面播放</button>
+      <a class="btn" href="https://www.bilibili.com/video/BV1VTtyzeENo/" target="_blank" rel="noopener">在 B 站打开</a>
+    </div>
+  </div>
+  <div class="video">
+    <div class="t">UE5 角色照明与渲染全流程：从三点布光到电影级输出</div>
+    <div class="m">B站 · -AOV视觉科学- · 41:37 · 5728 播放</div>
+    <div class="why">对应步骤 4：主光/补光/轮廓光思路，理解色温与光比</div>
+    <div class="btns">
+      <button class="btn primary" data-bvid="BV1Pr3i63EuY" data-title="UE5 角色照明与渲染全流程">在此页面播放</button>
+      <a class="btn" href="https://www.bilibili.com/video/BV1Pr3i63EuY/" target="_blank" rel="noopener">在 B 站打开</a>
+    </div>
+  </div>
+  <div class="video">
+    <div class="t">2025 年虚幻引擎 5 渲染指南</div>
+    <div class="m">B站 · 小小效果 · 13:06 · 5850 播放</div>
+    <div class="why">对应步骤 3：曝光、渲染设置与画质/性能权衡</div>
+    <div class="btns">
+      <button class="btn primary" data-bvid="BV1NUGtzqEhW" data-title="2025年虚幻引擎5渲染指南">在此页面播放</button>
+      <a class="btn" href="https://www.bilibili.com/video/BV1NUGtzqEhW/" target="_blank" rel="noopener">在 B 站打开</a>
+    </div>
+  </div>
+  <div class="video">
+    <div class="t">【国语】UE5 光照与渲染技术大师班教程-上</div>
+    <div class="m">B站 · JaysongShao · 285:12 · 6801 播放</div>
+    <div class="why">当字典：遇到"光比/IES/体积光/后期"再按需查，不整刷</div>
+    <div class="btns">
+      <button class="btn primary" data-bvid="BV1AJgbzbEjB" data-title="UE5光照与渲染技术大师班">在此页面播放</button>
+      <a class="btn" href="https://www.bilibili.com/video/BV1AJgbzbEjB/" target="_blank" rel="noopener">在 B 站打开</a>
+    </div>
+  </div>
+  <div class="video">
+    <div class="t">UE5 材质-创建你的第一个材质</div>
+    <div class="m">B站 · v麦兜她爹v · 11:34</div>
+    <div class="why">下一课 D2 预习：母材质、参数、实例</div>
+    <div class="btns">
+      <button class="btn primary" data-bvid="BV1gBa7zAEED" data-title="UE5材质-创建你的第一个材质">在此页面播放</button>
+      <a class="btn" href="https://www.bilibili.com/video/BV1gBa7zAEED/" target="_blank" rel="noopener">在 B 站打开</a>
+    </div>
+  </div>
+  <div class="video">
+    <div class="t">UE5 基础教程 | 材质节点基础</div>
+    <div class="m">B站 · 数字教育小镇培训中心 · 6:27</div>
+    <div class="why">下一课 D2 预习：节点连接与常用数学节点</div>
+    <div class="btns">
+      <button class="btn primary" data-bvid="BV1qw4bzZEy5" data-title="UE5 基础教程 材质节点基础">在此页面播放</button>
+      <a class="btn" href="https://www.bilibili.com/video/BV1qw4bzZEy5/" target="_blank" rel="noopener">在 B 站打开</a>
+    </div>
+  </div>
+  <div class="video">
+    <div class="t">UE5 菲涅尔边缘光制作全流程</div>
+    <div class="m">B站 · 香草味的多莉酱 · 1:52</div>
+    <div class="why">D5 预习：Rim Light 思路，和我们的 HLSL 模板对照</div>
+    <div class="btns">
+      <button class="btn primary" data-bvid="BV1vM411x7YE" data-title="UE5 菲涅尔边缘光制作">在此页面播放</button>
+      <a class="btn" href="https://www.bilibili.com/video/BV1vM411x7YE/" target="_blank" rel="noopener">在 B 站打开</a>
+    </div>
+  </div>
+  <div class="video">
+    <div class="t">Blender 4.0 零基础入门教程（26 小时）</div>
+    <div class="m">B站 · 浩克肥虫 · 1604:40 · 173 万播放</div>
+    <div class="why">D4 用：只按目录挑建模/UV/导出相关章节，不整刷</div>
+    <div class="btns">
+      <button class="btn primary" data-bvid="BV11H4y1P7RV" data-title="Blender4.0零基础入门教程">在此页面播放</button>
+      <a class="btn" href="https://www.bilibili.com/video/BV11H4y1P7RV/" target="_blank" rel="noopener">在 B 站打开</a>
+    </div>
+  </div>
+</div>
+
+<h2>更省事的做法：UE 学习助手（可选）</h2>
+<div class="card">
+  <p class="sub">我在项目里放了一个 Python 小工具（v0.1），可以一键完成"搭测试场景 / 改曝光 / 改色温 / 截图 / 记笔记 / 打开本页"。</p>
+  <p style="margin-top:8px;font-size:14px">用法（UE 打开时）：<b>Output Log → 左下角切到 Python</b>，粘贴：</p>
+<pre>import sys; sys.path.append(r"E:/TA_Workspace/02_Portfolio/P2_NeonStreet/Content/Python"); import ta_guide; ta_guide.help()</pre>
+  <p style="font-size:14px">然后按需执行：</p>
+<pre>ta_guide.setup_lighting_scene()   # 搭 3 Cube + Plane + 灯光 + PPV（空场景时用）
+ta_guide.exposure(-1)             # 曝光补偿 -1.0
+ta_guide.exposure(0.5)            # 曝光补偿 +0.5
+ta_guide.temperature(3200)        # 主光色温 3200K
+ta_guide.temperature(6500)        # 主光色温 6500K
+ta_guide.shot("01_exposure_-1")   # 自动截图到 05_Renders\P2_基线
+ta_guide.log_note("曝光 -1.0：暗部更黑，霓虹更突出")  # 追加到笔记
+ta_guide.open_guide()             # 打开本页</pre>
+  <p class="sub">如果报错：把 Output Log 里的红字截图发我，我来修（v0.1 以"能跑"为目标）。</p>
+</div>
+
+<h2>不要踩的坑</h2>
+<div class="card">
+  <ul class="plain">
+    <li><b>PPV 没变化</b>：先勾 <b>Infinite Extent (Unbound)</b>；再检查项目设置 Auto Exposure 是否关。</li>
+    <li><b>截图没存到指定目录</b>：F9 默认存到 <b>Saved/Screenshots/WindowsEditor</b>，用工具里的 shot() 会自动帮你复制到 05_Renders。</li>
+    <li><b>改完没保存</b>：每完成一步 Ctrl+S；UE 崩溃时未保存会丢。</li>
+    <li><b>视频看太多、动手太少</b>：每个视频最多看 10 分钟就必须暂停动手；看完整套 ≠ 学会。</li>
+    <li><b>只记"变亮/变暗"</b>：笔记要写"为什么"，这是面试官会追问的点。</li>
+  </ul>
+</div>
+
+<h2>做完之后</h2>
+<div class="card">
+  <p style="font-size:14px">把 3–5 张图 + 3 行笔记发我，我帮你检查光影判断是否成立，并写成 Breakdown 第一版。下一课：<b>D2 材质（M_Basic + 3 实例）</b> → D3 后期/MRQ → D5 Rim Light。</p>
+  <div class="links" style="margin-top:10px">
+    <a href="/ta/00-start/">00 总览</a>
+    <a href="/ta/09-tech-30days/">09 技术向 30 天</a>
+    <a href="/ta/tech-ue5-checklist/">01 UE5 检查清单</a>
+    <a href="/ta/tech-videos/">视频课表</a>
+  </div>
+</div>
+
+<footer>TA 学习系统 v2 · 视频链接已用 B 站 API 核验（2026-11-06）· 进度保存在本机浏览器</footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var KEY='ta_p2_lighting_guide_v1';
+  var $=function(s,r){return (r||document).querySelector(s);};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+  function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return{};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));return true;}catch(e){return false;}}
+  var st=load();
+  if(!st.steps) st.steps={};
+  if(typeof st.note!=='string') st.note='';
+
+  var steps=$$('input[data-step]');
+  function renderProgress(){
+    var done=0;
+    steps.forEach(function(cb){ if(cb.checked) done++; });
+    var pct=Math.round(done/steps.length*100);
+    $('#bar').style.width=pct+'%';
+    $('#barTxt').textContent='进度 '+done+' / '+steps.length+'（'+pct+'%）'+(done===steps.length?' · 完成！去面板勾 D1 吧':'');
+  }
+  steps.forEach(function(cb){
+    var id=cb.getAttribute('data-step');
+    cb.checked=!!st.steps[id];
+    cb.addEventListener('change',function(){
+      st.steps[id]=cb.checked; save(st); renderProgress();
+    });
+  });
+  renderProgress();
+
+  var note=$('#note');
+  note.value=st.note||'';
+  note.addEventListener('input',function(){ st.note=note.value; save(st); });
+  $('#saveNote').addEventListener('click',function(){
+    st.note=note.value; save(st);
+    $('#noteHint').textContent='已保存（本地）';
+    setTimeout(function(){$('#noteHint').textContent='';},2000);
+  });
+  $('#copyNote').addEventListener('click',function(){
+    note.select(); note.setSelectionRange(0,note.value.length);
+    try{document.execCommand('copy'); $('#noteHint').textContent='已复制';}
+    catch(e){$('#noteHint').textContent='请手动复制';}
+    setTimeout(function(){$('#noteHint').textContent='';},2000);
+  });
+
+  $$('button[data-bvid]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var box=btn.closest('.video');
+      if(box.querySelector('iframe')) return;
+      var bv=btn.getAttribute('data-bvid');
+      var iframe=document.createElement('iframe');
+      iframe.src='https://player.bilibili.com/player.html?bvid='+encodeURIComponent(bv)+'&page=1&high_quality=1&danmaku=0&autoplay=0';
+      iframe.allowFullscreen=true; iframe.loading='lazy';
+      box.appendChild(iframe);
+      btn.textContent='已加载';
+      btn.disabled=true;
+    });
+  });
+})();
+</script>
+</body>
+</html>

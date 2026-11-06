@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUN-美术 TA · 学什么 / 不学什么</title>
+<style>
+:root{--bg:#0d1015;--panel:#151a22;--panel2:#1b222c;--line:#2a3442;--text:#e8edf5;--muted:#8b98a9;--accent:#4fd1c5;--accent2:#f6c453;--green:#48bb78;--red:#f56565;--orange:#ed8936;--purple:#b794f4}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:"Segoe UI","Microsoft YaHei","PingFang SC",system-ui,sans-serif;line-height:1.65;padding-bottom:60px}
+.wrap{max-width:1080px;margin:0 auto;padding:20px}
+header{padding:8px 0 16px;border-bottom:1px solid var(--line)}
+h1{font-size:24px;letter-spacing:.3px}h1 span{color:var(--accent)}
+.sub{color:var(--muted);font-size:13px;margin-top:5px}
+.badges{margin:12px 0 4px}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:12px;color:var(--muted);margin:3px 6px 3px 0}
+.badge.hot{color:var(--accent2);border-color:#5a4a1f}
+.badge.green{color:var(--green);border-color:#2f5f3f}
+h2{font-size:17px;color:var(--accent);margin:28px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h2.red{color:var(--red);border-color:#4a2626}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:860px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.card h3{font-size:15px;margin-bottom:4px}
+.card .tag{font-size:11px;color:var(--accent2);margin-bottom:6px}
+.card .jd{font-size:11px;color:var(--muted);border-left:2px solid var(--line);padding-left:8px;margin-top:8px}
+.card .ev{font-size:12px;color:var(--green);margin-top:6px}
+.learn{border-left:4px solid var(--green)}
+.p1{border-left:4px solid var(--accent2)}
+.no{border-left:4px solid var(--red);background:linear-gradient(180deg,#1c1416,#151a22)}
+.no h3{color:#feb2b2}
+.learning-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:760px){.learning-grid{grid-template-columns:1fr}}
+.p0{display:flex;gap:10px;align-items:flex-start;padding:10px;background:var(--panel2);border:1px solid var(--line);border-radius:10px}
+.p0 .n{flex:0 0 26px;height:26px;border-radius:8px;background:#12312f;color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px}
+.p0 .t{flex:1;font-size:13.5px}
+.p0 .t b{color:var(--text)}
+.p0 .t small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
+.p0 .ev2{font-size:11px;color:var(--green);margin-top:4px}
+ul.no-list{margin-left:20px;font-size:14px}
+ul.no-list li{margin:6px 0}
+ul.no-list li b{color:#feb2b2}
+ul.p1-list{margin-left:20px;font-size:14px}
+ul.p1-list li{margin:6px 0}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:760px){.timeline{grid-template-columns:1fr 1fr}}
+.phase{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:13px}
+.phase b{color:var(--accent2);display:block;margin-bottom:4px}
+.filter{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:560px){.filter{grid-template-columns:1fr}}
+.q{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:14px}
+.q b{color:var(--accent)}
+.note{font-size:12px;color:var(--muted);border-left:2px solid var(--line);padding-left:10px;margin-top:8px}
+.links a{color:var(--accent);margin-right:14px;font-size:13px}
+footer{color:var(--muted);font-size:12px;text-align:center;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>SUN-美术 TA <span>· 最终学习地图</span></h1>
+  <div class="sub">以库洛「SUN-美术 TA 实习生」JD 为唯一靶子；用程序向 TA 的能力切入：UE5 渲染 + Shader + 性能 + 工具 + 图形学，美术只做判断。</div>
+  <div class="badges">
+    <span class="badge hot">目标：SUN-美术 TA（主投）+ 程序向 TA（秋招双投）</span>
+    <span class="badge green">技术 70% / 美术判断 15% / 输出 15%</span>
+    <span class="badge">3 件作品：P2 场景 · P3 Shader 包 · P5 工具</span>
+  </div>
+</header>
+
+<h2>JD → 5 条能力线（所有学习都挂在这里）</h2>
+<div class="grid">
+  <div class="card learn"><h3>① UE5 写实渲染</h3><div class="tag">职责 1 · 要求 3/8</div>
+    <div>Lumen/VSM/Nanite + 材质 + 灯光 + 后期 + MRQ，独立出图/出片。</div>
+    <div class="jd">证据：P2 写实场景 3–5 图 + 15s 视频</div></div>
+  <div class="card learn"><h3>② Shader / 材质</h3><div class="tag">要求 3</div>
+    <div>母材质 + 实例 + 材质函数；3 个 Custom Node HLSL；1 个后处理材质；会讲性能代价。</div>
+    <div class="jd">证据：P3 材质/Shader 包</div></div>
+  <div class="card learn"><h3>③ 性能与优化</h3><div class="tag">职责 2</div>
+    <div>stat/GPU/显存/DrawCall/Overdraw；一次量化优化；8GB 显存预算。</div>
+    <div class="jd">证据：一页性能卡 + 前后对比</div></div>
+  <div class="card learn"><h3>④ 美术流程 + DCC + 脚本</h3><div class="tag">要求 2/4</div>
+    <div>概念→建模→UV→贴图→引擎；Blender 基础 + Python 工具（资产检查）。</div>
+    <div class="jd">证据：P5 PipeCheck 插件 + 流程 Breakdown</div></div>
+  <div class="card learn"><h3>⑤ 美术判断 + 文档/沟通</h3><div class="tag">要求 5/7 · 职责 3</div>
+    <div>判断资源质量、讲清光影/色彩/构图；写 Breakdown/管线文档、做 5 分钟分享。</div>
+    <div class="jd">证据：技术文章 + 分享稿 + 作品集文档</div></div>
+  <div class="card p1"><h3>⑥ 行业视野（补充）</h3><div class="tag">要求 6</div>
+    <div>每周 1 次鸣潮/战双/3A 拉片或行业文章；面试会问"为什么库洛/最近在玩什么"。</div>
+    <div class="jd">证据：每周 1 条拆解</div></div>
+</div>
+
+<h2>该学（P0 · 必须）</h2>
+<div class="learning-grid">
+  <div class="p0"><div class="n">1</div><div class="t"><b>UE5 基础 + 项目设置</b><small>Lumen/VSM/Nanite/SM6、1080p 预算、自动曝光关</small><div class="ev2">证据：项目基线截图</div></div></div>
+  <div class="p0"><div class="n">2</div><div class="t"><b>PBR 材质系统</b><small>母材质 + 实例 + 材质函数；参数化给美术调</small><div class="ev2">证据：Material Lab v0.1</div></div></div>
+  <div class="p0"><div class="n">3</div><div class="t"><b>灯光与写实渲染</b><small>三点布光、HDRI、体积雾；同场景 3 套灯光对比</small><div class="ev2">证据：P2 灯光对比图</div></div></div>
+  <div class="p0"><div class="n">4</div><div class="t"><b>后期 + 色彩 + MRQ</b><small>曝光/Bloom/调色/景深；MRQ 1080p 出图/视频</small><div class="ev2">证据：P2 成图 + MRQ 记录</div></div></div>
+  <div class="p0"><div class="n">5</div><div class="t"><b>Shader / HLSL</b><small>Rim、Dissolve、UV 流动；材质函数；后处理材质</small><div class="ev2">证据：P3 三项效果 + 节点图</div></div></div>
+  <div class="p0"><div class="n">6</div><div class="t"><b>性能分析</b><small>stat unit/gpu/rhi；Insights/RenderDoc 入门；显存/DrawCall</small><div class="ev2">证据：性能基线 + 优化报告</div></div></div>
+  <div class="p0"><div class="n">7</div><div class="t"><b>Blender + Python 脚本</b><small>建模/UV/导出；bpy 批量处理、资产检查、报告</small><div class="ev2">证据：P5 PipeCheck 插件</div></div></div>
+  <div class="p0"><div class="n">8</div><div class="t"><b>完整美术流程认知</b><small>概念→模型→UV→贴图→绑定→动画→特效→渲染</small><div class="ev2">证据：Breakdown 流程页</div></div></div>
+  <div class="p0"><div class="n">9</div><div class="t"><b>资源质量判断</b><small>拓扑/UV/texel/LOD/材质槽/命名是否合格</small><div class="ev2">证据：资产体检报告</div></div></div>
+  <div class="p0"><div class="n">10</div><div class="t"><b>文档 / 分享 / 沟通</b><small>每作品 1 篇 Breakdown；README；5 分钟讲解</small><div class="ev2">证据：博客/B站专栏/作品集文档</div></div></div>
+  <div class="p0"><div class="n">11</div><div class="t"><b>美术判断（不画）</b><small>每天 10–15 分钟拉片：主光/色温/材质/构图</small><div class="ev2">证据：每日 3 行判断笔记</div></div></div>
+  <div class="p0"><div class="n">12</div><div class="t"><b>行业/竞品</b><small>每周 1 次鸣潮/战双/3A 拆解或行业文章</small><div class="ev2">证据：每周 1 条拆解</div></div></div>
+</div>
+
+<h2>该学（P1 · 加分，按顺序）</h2>
+<div class="card p1">
+  <ul class="p1-list">
+    <li>Niagara 基础特效（职责 1 写"特效"）——P2 后段 / P4</li>
+    <li>Sequencer 镜头 + 简单动作/物理认知——P2 出片时</li>
+    <li>角色材质基础（皮肤 SSS / 眼睛 / 头发）——P4</li>
+    <li>Substance Painter 基础——P3/P4 前</li>
+    <li>GAMES101 选 10–11 讲 + PA1/PA2 可选——第 11 天起每周 2 讲</li>
+    <li>GAMES202 选 3 主题（阴影/PBR/IBL）——2027 春</li>
+    <li>UE Python 编辑器脚本——P5 v1</li>
+    <li>Maya / Houdini 认知（各 4h）——2027 春</li>
+    <li>RenderDoc / Unreal Insights 抓帧——P2 性能优化时</li>
+    <li>PCG / 程序化场景（入门）——2027 夏（P3 后）</li>
+    <li>UI/UMG 渲染认知——有余力再看</li>
+    <li>C++ UE 编辑器插件（可选）——2027 夏，工具方向确定后</li>
+  </ul>
+</div>
+
+<h2 class="red">不该学（现在）</h2>
+<div class="card no">
+  <ul class="no-list">
+    <li><b>GAMES101 全 23 讲 + 全部 PA</b>：28 小时，美术 TA 用不到一半；只选 10–11 讲，PA1/2 可选。</li>
+    <li><b>GAMES202 全课</b>：面试只需接住术语；最多选 3 主题。</li>
+    <li><b>UE C++ Gameplay / 蓝图系统课 / 网络同步</b>：你是美术 TA，不是客户端开发。</li>
+    <li><b>算法刷题 / 后端 / 数据库</b>：与岗位无关（学校课除外）。</li>
+    <li><b>Maya/Houdini 系统课</b>：要求只是"一种以上 + 脚本"；Blender 主学，各 4h 认知即可。</li>
+    <li><b>角色雕刻 / 绑定 / 动画 / 毛发 / 布料模拟</b>：招聘不要求手搓角色；作品集用 MetaHuman/授权资产。</li>
+    <li><b>纯绘画 / 素描 / 厚涂长期课</b>：程序向 TA 只需"判断"；每天 10–15 分钟拉片，速写可选。</li>
+    <li><b>Unity / 3ds Max / ZBrush / C4D / 其他引擎</b>：分散精力，UE 一条线打穿。</li>
+    <li><b>影视后期合成全流程 / DaVinci 高级调色</b>：只需基础出片，不是剪辑师。</li>
+    <li><b>4K/8K、Path Tracer 动画、超高精度渲染</b>：8GB 显存 + 1080p 主战场；路径追踪只出静帧。</li>
+    <li><b>Substrate / 实验性渲染 / PCG 大世界（过早）</b>：稳定优先，先玩熟 Lumen/VSM/Nanite。</li>
+    <li><b>付费英文大师课 / 长课囤积</b>：现阶段中文免费资源足够；卡住再买专项。</li>
+    <li><b>作品集堆数量 / 先学完再做 / 收藏教程</b>：3 件精品 + 技术证据 &gt; 10 件练习。</li>
+    <li><b>硬件升级 / 4K 显示器</b>：4070 8GB + 32GB 够用，有闲钱再说。</li>
+  </ul>
+</div>
+
+<h2>学习顺序（按动作排，不按课程排）</h2>
+<div class="timeline">
+  <div class="phase"><b>阶段 0 · 现在（10 天）</b>零基础 10 天重启：UE 界面/物体/材质/灯光/相机/曝光/小场景/Blender 道具。产出 2 张图。</div>
+  <div class="phase"><b>阶段 1 · 第 11–30 天</b>09 技术向 D1–D21：灯光→材质→后期/MRQ→Custom Node→工具；GAMES101 每周 2 讲（L03/05/06/07/08）；P2 成图 + Material Lab v0.1 + PipeCheck v0.1。</div>
+  <div class="phase"><b>阶段 2 · 第 31–60 天</b>P2 完整场景 + MRQ + 性能卡 + Breakdown；P3 材质/Shader 包；GAMES101 L09/13/15/16/19/20；作品集 v0.5。</div>
+  <div class="phase"><b>阶段 3 · 第 61–90 天</b>P4 角色/VFX + P5 工具 v1 + Showreel + 性能报告；按 07 rubric ≥80 再投；2027 春日常实习练手，秋招双投。</div>
+</div>
+
+<h2>判断"该不该学"的 4 个问题</h2>
+<div class="filter">
+  <div class="q"><b>1. 对应 JD 哪一条？</b><br>职责 1/2/3；要求 2/3/4/5/6/7/8。对不上就不学。</div>
+  <div class="q"><b>2. 产出什么证据？</b><br>图/GIF/代码/报告/文档。没有证据就不算学。</div>
+  <div class="q"><b>3. 面试能讲 3 分钟吗？</b><br>讲不清 = 没懂；先写 3 行再继续。</div>
+  <div class="q"><b>4. 不做会挡住下一个作品吗？</b><br>不会 → 延后；会 → 立刻做。</div>
+</div>
+
+<div class="card" style="margin-top:16px">
+  <p style="font-size:14px;margin-bottom:8px">完整版（含每个阶段的具体动作、视频和验收）：</p>
+  <div class="links">
+    <a href="/ta/12-final-list/">12 最终学习清单（Markdown）</a>
+    <a href="/ta/10-zero-10days/">10 零基础 10 天重启</a>
+    <a href="/ta/09-tech-30days/">09 技术向 30 天</a>
+    <a href="/ta/07-portfolio/">07 作品集规划</a>
+    <a href="/ta/tech-videos/">视频课表</a>
+  </div>
+  <div class="note">本页是最终过滤器；与旧文档冲突时，以 JD + 本页为准。</div>
+</div>
+
+<footer>TA 学习系统 v2 · 2026-11-06 · 目标：库洛 SUN-美术 TA（程序向打法）</footer>
+</div>
+</body>
+</html>

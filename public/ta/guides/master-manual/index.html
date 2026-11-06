@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUN-美术 TA · 总执行手册（所有任务 + 系列教程）</title>
+<style>
+:root{--bg:#0d1015;--panel:#151a22;--panel2:#1b222c;--line:#2a3442;--text:#e8edf5;--muted:#8b98a9;--accent:#4fd1c5;--accent2:#f6c453;--green:#48bb78;--red:#f56565;--purple:#b794f4}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:"Segoe UI","Microsoft YaHei","PingFang SC",system-ui,sans-serif;line-height:1.6;padding-bottom:70px}
+.wrap{max-width:1120px;margin:0 auto;padding:20px}
+header{padding:8px 0 16px;border-bottom:1px solid var(--line)}
+h1{font-size:24px;letter-spacing:.3px}h1 span{color:var(--accent)}
+.sub{color:var(--muted);font-size:13px;margin-top:5px}
+.badges{margin:12px 0 4px}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:3px 11px;font-size:12px;color:var(--muted);margin:3px 6px 3px 0}
+.badge.hot{color:var(--accent2);border-color:#5a4a1f}
+.badge.green{color:var(--green);border-color:#2f5f3f}
+nav{position:sticky;top:0;z-index:9;background:rgba(13,16,21,.95);border-bottom:1px solid var(--line);padding:8px 0;margin:14px 0}
+nav a{color:var(--muted);text-decoration:none;font-size:13px;margin-right:16px}
+nav a:hover{color:var(--accent)}
+.progress{height:8px;background:#0a0e13;border-radius:999px;overflow:hidden;margin:10px 0 2px}
+.progress i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}
+.progress-txt{font-size:12px;color:var(--muted)}
+h2{font-size:18px;color:var(--accent);margin:30px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h3{font-size:15px;color:var(--accent2);margin:18px 0 8px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--panel2);color:var(--muted);font-weight:600}
+tr:hover td{background:#141a22}
+td.cb{width:30px;text-align:center}
+input[type=checkbox]{width:16px;height:16px;accent-color:var(--accent);vertical-align:-3px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:860px){.grid4{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.grid4{grid-template-columns:1fr}}
+.phase{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:13px}
+.phase b{color:var(--accent2);display:block;margin-bottom:4px}
+.tag{display:inline-block;font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 8px;margin:2px 4px 2px 0}
+.tag.p0{color:var(--green);border-color:#2f5f3f}
+.tag.p1{color:var(--accent2);border-color:#5a4a1f}
+.series{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:820px){.series{grid-template-columns:1fr}}
+.series .card h3{margin-top:0}
+.series .meta{font-size:12px;color:var(--muted);margin-bottom:5px}
+.series .why{font-size:13px;color:var(--text);margin:5px 0}
+.series .how{font-size:12px;color:var(--green)}
+.series a{color:var(--accent);text-decoration:none}
+ul{margin-left:20px;font-size:14px}li{margin:5px 0}
+.no{border-left:4px solid var(--red);background:linear-gradient(180deg,#1c1416,#151a22)}
+.no li b{color:#feb2b2}
+.tip{background:#122024;border:1px solid #1f4a48;border-radius:10px;padding:10px 14px;font-size:13px;margin:10px 0}
+.tip b{color:var(--accent)}
+.links a{color:var(--accent);margin-right:14px;font-size:13px}
+footer{color:var(--muted);font-size:12px;text-align:center;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>SUN-美术 TA · 总执行手册 <span>（所有任务 + 系列教程）</span></h1>
+  <div class="sub">唯一靶子：库洛 SUN-美术 TA 实习生 JD ｜ 方向：程序向 TA 的打法 ｜ 技术 70% / 美术判断 15% / 输出 15%</div>
+  <div class="badges">
+    <span class="badge hot">现在：Day 1（零基础 10 天重启）</span>
+    <span class="badge green">每完成一项就勾掉，进度保存在本机</span>
+    <span class="badge">视频已核验：B站 API（2026-11-06）</span>
+  </div>
+  <div class="progress"><i id="bar"></i></div>
+  <div class="progress-txt" id="barTxt">总进度：0 / 45 项</div>
+</header>
+
+<nav>
+  <a href="#route">总路线</a>
+  <a href="#phase0">阶段 0：10 天</a>
+  <a href="#phase1">阶段 1：D1–D30</a>
+  <a href="#phase2">阶段 2：作品集</a>
+  <a href="#phase3">阶段 3：投递</a>
+  <a href="#series">系列教程</a>
+  <a href="#rules">每天/每周</a>
+  <a href="#no">不学清单</a>
+  <a href="#start">现在开始</a>
+</nav>
+
+<h2 id="route">总路线（4 个阶段）</h2>
+<div class="grid4">
+  <div class="phase"><b>阶段 0 · 现在 10 天</b>零基础重启：UE 界面/物体/材质/灯光/相机/曝光/小场景/Blender 道具。<br>产出：2 张图。</div>
+  <div class="phase"><b>阶段 1 · 第 11–40 天</b>技术冲刺 D1–D30：灯光/材质/后期/MRQ → Shader/HLSL → Blender+UE 工具 → P1 整合。<br>产出：P2 成图、Material Lab v0.1、PipeCheck v0.1、性能基线。</div>
+  <div class="phase"><b>阶段 2 · 第 41–100 天</b>作品集：P1 场景 → P2 霓虹街角 → P3 Shader 包 → P4 角色/VFX → P5 工具。<br>产出：4 件作品 + Breakdown + 性能卡。</div>
+  <div class="phase"><b>阶段 3 · 2027 春–秋招</b>2027 春投日常/暑期实习练手；2027-08 下旬秋招（SUN 美术 TA 主投 + 程序向 TA 双投）。<br>产出：Showreel + 简历 + 面试。</div>
+</div>
+
+<h2 id="phase0">阶段 0：零基础 10 天（现在，每天 40–60 分钟）</h2>
+<div class="tip">规则：视频最多看 20 分钟就暂停动手；每天有 1 张截图/1 行笔记就算完成；卡住 30 分钟发我。详细引导：<a href="/ta/guides/zero10/">零基础10天重启_视频引导.html</a>。</div>
+<table>
+<thead><tr><th class="cb">✓</th><th style="width:50px">天</th><th>具体任务</th><th>产出</th><th>教程</th></tr></thead>
+<tbody>
+<tr><td class="cb"><input type="checkbox" data-tid="z1"></td><td>D1</td><td>UE5 界面 + 移动视角 + 放 1 Plane + 3 Cube；保存</td><td>Day1_三个方块.png</td><td><a href="https://www.bilibili.com/video/BV1Cd4y1V7G5/">GenJi 新手课（前 2–3 集）</a></td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="z2"></td><td>D2</td><td>材质 M_Basic：BaseColor/Roughness/Metallic；3 个材质实例</td><td>3 张材质球截图</td><td><a href="https://www.bilibili.com/video/BV1gBa7zAEED/">第一个材质</a> + <a href="https://www.bilibili.com/video/BV1qw4bzZEy5/">节点基础</a></td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="z3"></td><td>D3</td><td>DirectionalLight + SkyLight + SkyAtmosphere；3 个主光角度截图</td><td>Day3_灯光_01/02/03.png</td><td><a href="https://www.bilibili.com/video/BV1VTtyzeENo/">室内灯光全流程（前 10 分钟）</a></td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="z4"></td><td>D4</td><td>Camera Actor + 构图（三分法/前景中景背景）+ F9 1920×1080</td><td>Day4_相机成图.png</td><td>新手课里的"摄像机"章节</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="z5"></td><td>D5</td><td>PostProcessVolume（Unbound）+ 曝光 -1.0 / +0.5 各一张</td><td>Day5_曝光_*.png</td><td><a href="https://www.bilibili.com/video/BV1NUGtzqEhW/">2025 渲染指南</a></td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="z6"></td><td>D6</td><td>5 物件小场景（2 Box + 2 Cylinder + 1 Plane）+ 材质 + 灯光 + 曝光</td><td>Day6_白模 + Day6_成图</td><td><a href="https://www.bilibili.com/video/BV1zg4y1375m/">峡谷深处小案例</a></td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="z7"></td><td>D7</td><td>选 1 张最好图 + 3 行复盘 + 发 1 条动态 + 面板勾 D1</td><td>3 行笔记 + 动态</td><td>—</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="z8"></td><td>D8</td><td>Blender 界面 + 一个简单道具（箱子/灯柱/杯子）</td><td>1 个 .blend</td><td><a href="https://www.bilibili.com/video/BV11H4y1P7RV/">Blender 4.0 入门（选章节）</a></td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="z9"></td><td>D9</td><td>导出 FBX → 导入 UE → 检查缩放/法线/材质槽/UV → 赋材质</td><td>Day9_导入UE.png + 3 条踩坑</td><td><a href="https://www.bilibili.com/video/BV1N1Yk6EEwD/">Blender→UE 资产流程</a></td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="z10"></td><td>D10</td><td>道具放进 D6 场景 + 调灯光/曝光 + 第二张成图；面板勾 D2</td><td>Day10_成图2.png</td><td>—</td></tr>
+</tbody></table>
+
+<h2 id="phase1">阶段 1：技术冲刺 D1–D30（第 11 天起，每天 60–90 分钟）</h2>
+<div class="tip">按 <a href="/ta/09-tech-30days/">09 技术向 30 天</a> 执行；GAMES101 每周 2 讲穿插（见系列教程）。产出存 <b>05_Renders</b> 对应项目文件夹。</div>
+<h3>W1 · UE5 技术地基（D1–D7）</h3>
+<table>
+<thead><tr><th class="cb">✓</th><th style="width:50px">D</th><th>具体任务</th><th>产出</th></tr></thead>
+<tbody>
+<tr><td class="cb"><input type="checkbox" data-tid="t1"></td><td>D1</td><td>P2 灯光/曝光对比：基线 + 曝光 -1/+0.5 + 色温 3200K/6500K；3 行参数→画面→为什么</td><td>3 张对比图 + 笔记</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t2"></td><td>D2</td><td>资产导入技术：Blender→FBX→UE；单位/缩放/材质槽/贴图 sRGB/法线</td><td>导入流程截图 + 3 条踩坑</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t3"></td><td>D3</td><td>母材质 M_Basic + 3 实例（地面/墙/金属）；参数表</td><td>母材质 + 3 实例 + 参数表</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t4"></td><td>D4</td><td>同一场景 3 个主光角度/色温；对比图</td><td>3 张灯光对比</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t5"></td><td>D5</td><td>PostProcessVolume：曝光/Bloom/DOF/Color Grading 逐项测试</td><td>参数对照表 + 2 张图</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t6"></td><td>D6</td><td>HighRes Screenshot vs MRQ；出 1 张 1920×1080</td><td>成图 + MRQ 设置 + 耗时</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t7"></td><td>D7</td><td>性能基线：stat unit/gpu/rhi、显存、DrawCall、三角面、材质指令</td><td>性能基线表</td></tr>
+</tbody></table>
+<h3>W2 · Shader / 材质编程（D8–D14）</h3>
+<table>
+<thead><tr><th class="cb">✓</th><th style="width:50px">D</th><th>具体任务</th><th>产出</th></tr></thead>
+<tbody>
+<tr><td class="cb"><input type="checkbox" data-tid="t8"></td><td>D8</td><td>材质函数：把 UV 平铺/色阶调整封装并复用 3 处</td><td>函数截图 + 复用说明</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t9"></td><td>D9</td><td>Rim Light（HLSL）：Normal/WorldPos/CameraPos/RimPower/Color</td><td>GIF + 节点图 + 3 行原理</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t10"></td><td>D10</td><td>Dissolve 溶解 + 边缘发光；理解 smoothstep 边界</td><td>GIF + HLSL + 参数说明</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t11"></td><td>D11</td><td>扫描线 / UV 流动（Time + UV）</td><td>2 个 GIF + 参数</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t12"></td><td>D12</td><td>三平面映射（节点版）+ 对比普通 UV 接缝</td><td>GIF + 对比图</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t13"></td><td>D13</td><td>后处理材质：暗角 + 简单描边（SceneTexture/Depth）</td><td>2 个 GIF + 参数</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t14"></td><td>D14</td><td>每个效果记录指令数/帧时间；整理 Material Lab v0.1</td><td>6 个效果 + 性能表 + 一页文档</td></tr>
+</tbody></table>
+<h3>W3 · 工具链（D15–D21）</h3>
+<table>
+<thead><tr><th class="cb">✓</th><th style="width:50px">D</th><th>具体任务</th><th>产出</th></tr></thead>
+<tbody>
+<tr><td class="cb"><input type="checkbox" data-tid="t15"></td><td>D15</td><td>Blender Python：bpy 场景/对象/网格/材质；打印选中物体信息</td><td>脚本 + 运行截图</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t16"></td><td>D16</td><td>批量重命名 + 资产体检 v0.1（三角面/贴图尺寸/UV 缺失）</td><td>脚本 + CSV 报告</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t17"></td><td>D17</td><td>安装并运行 PipeCheck v0.1（项目 P5_DCC_Tool）</td><td>安装截图 + 首次报告</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t18"></td><td>D18</td><td>PipeCheck 加 HTML 报告 + FBX 导出预设</td><td>HTML 报告 + 导出文件</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t19"></td><td>D19</td><td>UE Python：批量重命名/列出贴图尺寸（启用 Python 插件）</td><td>脚本 + 运行结果</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t20"></td><td>D20</td><td>用 PipeCheck 检查 P1/P2 资产，修复命名/贴图/UV 3 个问题</td><td>修复前后对比</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t21"></td><td>D21</td><td>工具 README + 2 分钟演示视频/GIF</td><td>README + 演示</td></tr>
+</tbody></table>
+<h3>W4 · 技术整合到 P1（D22–D30）</h3>
+<table>
+<thead><tr><th class="cb">✓</th><th style="width:50px">D</th><th>具体任务</th><th>产出</th></tr></thead>
+<tbody>
+<tr><td class="cb"><input type="checkbox" data-tid="t22"></td><td>D22</td><td>P1 材质：地面/墙面/金属/布料（母材质+实例）</td><td>4 个材质 + 节点截图</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t23"></td><td>D23</td><td>P1 灯光 + 后期：主光/补光/环境光 + 体积雾 + 调色</td><td>第一版 3 图</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t24"></td><td>D24</td><td>P1 MRQ 出图：1920×1080，3 机位，记录耗时</td><td>3 张成图 + 耗时</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t25"></td><td>D25</td><td>灯光 3 方案：早/黄昏/夜（或暖/冷/霓虹）对比</td><td>3 图 + 每套 3 行理由</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t26"></td><td>D26</td><td>性能优化：贴图 4K→2K、阴影/Overdraw 处理，记录前后数据</td><td>优化前后对比表</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t27"></td><td>D27</td><td>技术 Breakdown：目标→方案→参数→取舍→数据</td><td>800–1200 字 + 图</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t28"></td><td>D28</td><td>15 题技术自测（09 文档），录音回答 5 题</td><td>录音 + 不会的题清单</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t29"></td><td>D29</td><td>作品集技术页：节点图/性能数据/工具截图排 1 页</td><td>技术页草稿</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="t30"></td><td>D30</td><td>按 07 rubric 自评 + 更新面板 + 定下月 3 目标</td><td>复盘 + 路线更新</td></tr>
+</tbody></table>
+
+<h2 id="phase2">阶段 2：作品集 P1–P5（第 41–100 天）</h2>
+<table>
+<thead><tr><th class="cb">✓</th><th style="width:60px">项目</th><th>具体交付</th><th>验收</th></tr></thead>
+<tbody>
+<tr><td class="cb"><input type="checkbox" data-tid="p1"></td><td>P1 室内写实小景</td><td>参考板 + 白模 + 材质 5–8 个 + 3 套灯光 + 后期 + MRQ；3–5 图 + 10s 镜头 + Breakdown + 性能</td><td>能讲 5 分钟；无明显穿帮</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="p2"></td><td>P2 霓虹街角</td><td>湿地面/霓虹/体积雾/Niagara 雨 + 15s 镜头 + Breakdown + 性能页</td><td>画面有电影感；3 个技术点能讲取舍</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="p3"></td><td>P3 材质/Shader 包</td><td>PBR 5 个 + 风格化 3 个 + HLSL 2–3 个 + 后处理 1 个 + GIF/节点/文档</td><td>别人按文档能复现 80%</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="p4"></td><td>P4 角色/VFX</td><td>MetaHuman/授权角色 + 皮肤/眼睛/头发 + 三点布光 + Niagara 1 个 + 25s</td><td>材质/灯光/特效参数能讲清</td></tr>
+<tr><td class="cb"><input type="checkbox" data-tid="p5"></td><td>P5 PipeCheck 工具</td><td>检查（命名/面数/UV/材质/贴图）+ HTML 报告 + FBX 导出 + UI + README + 演示</td><td>能装能跑，别人能复现</td></tr>
+</tbody></table>
+
+<h2 id="phase3">阶段 3：投递 / 面试（2027 春练手 → 2027-08 下旬秋招）</h2>
+<div class="card">
+  <ul>
+    <li>简历 1 页（项目写"做了什么 + 技术 + 量化结果"）</li>
+    <li>作品集 PDF ≤20 页 + 在线页面（ArtStation/B站/博客）</li>
+    <li>Showreel 60–90s；3 份项目讲解稿（各 5 分钟）</li>
+    <li>GAMES101 进度、性能数据、工具 GitHub 链接</li>
+    <li>2027 春投日常/暑期实习练手；2027-08 下旬秋招投 SUN 美术 TA + 程序向 TA 双投</li>
+    <li>每场面试后 30 分钟填复盘；每周 1 次模拟面试</li>
+  </ul>
+</div>
+
+<h2 id="series">系列教程整理（按顺序 / 按用途）</h2>
+<div class="tip"><b>使用规则：</b>同一时间只跟一个"主线系列"；每个视频看 5–10 分钟就暂停动手；长课（标注"字典"）不整刷，按问题查章节；每系列结束必须有产出。</div>
+
+<h3>1. 主线：UE5 入门（二选一）</h3>
+<div class="series">
+  <div class="card"><h3>GenJi · UE5.1 全中文新手入门</h3><div class="meta">472:54 · 287 万播放 · 看前 2–3 集</div><div class="why">界面/移动/放物体/基础操作，零基础最稳。</div><div class="how">产出：Day1 三个方块截图</div><a href="https://www.bilibili.com/video/BV1Cd4y1V7G5/">打开 B 站</a></div>
+  <div class="card"><h3>星露 Studio · UE5 零基础完整系列</h3><div class="meta">400:40 · 138 万播放 · 备选</div><div class="why">体系完整，适合查漏；不要同时看两套。</div><div class="how">产出：同 Day1</div><a href="https://www.bilibili.com/video/BV1qYSvBHELW/">打开 B 站</a></div>
+</div>
+
+<h3>2. 主线：灯光 / 写实渲染</h3>
+<div class="series">
+  <div class="card"><h3>叶桑讲UE5 · 室内灯光全流程</h3><div class="meta">21:54 · 1.2 万播放 · D3/D5 主参考</div><div class="why">项目设置→主光/补光→曝光→体积雾/粉尘，直接对应 P2 夜景。</div><div class="how">看前 10 分钟即可动手</div><a href="https://www.bilibili.com/video/BV1VTtyzeENo/">打开 B 站</a></div>
+  <div class="card"><h3>-AOV视觉科学- · 角色照明与渲染全流程</h3><div class="meta">41:37 · 5728 播放 · D4 扩展</div><div class="why">三点布光/主光/补光/轮廓光与色温，理解光比。</div><div class="how">看布光部分，不跟做角色</div><a href="https://www.bilibili.com/video/BV1Pr3i63EuY/">打开 B 站</a></div>
+  <div class="card"><h3>小小效果 · 2025 虚幻引擎5渲染指南</h3><div class="meta">13:06 · 5850 播放 · D5</div><div class="why">渲染设置/画质/性能权衡，13 分钟可整看。</div><div class="how">产出：Day5 曝光对比</div><a href="https://www.bilibili.com/video/BV1NUGtzqEhW/">打开 B 站</a></div>
+  <div class="card"><h3>JaysongShao · UE5 光照与渲染大师班（上）</h3><div class="meta">285:12 · 6801 播放 · 字典</div><div class="why">遇到光比/IES/体积光再查章节，不整刷。</div><div class="how">按问题查</div><a href="https://www.bilibili.com/video/BV1AJgbzbEjB/">打开 B 站</a></div>
+  <div class="card"><h3>-AOV视觉科学- · 写实光照环境全流程</h3><div class="meta">177:25 · 2405 播放 · P2 后段</div><div class="why">完整写实环境灯光，等 P2 白模/材质完成后再看。</div><div class="how">P2 阶段按需看</div><a href="https://www.bilibili.com/video/BV1GnqVYtEfC/">打开 B 站</a></div>
+</div>
+
+<h3>3. 主线：材质 / Shader</h3>
+<div class="series">
+  <div class="card"><h3>UE5 创建第一个材质</h3><div class="meta">11:34 · D2</div><div class="why">母材质/参数/实例的最短路径。</div><div class="how">产出：M_Basic + 3 实例</div><a href="https://www.bilibili.com/video/BV1gBa7zAEED/">打开 B 站</a></div>
+  <div class="card"><h3>UE5 材质节点基础</h3><div class="meta">6:27 · D2</div><div class="why">UV/法线/Fresnel/数学节点怎么连。</div><div class="how">跟做一遍</div><a href="https://www.bilibili.com/video/BV1qw4bzZEy5/">打开 B 站</a></div>
+  <div class="card"><h3>Ben Cloward · UE5 高级材质（中英）</h3><div class="meta">1526:31 · 6499 播放 · 字典</div><div class="why">多层混合/法线/顶点动画，P2/P3 按需查。</div><div class="how">不整刷；每周 2 集</div><a href="https://www.bilibili.com/video/BV1Yy9zBPEYf/">打开 B 站</a></div>
+  <div class="card"><h3>菲涅尔边缘光（1:52） + 原神三渲二材质（26:21）</h3><div class="meta">D9 / 风格化参考</div><div class="why">Rim Light 思路；三渲二的边缘光/matcap/高光拆解。</div><div class="how">先用我们的 02 模板，再看视频对照</div><a href="https://www.bilibili.com/video/BV1vM411x7YE/">边缘光</a> · <a href="https://www.bilibili.com/video/BV1cU411f7D1/">三渲二</a></div>
+</div>
+
+<h3>4. 专项：Sequencer / 出片 / 特效 / 角色</h3>
+<div class="series">
+  <div class="card"><h3>10 分钟学会 Sequencer（新手向）</h3><div class="meta">9:35 · 2.2 万播放 · D4/P2</div><div class="why">相机轨道/关键帧/镜头输出。</div><div class="how">产出：10s 镜头</div><a href="https://www.bilibili.com/video/BV1XUaSeKEYA/">打开 B 站</a></div>
+  <div class="card"><h3>暴走喵哥 · 第一个动画｜认识 Sequencer</h3><div class="meta">11:39 · 4.8 万播放 · 补充</div><div class="why">Sequencer 基础操作与动画混合。</div><div class="how">按需</div><a href="https://www.bilibili.com/video/BV1oS4y1Z7gD/">打开 B 站</a></div>
+  <div class="card"><h3>UE5.7 过场渲染工作流</h3><div class="meta">343:58 · 1148 播放 · 字典</div><div class="why">Sequencer→MRQ→输出；只看需要的流程段。</div><div class="how">P2 出片时查</div><a href="https://www.bilibili.com/video/BV1SaDhBbE7k/">打开 B 站</a></div>
+  <div class="card"><h3>MetaHuman 国风女侠全流程</h3><div class="meta">114:20 · 2.5 万播放 · P4</div><div class="why">Blender 发型 + MD 服装 + SP 材质 + Sequencer 渲染全流程。</div><div class="how">P4 前看流程，不逐帧跟</div><a href="https://www.bilibili.com/video/BV1pm54zKEKJ/">打开 B 站</a></div>
+  <div class="card"><h3>Niagara 剑气充能特效</h3><div class="meta">13:21 · 177 播放 · P4</div><div class="why">粒子/发光/拖尾入门小案例。</div><div class="how">产出：1 个技能特效</div><a href="https://www.bilibili.com/video/BV1884g62EMg/">打开 B 站</a></div>
+</div>
+
+<h3>5. 专项：Blender / DCC 管线</h3>
+<div class="series">
+  <div class="card"><h3>Blender 4.0 零基础入门（全流程）</h3><div class="meta">1604:40 · 173 万播放 · 选章节</div><div class="why">界面/建模/UV/导出；只看基础章节，不整刷。</div><div class="how">D8 用</div><a href="https://www.bilibili.com/video/BV11H4y1P7RV/">打开 B 站</a></div>
+  <div class="card"><h3>Blender Guru 5.0 全流程（中文字幕）</h3><div class="meta">6:42（导入集） · D8 补充</div><div class="why">看甜甜圈流程建立"完整流程"概念。</div><div class="how">可选</div><a href="https://www.bilibili.com/video/BV1nTL76xEca/">打开 B 站</a></div>
+  <div class="card"><h3>Blender 到 UE5 可交互资产（海盗宝箱）</h3><div class="meta">481:04 · 935 播放 · 字典</div><div class="why">资产制作/导出/导入章节；P2/P4 按需。</div><div class="how">不整刷</div><a href="https://www.bilibili.com/video/BV1N1Yk6EEwD/">打开 B 站</a></div>
+</div>
+
+<h3>6. 专项：性能 / 工具链</h3>
+<div class="series">
+  <div class="card"><h3>多面匠 · RenderDoc 工具介绍</h3><div class="meta">25:54 · 5360 播放 · D26</div><div class="why">截帧/看 DrawCall/Shader/贴图，性能定位入门。</div><div class="how">产出：1 次抓帧记录</div><a href="https://www.bilibili.com/video/BV14N4y1F7Sq/">打开 B 站</a></div>
+  <div class="card"><h3>虚幻引擎官方 · Unreal Insights 数据收集与分析</h3><div class="meta">33:50 · 8021 播放 · D26</div><div class="why">CPU/GPU 帧分析，性能数据来源。</div><div class="how">P2 优化时看</div><a href="https://www.bilibili.com/video/BV1Ay4y1q7Kj/">打开 B 站</a></div>
+  <div class="card"><h3>Axiss_F · UE5 优化第 2 集：Insights 新手指南</h3><div class="meta">17:07 · 1168 播放 · 补充</div><div class="why">更短的中文上手。</div><div class="how">先看这个再看官方</div><a href="https://www.bilibili.com/video/BV14MNtzJEaF/">打开 B 站</a></div>
+  <div class="card"><h3>UE5 Python：启用脚本 + 一键生成材质工具</h3><div class="meta">3:59 / 3:23 · D19</div><div class="why">UE Python 环境与第一个工具。</div><div class="how">产出：1 个脚本</div><a href="https://www.bilibili.com/video/BV1WqsgeRE7m/">启用脚本</a> · <a href="https://www.bilibili.com/video/BV1hFLjzHE3D/">生成材质</a></div>
+</div>
+
+<h3>7. 图形学（选讲，不刷全课）</h3>
+<div class="series">
+  <div class="card"><h3>GAMES101 · 闫令琪</h3><div class="meta">1682:34 · 385 万播放 · 第 11 天起每周 2 讲</div><div class="why">程序向 TA 底子：L03 变换 / L05–06 光栅化 / L07–08 着色管线 / L09 纹理 / L13 光追 / L15–16 进阶 / L19–20 相机色彩。</div><div class="how">PA1/PA2 可选，PA4+ 不做</div><a href="https://www.bilibili.com/video/BV1X7411F744/">打开 B 站</a></div>
+  <div class="card"><h3>GAMES202 · 高质量实时渲染</h3><div class="meta">选 3 主题 · 2027 春</div><div class="why">阴影/PBR/IBL/SSR/AA，面试接术语即可。</div><div class="how">最多看 3 主题</div><a href="https://www.bilibili.com/video/BV1YK4y1T7yY/">打开 B 站</a></div>
+</div>
+
+<h3>8. 行业 / 参考 / 美术判断</h3>
+<div class="series">
+  <div class="card"><h3>鸣潮 UFSH2023 技术分享（库洛）</h3><div class="meta">约 1 场 · 王宏波</div><div class="why">目标公司在意的效果/性能平衡。</div><div class="how">第一周看一遍，记 10 个术语</div><a href="https://www.bilibili.com/video/BV1BK411v7FY/">打开 B 站</a></div>
+  <div class="card"><h3>鸣潮抓帧分析 + Rain Yan 灯光 Breakdown</h3><div class="meta">博客/80.lv · 面试杀手锏</div><div class="why">逐 pass 拆解 + 影视级灯光 Breakdown 结构。</div><div class="how">写 Breakdown 时对照</div><a href="https://whlsl.github.io/2024/10/10/%E9%B8%A3%E6%BD%AE%E6%8A%93%E5%B8%A7%E5%88%86%E6%9E%90/">抓帧</a> · <a href="https://80.lv/articles/the-changing-seasons-ue5-feudal-japan-cinematic-lighting-studies/">Rain Yan</a></div>
+  <div class="card"><h3>Proko 绘画基础（可选）</h3><div class="meta">458:33 · 2.2 万播放</div><div class="why">程序向只需判断，速写可选；不报长期绘画课。</div><div class="how">每天 10 分钟看图/拉片为主</div><a href="https://www.bilibili.com/video/BV1RG5CzPEni/">打开 B 站</a></div>
+</div>
+
+<h2 id="rules">每天 / 每周 / 每月固定动作</h2>
+<div class="grid4">
+  <div class="phase"><b>每天</b>美术判断 10–15 分钟（拉片/看图）→ 技术块 60–90 分钟 → 3 行复盘 → 面板打卡。</div>
+  <div class="phase"><b>每周</b>技术主线 ≥5 天；GAMES101 2 讲；交付 1 个可展示物；周日 30 分钟复盘。</div>
+  <div class="phase"><b>每两周</b>发 1 条动态/文章；整理 1 次笔记；检查资产工具。</div>
+  <div class="phase"><b>每月</b>按 07 rubric 自评；砍 1 条低价值线；补 1 个缺证据；更新作品集页面。</div>
+</div>
+
+<h2 id="no">不学清单（现在）</h2>
+<div class="card no">
+  <ul>
+    <li><b>GAMES101 全 23 讲 + 全部 PA</b>（只选 10–11 讲，PA1/2 可选）</li>
+    <li><b>GAMES202 全课</b>（最多 3 主题）</li>
+    <li><b>UE C++ Gameplay / 蓝图系统 / 网络同步</b>（不是客户端岗）</li>
+    <li><b>算法刷题 / 后端 / 数据库</b>（学校课除外）</li>
+    <li><b>Maya/Houdini 系统课、角色雕刻/绑定/动画/毛发/布料</b>（认知/资产代替）</li>
+    <li><b>纯绘画/素描/厚涂长期课</b>（程序向只做判断）</li>
+    <li><b>Unity / 3ds Max / ZBrush / C4D</b>（UE 一条线打穿）</li>
+    <li><b>影视后期全流程 / DaVinci 高级调色</b>（基础出片即可）</li>
+    <li><b>4K/8K、Path Tracer 动画、Substrate/PCG 大世界（过早）</b></li>
+    <li><b>付费长课囤积 / 作品集堆数量 / 先学完再做 / 硬件升级</b></li>
+  </ul>
+</div>
+
+<h2 id="start">现在开始（Day 1，40 分钟）</h2>
+<div class="card">
+  <ol style="margin-left:20px;font-size:14px">
+    <li>双击桌面「<b>零基础10天重启</b>」→ 看 <a href="https://www.bilibili.com/video/BV1Cd4y1V7G5/">GenJi 新手课</a> 前 2–3 集（只看界面/移动/放物体）。</li>
+    <li>在 UE 里放 1 个 Plane + 3 个 Cube；Ctrl+S 保存。</li>
+    <li>F9 截图 → <b>E:\TA_Workspace\05_Renders\零基础\Day1_三个方块.png</b>。</li>
+    <li>打开桌面「TA学习面板」→ 技术 Tab → 勾 Day1。</li>
+  </ol>
+  <div class="links" style="margin-top:10px">
+    <a href="/ta/10-zero-10days/">10 零基础 10 天</a>
+    <a href="/ta/09-tech-30days/">09 技术向 30 天</a>
+    <a href="/ta/07-portfolio/">07 作品集</a>
+    <a href="/ta/12-final-list/">12 最终清单</a>
+    <a href="/ta/tech-videos/">视频课表</a>
+  </div>
+</div>
+
+<footer>TA 学习系统 v2 · 2026-11-06 · 目标：库洛 SUN-美术 TA（程序向打法） · 进度存在本机浏览器</footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var KEY='ta_master_manual_v1';
+  function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return{};}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
+  var st=load(); if(!st.done) st.done={};
+  var boxes=Array.prototype.slice.call(document.querySelectorAll('input[data-tid]'));
+  var total=boxes.length;
+  function update(){
+    var done=0;
+    boxes.forEach(function(b){ if(b.checked) done++; });
+    var pct=total?Math.round(done/total*100):0;
+    document.getElementById('bar').style.width=pct+'%';
+    document.getElementById('barTxt').textContent='总进度：'+done+' / '+total+' 项（'+pct+'%）';
+  }
+  boxes.forEach(function(b){
+    var id=b.getAttribute('data-tid');
+    b.checked=!!st.done[id];
+    b.addEventListener('change',function(){ st.done[id]=b.checked; save(st); update(); });
+  });
+  update();
+})();
+</script>
+</body>
+</html>
