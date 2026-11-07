@@ -377,7 +377,11 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
     return {version:PLAN_VERSION, planVersion:PLAN_VERSION, xp:0, streak:0, lastDone:'', days:{}, logs:[], vision:'', antiVision:'', timerDone:{}, bossDone:{}, chain:{}, courses:{}, updatedAt:0};
   }
   function load() {
-    try { const raw = localStorage.getItem(KEY); if (raw) { const s = JSON.parse(raw); return Object.assign(defaultState(), s); } } catch {}
+    try {
+      let raw = localStorage.getItem(KEY);
+      if (!raw) raw = localStorage.getItem('sun-ta-quest-v1'); // 兼容旧面板：保留 XP/连续天数/日志
+      if (raw) { const s = JSON.parse(raw); return Object.assign(defaultState(), s); }
+    } catch {}
     return defaultState();
   }
   let S = load();
