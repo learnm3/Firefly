@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SUN 作战面板 · 美术 TA</title>
+<title>SUN 程序向 TA 作战面板</title>
 <style>
 :root{
   --bg:#070a12; --panel:#0e1524; --panel2:#0a101c; --line:#1e2a40;
@@ -125,6 +125,13 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
 .badge-list{display:flex;gap:8px;flex-wrap:wrap}
 .badge{padding:6px 10px;border-radius:99px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:11px;color:var(--faint)}
 .badge.on{color:#ffe6b0;border-color:rgba(255,200,94,.4);background:rgba(255,200,94,.09)}
+.plan-row{display:flex;gap:8px;padding:7px 0;border-bottom:1px dashed rgba(255,255,255,.07);font-size:11.5px;line-height:1.45}
+.plan-row:last-child{border-bottom:0}
+.plan-row b{flex:0 0 30px;color:var(--gold);font-family:ui-monospace,Consolas,monospace}
+.plan-row .pp{flex:0 0 78px;color:var(--faint);font-size:10.5px}
+.plan-row .pm{flex:1;color:var(--dim);min-width:0}
+.plan-row .pm small{display:block;color:var(--faint);font-size:10.5px;margin-top:2px}
+.plan-row.now .pm{color:var(--fg)}
 </style>
 </head>
 <body>
@@ -136,8 +143,8 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
         <svg viewBox="0 0 24 24" fill="none"><path d="M12 2.8 21.4 20.8H2.6L12 2.8Z" stroke="#51e6c8" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 2.9V20.7M2.7 20.8 21.3 2.7" stroke="#7aa2ff" stroke-width="1" opacity=".6"/><circle cx="12" cy="2.9" r="1.5" fill="#51e6c8"/></svg>
       </div>
       <div>
-        <h1>SUN 作战面板</h1>
-        <div class="sub">库洛 · 美术 TA 日常实习 · 2028 届</div>
+        <h1>SUN 程序向 TA 作战面板</h1>
+        <div class="sub">库洛 SUN-美术 TA 主投 · 程序向能力线 · 2028 届</div>
       </div>
     </div>
     <div class="rank-pill"><b id="rankName">见习 TA</b><span class="lv" id="levelText">Lv.1</span><span id="totalXp">0 XP</span><span class="sync" id="syncState"><span class="sdot"></span><span id="syncText">本地</span></span></div>
@@ -147,8 +154,8 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
     <div>
       <div class="card identity">
         <h2><span class="dot"></span>身份与赌注（Dan Koe）</h2>
-        <p class="vision" id="visionText">我是能把美术创意翻译成 UE5 落地方案、还能写文档分享的美术 TA。</p>
-        <p class="anti" id="antiText">反愿景：2028 年毕业还没进过游戏公司，作品集里只有代码作业没有画面。</p>
+        <p class="vision" id="visionText">我是能用 UE5 渲染 + Shader + 工具把画面做出来，并能写清技术方案的 TA。</p>
+        <p class="anti" id="antiText">反愿景：2028 年毕业时作品集只有练习图，没有能讲清技术方案的作品。</p>
         <textarea id="visionInput" placeholder="写你的愿景（一句话）"></textarea>
         <textarea id="antiInput" placeholder="写你的反愿景（越具体越扎心）"></textarea>
       </div>
@@ -161,19 +168,27 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
       </div>
 
       <div class="card chain">
-        <h2><span class="dot" style="background:var(--blue);box-shadow:0 0 12px var(--blue)"></span>作品集 Boss 链</h2>
+        <h2><span class="dot" style="background:var(--blue);box-shadow:0 0 12px var(--blue)"></span>作品集 Boss 链（P1–P5）</h2>
         <div class="chain-progress" id="chainProgress"></div>
         <div id="chain"></div>
       </div>
 
       <div class="card boss">
-        <h2><span class="dot" style="background:var(--pink);box-shadow:0 0 12px var(--pink)"></span>本周 Boss</h2>
+        <h2><span class="dot" style="background:var(--pink);box-shadow:0 0 12px var(--pink)"></span>本周交付</h2>
         <div class="name" id="bossName">—</div>
         <div class="meta" id="bossMeta"></div>
         <div class="actions">
-          <button class="btn gold" id="bossBtn">标记 Boss 完成 +120 XP</button>
+          <button class="btn gold" id="bossBtn">标记本周交付 +120 XP</button>
           <button class="btn" id="bossReset">撤销</button>
         </div>
+      </div>
+
+      <div class="card">
+        <h2><span class="dot" style="background:var(--gold);box-shadow:0 0 12px var(--gold)"></span>完整任务表（46 天）</h2>
+        <details>
+          <summary style="cursor:pointer;font-size:11.5px;color:var(--faint)">展开查看每天主任务 / 交付 / 理论（按日期自动定位今天）</summary>
+          <div id="planList" style="margin-top:10px"></div>
+        </details>
       </div>
     </div>
 
@@ -186,7 +201,7 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
       </div>
 
       <div class="card">
-        <h2><span class="dot" style="background:var(--violet);box-shadow:0 0 12px var(--violet)"></span>课程 XP</h2>
+        <h2><span class="dot" style="background:var(--violet);box-shadow:0 0 12px var(--violet)"></span>系列教程进度</h2>
         <div class="course-total" id="courseTotal">每看一讲 +10 XP</div>
         <div id="courses"></div>
       </div>
@@ -220,6 +235,8 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
   <div class="foot">
     <div>数据只存在本机浏览器 · <span id="weekHint">第 1 周</span> · <span id="startHint"></span></div>
     <div class="row">
+      <a class="btn" href="https://nofinallevel.space/ta/" target="_blank" rel="noopener">博客 TA 学习系统</a>
+      <a class="btn" href="https://nofinallevel.space/ta/guides/master-manual/" target="_blank" rel="noopener">总执行手册</a>
       <button class="btn" id="exportBtn">导出</button>
       <button class="btn" id="importBtn">导入</button>
       <input type="file" id="importFile" accept="application/json" class="hide">
@@ -232,45 +249,99 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
 
 <script>
 (() => {
-  const KEY = 'sun-ta-quest-v1';
-  const START = '2026-11-05';
+  const KEY = 'sun-ta-quest-v2';
+  const START = '2026-11-07';
+  const PLAN_VERSION = 2;
   const LEVELS = [
-    {xp:0, rank:'见习 TA'}, {xp:120, rank:'入门 TA'}, {xp:300, rank:'场景 TA'},
-    {xp:560, rank:'镜头 TA'}, {xp:900, rank:'SUN 实习生'}, {xp:1400, rank:'正式 TA'},
+    {xp:0, rank:'见习 TA'}, {xp:150, rank:'破冰 TA'}, {xp:450, rank:'渲染入门'},
+    {xp:900, rank:'Shader 入门'}, {xp:1500, rank:'工具 TA'}, {xp:2300, rank:'作品集 TA'},
+    {xp:3200, rank:'SUN 实习生'},
   ];
   const WEEKS = [
-    {art:'速写：场景透视 1 张', dcc:'Blender 基础：界面 + 建模 1 个道具', ue:'UE5 装环境 + 场景 blockout', boss:'场景 blockout 截图 + 参考板'},
-    {art:'色彩/光影分析 2 张', dcc:'Blender 资产导入 UE', ue:'Lumen + Nanite + 灯光 + 第一镜', boss:'10s 镜头预览'},
-    {art:'构图/镜头拉片 2 帧', dcc:'Blender Python 资产检查工具 v0.1', ue:'Niagara + Post Process + 镜头', boss:'30s 粗剪 + 工具截图'},
-    {art:'写实参考拆解 1 张', dcc:'工具补完 + 资产检查', ue:'精修 + 30–60s 成片 + breakdown', boss:'作品集 v0.5 + 投递材料'},
-    {art:'作品集视觉排版', dcc:'简历/作品集页', ue:'面试 demo 讲解练习', boss:'投递记录 + 面试复盘'},
-    {art:'第二支场景参考', dcc:'Shader 包整理', ue:'作品集 v1 补强', boss:'作品集 v1 草稿'},
-    {art:'速写 15min', dcc:'20min 作品集维护', ue:'1h 课程复习', boss:'期末不挂科'},
-    {art:'速写 15min', dcc:'20min 作品集维护', ue:'1h 课程复习', boss:'期末不挂科'},
-    {art:'速写 15min', dcc:'20min 作品集维护', ue:'1h 课程复习', boss:'期末不挂科'},
-    {art:'实习前作品集整理', dcc:'面试材料准备', ue:'作品集讲解练习', boss:'考试通过 + 实习准备'},
-    {art:'实习/项目周报', dcc:'UE5/公司任务', ue:'第二支场景或角色', boss:'实习周报'},
-    {art:'作品集 v1.1 排版', dcc:'把实习产出写进作品集', ue:'复盘与补强', boss:'作品集 v1.1'},
+    {boss:'零基础 7 天：3 张图 + 3 行复盘'},
+    {boss:'P2 灯光/曝光 3 图 + 性能基线'},
+    {boss:'Material Lab v0.1（3 HLSL + 后处理）'},
+    {boss:'PipeCheck v0.1 + 资产体检报告'},
+    {boss:'P1 技术版：3 图 + Breakdown + 性能卡'},
+    {boss:'作品集 v0.5 页面 + 投递材料'},
+    {boss:'P1 完成 + Breakdown 发布'},
   ];
-  const QUEST_XP = {art:15, dcc:25, ue:35};
+  const ZERO = [
+    ['UE5 界面 + 移动视角 + 放 1 Plane + 3 Cube','Day1 三个方块截图','拉片 1 张：主光方向/色温',''],
+    ['材质 M_Basic：BaseColor/Roughness/Metallic + 3 实例','3 张材质球 + 参数表','看图 1 张：粗糙度/金属度',''],
+    ['灯光：Directional + SkyLight + SkyAtmosphere，3 个主光角度','3 张灯光对比','光影拉片 1 张',''],
+    ['Camera Actor + 构图 + F9 1080p','Day4 相机成图','构图分析 1 张',''],
+    ['PostProcessVolume + 曝光 -1.0 / +0.5','2 张曝光对比','拉片 1 张：亮部/暗部',''],
+    ['5 物件小场景 + 材质 + 灯光 + 曝光','Day6 白模 + 成图','收集 5 张参考',''],
+    ['复盘 + 发 1 条动态 + 面板勾 D1','3 行复盘 + 动态','拉片 1 张',''],
+    ['Blender 界面 + 建一个简单道具','1 个 .blend 道具','看图 1 张',''],
+    ['Blender → FBX → UE 导入 + 赋材质','Day9 导入截图 + 3 条踩坑','拉片 1 张',''],
+    ['道具入场景 + 第二张成图 + 面板勾 D2','Day10 成图2','拉片 1 张',''],
+  ];
+  const TECH = [
+    ['P2 灯光/曝光对比：基线 + -1/+0.5 + 3200K/6500K','3 张对比图 + 3 行因果','拉片 1 张','GAMES101 L03 变换'],
+    ['资产导入技术：单位/缩放/材质槽/sRGB/法线','导入截图 + 3 条踩坑','看图 1 张','GAMES101 L05 光栅化'],
+    ['母材质 M_Basic + 3 实例 + 参数表','3 实例 + 参数表','拉片 1 张','GAMES101 L06 抗锯齿'],
+    ['同一场景 3 个主光角度/色温对比','3 张灯光对比','光影拉片 1 张','GAMES101 L07 着色'],
+    ['PPV：曝光/Bloom/DOF/Color Grading 逐项测试','参数表 + 2 图','拉片 1 张','GAMES101 L08 渲染管线'],
+    ['HighRes Screenshot vs MRQ；出 1920×1080','成图 + MRQ 记录','拉片 1 张','复习 L03–L08'],
+    ['性能基线：stat unit/gpu/rhi + 显存/DrawCall','性能基线表 + 周复盘','拉片 1 张',''],
+    ['材质函数：UV 平铺/色阶调整，复用 3 处','函数 + 复用说明','拉片 1 张',''],
+    ['Rim Light（Custom Node HLSL）','GIF + 节点图 + 3 行原理','拉片 1 张',''],
+    ['Dissolve 溶解 + 边缘发光','GIF + HLSL + 参数','拉片 1 张',''],
+    ['扫描线 / UV 流动','2 个 GIF + 参数','拉片 1 张',''],
+    ['三平面映射（节点版）+ 接缝对比','GIF + 对比图','拉片 1 张',''],
+    ['后处理材质：暗角 + 简单描边','2 个 GIF + 参数','拉片 1 张',''],
+    ['每个效果记录指令数/帧时间；整理 Material Lab v0.1','6 效果 + 性能表 + 文档','拉片 1 张','GAMES101 L09 纹理'],
+    ['Blender Python：bpy 场景/对象/网格/材质','脚本 + 运行截图','拉片 1 张',''],
+    ['批量重命名 + 资产体检 v0.1','脚本 + CSV 报告','拉片 1 张',''],
+    ['安装并运行 PipeCheck v0.1','安装截图 + 首次报告','拉片 1 张',''],
+    ['PipeCheck + HTML 报告 + FBX 导出预设','报告 + 导出文件','拉片 1 张',''],
+    ['UE Python：批量重命名 / 列出贴图尺寸','脚本 + 结果','拉片 1 张',''],
+    ['用 PipeCheck 检查资产，修复 3 个问题','修复前后对比','拉片 1 张',''],
+    ['工具 README + 2 分钟演示','README + 演示','拉片 1 张','GAMES101 L13 光追概念'],
+    ['P1 材质：地面/墙面/金属/布料','4 材质 + 节点图','拉片 1 张',''],
+    ['P1 灯光 + 后期：主光/补光/环境光 + 体积雾','第一版 3 图','光影拉片 1 张',''],
+    ['P1 MRQ 出图 1920×1080，3 机位','3 张成图 + 耗时','拉片 1 张',''],
+    ['灯光 3 方案（早/黄昏/夜）对比','3 图 + 每套 3 行理由','光影拉片 1 张',''],
+    ['性能优化：贴图 4K→2K、阴影/Overdraw','优化前后对比表','拉片 1 张','GAMES101 L15–16'],
+    ['技术 Breakdown：目标→方案→参数→取舍→数据','800–1200 字 + 图','拉片 1 张',''],
+    ['15 题技术自测 + 录音回答 5 题','录音 + 不会清单','拉片 1 张','GAMES101 L19–20'],
+    ['作品集技术页：节点图/性能数据/工具截图','技术页草稿','拉片 1 张',''],
+    ['按 07 rubric 自评 + 更新面板 + 下月目标','复盘 + 路线更新','拉片 1 张',''],
+  ];
+  const PORT = [
+    ['P1 参考板 + 白模 blockout + 机位','参考板 + 白模截图','拉片 1 张',''],
+    ['P1 材质：地面/墙/金属/布料/玻璃','4–5 材质 + 节点图','拉片 1 张',''],
+    ['P1 灯光 3 方案 + 后期调色','3 张灯光对比','光影拉片 1 张',''],
+    ['P1 MRQ 出图 3–5 张 + 10s 镜头','成图 + 镜头','拉片 1 张',''],
+    ['P1 Breakdown + 性能卡 + 发布','Breakdown + 性能卡','拉片 1 张',''],
+    ['P1 复盘 + 进入 P2 霓虹街角','复盘 + 下阶段任务','拉片 1 张',''],
+  ];
+  const PLAN = [
+    ...ZERO.map((x, i) => ({phase:'零基础 10 天', main:x[0], deliver:x[1], art:x[2], theory:x[3]})),
+    ...TECH.map((x, i) => ({phase:'技术冲刺 D' + (i + 1), main:x[0], deliver:x[1], art:x[2], theory:x[3]})),
+    ...PORT.map((x, i) => ({phase:'作品集 P1', main:x[0], deliver:x[1], art:x[2], theory:x[3]})),
+  ];
+  const QUEST_XP = {main:35, deliver:20, art:10, theory:10};
   const BONUS_XP = 25, BOSS_XP = 120, TIMER_XP = 5;
   const SYNC_URL = 'https://phone.nofinallevel.space/ta-sync-6c1f9b2d/state';
   const CHAIN = [
-    {id:'scene', title:'UE5 影视级写实场景', desc:'30–60s 成片：Lumen + Nanite + Sequencer + Niagara + Post', xp:150},
-    {id:'shader', title:'Shader / 材质包', desc:'PBR 金属/布料/皮肤 + 风格化 + 后处理，每个带说明', xp:120},
-    {id:'tool', title:'Blender Python 资产检查工具', desc:'命名/三角面/贴图尺寸/LOD 检查 + 报告', xp:100},
-    {id:'breakdown', title:'Breakdown + 作品集页', desc:'目标/方案/踩坑/性能/复盘，发博客/B站/GitHub', xp:120},
+    {id:'p1', title:'P1 室内写实小景', desc:'3–5 图 + 10s 镜头 + Breakdown + 性能卡', xp:120},
+    {id:'p2', title:'P2 霓虹街角', desc:'湿地面/霓虹/雾/雨 + 15s 镜头 + 性能页', xp:150},
+    {id:'p3', title:'P3 材质 / Shader 包', desc:'PBR 5 + 风格化 3 + HLSL 2–3 + 后处理', xp:120},
+    {id:'p4', title:'P4 角色渲染 + Niagara', desc:'MetaHuman/授权角色 + 三点布光 + 特效 + 25s', xp:120},
+    {id:'p5', title:'P5 PipeCheck 工具', desc:'资产检查 + HTML 报告 + FBX 导出 + README', xp:100},
   ];
   const COURSE_XP = 10;
   const COURSES = [
-    {id:'games101', name:'GAMES101 现代计算机图形学', total:22, url:'https://www.bilibili.com/video/BV1X7411F744', note:'闫令琪 · 光栅化/着色/几何/光追'},
-    {id:'games202', name:'GAMES202 高质量实时渲染', total:10, url:'https://www.bilibili.com/video/BV1YK4y1T7yY', note:'阴影/GI/PBR/抗锯齿'},
-    {id:'ue5', name:'UE5 官方学习路径', total:10, url:'https://dev.epicgames.com/community/unreal-engine/learning', note:'Lumen/Nanite/Sequencer/Niagara'},
-    {id:'blender', name:'Blender 2025 新手入门', total:10, url:'https://www.bilibili.com/video/BV1USZgYaEUf', note:'建模/材质/灯光/渲染'},
-    {id:'shader', name:'HLSL Shader 入门', total:10, url:'https://www.bilibili.com/video/BV1zUUKY5EgV', note:'着色器基础与材质节点'},
-    {id:'film', name:'影视拉片：构图/光影', total:8, url:'https://www.bilibili.com/video/BV131umz8EnY', note:'美术眼与镜头感'},
+    {id:'genji', name:'UE5 零基础（GenJi）', total:8, url:'https://www.bilibili.com/video/BV1Cd4y1V7G5', note:'界面 / 移动 / 放物体 / 材质 / 灯光'},
+    {id:'lighting', name:'叶桑 · 室内灯光全流程', total:3, url:'https://www.bilibili.com/video/BV1VTtyzeENo', note:'项目设置 / 主光补光 / 体积雾'},
+    {id:'blender', name:'Blender 4.0 零基础', total:20, url:'https://www.bilibili.com/video/BV11H4y1P7RV', note:'建模 / UV / 导出'},
+    {id:'games101', name:'GAMES101 选讲', total:11, url:'https://www.bilibili.com/video/BV1X7411F744', note:'L03/05/06/07/08/09/13/15/16/19/20'},
+    {id:'renderdoc', name:'RenderDoc 入门', total:2, url:'https://www.bilibili.com/video/BV14N4y1F7Sq', note:'截帧 / DrawCall / Shader'},
+    {id:'wuwa', name:'鸣潮 UFSH2023 技术分享', total:1, url:'https://www.bilibili.com/video/BV1BK411v7FY', note:'目标公司：效果与性能平衡'},
   ];
-
   const $ = (s) => document.querySelector(s);
   const pad = (n) => String(n).padStart(2, '0');
   const todayKey = () => { const d = new Date(); return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; };
@@ -278,29 +349,44 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
   const fromStart = () => { const a = new Date(START + 'T12:00:00'); const b = new Date(todayKey() + 'T12:00:00'); return Math.floor((b - a) / 86400000); };
   const weekIndex = () => Math.max(0, Math.min(WEEKS.length - 1, Math.floor(fromStart() / 7)));
 
+  function planPos(key) {
+    return Math.floor((new Date(key + 'T12:00:00') - new Date(START + 'T12:00:00')) / 86400000);
+  }
   function dayRecord(s, key) {
-    if (!s.days[key]) {
-      const w = WEEKS[Math.max(0, Math.min(WEEKS.length - 1, Math.floor((new Date(key + 'T12:00:00') - new Date(START + 'T12:00:00')) / 86400000 / 7)))] || WEEKS[0];
+    const pos = Math.max(0, Math.min(PLAN.length - 1, planPos(key)));
+    const p = PLAN[pos];
+    const needReset = !s.days[key] || s.days[key].planVersion !== PLAN_VERSION || s.days[key].planIndex !== pos;
+    if (needReset) {
+      const oldNote = (s.days[key] && s.days[key].note) || '';
       s.days[key] = {
+        planVersion: PLAN_VERSION,
+        planIndex: pos,
         quests: [
-          {id:'art', label:'美术基础 30–45min', detail:w.art, xp:QUEST_XP.art, done:false},
-          {id:'dcc', label:'DCC 60–90min', detail:w.dcc, xp:QUEST_XP.dcc, done:false},
-          {id:'ue',  label:'UE5 60–90min', detail:w.ue, xp:QUEST_XP.ue, done:false},
+          {id:'main', label:'主任务', detail:p.main, xp:QUEST_XP.main, done:false},
+          {id:'deliver', label:'今日交付', detail:p.deliver, xp:QUEST_XP.deliver, done:false},
+          {id:'art', label:'美术判断 10–15min', detail:p.art, xp:QUEST_XP.art, done:false},
+          ...(p.theory ? [{id:'theory', label:'理论/加餐', detail:p.theory, xp:QUEST_XP.theory, done:false}] : []),
         ],
-        bonus:false, note:'',
+        bonus:false, note:oldNote,
       };
     }
     return s.days[key];
   }
 
   function defaultState() {
-    return {version:1, xp:0, streak:0, lastDone:'', days:{}, logs:[], vision:'', antiVision:'', timerDone:{}, bossDone:{}, chain:{}, courses:{}, updatedAt:0};
+    return {version:PLAN_VERSION, planVersion:PLAN_VERSION, xp:0, streak:0, lastDone:'', days:{}, logs:[], vision:'', antiVision:'', timerDone:{}, bossDone:{}, chain:{}, courses:{}, updatedAt:0};
   }
   function load() {
     try { const raw = localStorage.getItem(KEY); if (raw) { const s = JSON.parse(raw); return Object.assign(defaultState(), s); } } catch {}
     return defaultState();
   }
   let S = load();
+  if (S.version !== PLAN_VERSION) {
+    S.version = PLAN_VERSION;
+    S.days = {};
+    S.bossDone = {};
+    S.chain = {};
+  }
   const key = todayKey();
   let day = dayRecord(S, key);
 
@@ -327,6 +413,7 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
       });
       if (!res.ok) throw new Error('http ' + res.status);
       const remote = await res.json();
+      if (!remote || remote.version !== PLAN_VERSION) throw new Error('old plan');
       if (remote && remote.updatedAt) {
         S.updatedAt = remote.updatedAt;
         try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {}
@@ -389,8 +476,8 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
     $('#xpNext').textContent = lv.next ? `距 ${lv.next.rank} 还差 ${lv.next.xp - S.xp} XP` : '已满级';
     $('#xpFill').style.width = lv.pct + '%';
 
-    $('#visionText').textContent = S.vision || '我是能把美术创意翻译成 UE5 落地方案、还能写文档分享的美术 TA。';
-    $('#antiText').textContent = S.antiVision || '反愿景：2028 年毕业还没进过游戏公司，作品集里只有代码作业没有画面。';
+    $('#visionText').textContent = S.vision || '我是能用 UE5 渲染 + Shader + 工具把画面做出来，并能写清技术方案的 TA。';
+    $('#antiText').textContent = S.antiVision || '反愿景：2028 年毕业时作品集只有练习图，没有能讲清技术方案的作品。';
     if (document.activeElement !== $('#visionInput')) $('#visionInput').value = S.vision || '';
     if (document.activeElement !== $('#antiInput')) $('#antiInput').value = S.antiVision || '';
 
@@ -410,14 +497,15 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
       qs.appendChild(el);
     });
     $('#bonusState').textContent = day.bonus ? '已拿 ✓' : '';
-    $('#todayLabel').textContent = `${key} · 第 ${weekIndex() + 1}/12 周`;
+    const posNow = Math.max(0, Math.min(PLAN.length - 1, planPos(key)));
+    $('#todayLabel').textContent = `${key} · ${PLAN[posNow].phase} · Day ${posNow + 1}/${PLAN.length}`;
 
     const wk = WEEKS[weekIndex()];
     $('#bossName').textContent = wk.boss;
     const bossDone = !!(S.bossDone && S.bossDone[weekIndex()]);
-    $('#bossMeta').textContent = bossDone ? '已完成 · 这周你就是干掉了它' : `第 ${weekIndex() + 1}/12 周 · 截止本周日 · 完成 +${BOSS_XP} XP`;
+    $('#bossMeta').textContent = bossDone ? '已完成 · 这周你就是干掉了它' : `第 ${weekIndex() + 1}/7 周 · 截止本周日 · 完成 +${BOSS_XP} XP`;
     $('#bossBtn').disabled = bossDone;
-    $('#bossBtn').textContent = bossDone ? 'Boss 已完成 ✓' : '标记 Boss 完成 +120 XP';
+    $('#bossBtn').textContent = bossDone ? 'Boss 已完成 ✓' : '标记本周交付 +120 XP';
     $('#bossReset').style.display = bossDone ? '' : 'none';
 
     /* 作品集 Boss 链 */
@@ -477,7 +565,11 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
         confetti(35); toast(`+${COURSE_XP} XP：${c.name} ${n + 1}/${c.total}`);
       };
     });
-    $('#weekHint').textContent = `第 ${weekIndex() + 1}/12 周`;
+    const pl = $('#planList');
+    if (pl) {
+      pl.innerHTML = PLAN.map((p, i) => `<div class="plan-row"><b>D${i + 1}</b><span class="pp">${p.phase}</span><div class="pm">${p.main}<small>交付：${p.deliver}${p.theory ? ' ｜ ' + p.theory : ''}</small></div></div>`).join('');
+    }
+    $('#weekHint').textContent = `第 ${weekIndex() + 1}/7 周`;
     $('#startHint').textContent = `从 ${START} 开始`;
 
     const streakEl = $('#streak'); streakEl.innerHTML = '';
@@ -492,14 +584,14 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
     }
 
     const badges = [
-      {on: S.xp >= 120, t:'上路'},
-      {on: S.xp >= 300, t:'场景起步'},
-      {on: S.xp >= 560, t:'镜头感'},
+      {on: S.xp >= 150, t:'破冰'}, 
+      {on: S.xp >= 450, t:'渲染入门'}, 
+      {on: S.xp >= 900, t:'Shader 入门'}, 
       {on: S.streak >= 3, t:'3 天连续'},
       {on: S.streak >= 7, t:'一周不断'},
       {on: Object.values(S.days).some(d => d.bonus), t:'首日全清'},
-      {on: !!(S.chain && S.chain.scene), t:'首杀 Boss'},
-      {on: CHAIN.every(c => S.chain && S.chain[c.id]), t:'作品集四件套'},
+      {on: !!(S.chain && S.chain.p1), t:'首杀 Boss'},
+      {on: CHAIN.every(c => S.chain && S.chain[c.id]), t:'作品集五件套'},
       {on: COURSES.reduce((sum, c) => sum + Math.min(c.total, (S.courses && S.courses[c.id]) || 0), 0) >= 10, t:'课程 10 讲'},
     ];
     $('#badges').innerHTML = badges.map(b => `<span class="badge ${b.on ? 'on' : ''}">${b.on ? '🏅' : '·'} ${b.t}</span>`).join('');
@@ -530,8 +622,8 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
   $('#noteInput').value = day.note || '';
 
   /* vision */
-  $('#visionInput').oninput = () => { S.vision = $('#visionInput').value; save(); $('#visionText').textContent = S.vision || '我是能把美术创意翻译成 UE5 落地方案、还能写文档分享的美术 TA。'; };
-  $('#antiInput').oninput = () => { S.antiVision = $('#antiInput').value; save(); $('#antiText').textContent = S.antiVision || '反愿景：2028 年毕业还没进过游戏公司，作品集里只有代码作业没有画面。'; };
+  $('#visionInput').oninput = () => { S.vision = $('#visionInput').value; save(); $('#visionText').textContent = S.vision || '我是能用 UE5 渲染 + Shader + 工具把画面做出来，并能写清技术方案的 TA。'; };
+  $('#antiInput').oninput = () => { S.antiVision = $('#antiInput').value; save(); $('#antiText').textContent = S.antiVision || '反愿景：2028 年毕业时作品集只有练习图，没有能讲清技术方案的作品。'; };
 
   /* timer */
   let timerLeft = 600, timerId = null;
@@ -555,7 +647,7 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
   /* share */
   $('#shareBtn').onclick = async () => {
     const done = day.quests.filter(q => q.done).length;
-    const text = `【SUN 作战面板】${key}\n第 ${weekIndex()+1}/12 周 · ${LEVELS[levelInfo().i].rank} Lv.${levelInfo().i+1} · ${S.xp} XP\n今日任务 ${done}/3，连续 ${S.streak} 天\nBoss：${WEEKS[weekIndex()].boss}\n${day.note ? '复盘：' + day.note : ''}`;
+    const text = `【SUN 程序向 TA 作战面板】${key}\n第 ${weekIndex()+1}/7 周 · ${LEVELS[levelInfo().i].rank} Lv.${levelInfo().i+1} · ${S.xp} XP\n今日任务 ${done}/${day.quests.length}，连续 ${S.streak} 天\n本周交付：${WEEKS[weekIndex()].boss}\n${day.note ? '复盘：' + day.note : ''}`;
     try { await navigator.clipboard.writeText(text); toast('战报已复制，去发博客/QQ'); } catch { toast('复制失败，手动复制吧'); }
   };
 
@@ -591,6 +683,7 @@ h1{font-size:21px;margin:0;letter-spacing:.02em}
     if (parts.length) raf = requestAnimationFrame(tick); else { raf = 0; ctx.clearRect(0,0,canvas.width,canvas.height); }
   }
 
+  save();
   render();
   pullState();
   setInterval(pullState, 30000);
